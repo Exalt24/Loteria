@@ -48,6 +48,7 @@ func create_room(info: Dictionary) -> void:
 	}
 	
 	_add_player_to_room(room_id, sender_id, info)
+	update_lobby_list_for_all_clients()
 
 @rpc("any_peer")
 func join_room(room_id: int, info: Dictionary) -> void:
@@ -65,6 +66,8 @@ func join_room(room_id: int, info: Dictionary) -> void:
 		self.multiplayer.multiplayer_peer.disconnect_peer(sender_id)
 	else:
 		_add_player_to_room(room_id, sender_id, info)
+		
+	update_lobby_list_for_all_clients()
 
 func _add_player_to_room(room_id: int, id: int, info: Dictionary) -> void:
 	rooms[room_id].players[id] = info
@@ -83,6 +86,7 @@ func _add_player_to_room(room_id: int, id: int, info: Dictionary) -> void:
 
 func _player_connected(id: int) -> void:
 	print("Player #", id, " connected")
+	
 
 func _player_disconnected(id: int) -> void:
 	print("Player #", id, " disconnected")
@@ -90,9 +94,13 @@ func _player_disconnected(id: int) -> void:
 	if not players_room.keys().has(id):
 		print("Player #", id, " was not in any room")
 		return
-		
+
 	var room_id: int = players_room[id]
 	
+	if not rooms.has(room_id):
+		print("Room #", room_id, " does not exist anymore.")
+		return
+		
 	if not rooms[room_id].players.erase(id) or not players_room.erase(id):
 		printerr("This key does not exist")
 		
@@ -101,19 +109,36 @@ func _player_disconnected(id: int) -> void:
 		if not rooms.erase(room_id):
 			printerr("Error removing room")
 		empty_rooms.push_back(room_id)
+		update_lobby_list_for_all_clients()
+		return
 	else:
 		print("Notifying the other players in the room...")
-		
+	
 		if rooms[room_id].creator == id:
+			print("Creator left. Disconnecting all players in the room.")
 			for player_id in rooms[room_id].players:
-				self.multiplayer.multiplayer_peer.disconnect_peer(player_id)
-		else:	
+				if self.multiplayer.multiplayer_peer.get_connection_status() == MultiplayerPeer.CONNECTION_CONNECTED:
+					self.multiplayer.multiplayer_peer.disconnect_peer(player_id)
+				else:
+					print("Peer #", player_id, " is already disconnected.")
+			rooms.erase(room_id)
+			empty_rooms.push_back(room_id)
+			update_lobby_list_for_all_clients()
+		else:
 			for player_id in rooms[room_id].players:
-				rpc_id(player_id, "remove_player", id)
-				
-		var player_count = rooms[room_id].players.size()
-		for player_id in rooms[room_id].players:
-			rpc_id(player_id, "update_player_count", player_count)
+				if self.multiplayer.multiplayer_peer.get_connection_status() == MultiplayerPeer.CONNECTION_CONNECTED:
+					rpc_id(player_id, "remove_player", id)
+				else:
+					print("Peer #", player_id, " is not connected; skipping notification.")
+
+			var player_count = rooms[room_id].players.size()
+			for player_id in rooms[room_id].players:
+				if self.multiplayer.multiplayer_peer.get_connection_status() == MultiplayerPeer.CONNECTION_CONNECTED:
+					rpc_id(player_id, "update_player_count", player_count)
+				else:
+					print("Peer #", player_id, " is not connected; skipping player count update.")
+			
+			update_lobby_list_for_all_clients()
 
 @rpc("any_peer")
 func start_game() -> void:
@@ -139,6 +164,32 @@ func done_preconfiguring() -> void:
 		for player_id in room.players:
 			rpc_id(player_id, "done_preconfiguring")
 
+func update_lobby_list_for_all_clients() -> void:
+	var lobby_list: Array = []
+	for room_id in rooms.keys():
+		var room = rooms[room_id]
+		lobby_list.append({
+			"room_id": room_id,
+			"creator": room.creator,
+			"player_count": room.players.size(),
+			"state": room.state
+		})
+	rpc("receive_lobby_list", lobby_list)
+
+@rpc("any_peer")
+func request_lobby_list() -> void:
+	var sender_id: int = self.multiplayer.get_remote_sender_id()
+	var lobby_list: Array = []
+	for room_id in rooms.keys():
+		var room = rooms[room_id]
+		lobby_list.append({
+			"room_id": room_id,
+			"creator": room.creator,
+			"player_count": room.players.size(),
+			"state": room.state
+		})
+	rpc_id(sender_id, "receive_lobby_list", lobby_list)
+
 @rpc("any_peer")
 func update_room(room_id: int) -> void:
 	pass #dummy
@@ -161,4 +212,8 @@ func pre_configure_game() -> void:
 
 @rpc("any_peer")
 func show_error(msg: String) -> void:
+	pass #dummy
+
+@rpc("any_peer")
+func receive_lobby_list(lobby_list: Array) -> void:
 	pass #dummy

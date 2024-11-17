@@ -126,14 +126,18 @@ layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 2
 
+[node name="Label" type="Label" parent="JoinDialog/ScrollContainer/MainContainer/ConnectVBoxContainer"]
+layout_mode = 2
+text = "Loading..."
+
+[node name="LobbyList" type="VBoxContainer" parent="JoinDialog/ScrollContainer/MainContainer/ConnectVBoxContainer"]
+layout_mode = 2
+
 [node name="ErrorLabel" type="Label" parent="JoinDialog/ScrollContainer/MainContainer/ConnectVBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.988235, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_liysx")
 theme_override_font_sizes/font_size = 17
-
-[node name="SpinBox" type="SpinBox" parent="JoinDialog/ScrollContainer/MainContainer/ConnectVBoxContainer"]
-layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="JoinDialog/ScrollContainer/MainContainer"]
 layout_mode = 2
@@ -151,12 +155,6 @@ script = ExtResource("2_vm4vw")
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
-
-[node name="Connect" type="Button" parent="JoinDialog/ScrollContainer/MainContainer/ButtonContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-text = "Connect"
 
 [node name="Cancel" type="Button" parent="JoinDialog/ScrollContainer/MainContainer/ButtonContainer"]
 layout_mode = 2
@@ -217,7 +215,6 @@ text = "Cancel
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/ChangeNameButton" to="." method="_on_change_name_button_pressed"]
 [connection signal="pressed" from="CreateDialog/ScrollContainer/VBoxContainer/HBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="CreateDialog/ScrollContainer/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_create_dialog_cancel_pressed"]
-[connection signal="pressed" from="JoinDialog/ScrollContainer/MainContainer/ButtonContainer/Connect" to="JoinDialog" method="_on_join_dialog_connect_pressed"]
 [connection signal="pressed" from="JoinDialog/ScrollContainer/MainContainer/ButtonContainer/Cancel" to="." method="_on_join_dialog_cancel_pressed"]
 [connection signal="text_changed" from="ChangeNameDialog/MarginContainer/VBoxContainer/EditName" to="ChangeNameDialog" method="_on_edit_name_text_changed"]
 [connection signal="pressed" from="ChangeNameDialog/MarginContainer/VBoxContainer/HBoxContainer/Change" to="ChangeNameDialog" method="_on_change_pressed"]
