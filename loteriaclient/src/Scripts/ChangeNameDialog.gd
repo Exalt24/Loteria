@@ -14,9 +14,10 @@ func _on_change_pressed() -> void:
 			var menu = get_tree().current_scene
 			menu.name_label.text = "Hello, " + Client.my_info.name
 			menu.show_server_dialog("Name successfully changed!")
+			change_button.disabled = true
 
 func _on_edit_name_text_changed(new_text: String) -> void:
-	if edit_name.text == "":
+	if edit_name.text == "" || edit_name.text == Client.my_info.name:
 		change_button.disabled = true
 	else: 
 		change_button.disabled = false

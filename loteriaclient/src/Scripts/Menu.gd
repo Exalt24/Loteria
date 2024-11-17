@@ -20,6 +20,7 @@ var keep_join_dialog_open: bool = false
 @onready var change_name_dialog: Panel = $ChangeNameDialog
 @onready var edit_name: LineEdit = $ChangeNameDialog/MarginContainer/VBoxContainer/EditName
 @onready var name_label: Label = $VBoxContainer/NameContainer/NameLabel
+@onready var change_button: Button = $ChangeNameDialog/MarginContainer/VBoxContainer/HBoxContainer/Change
 
 
 var timeout_timer: Timer = null 
@@ -139,6 +140,7 @@ func _on_change_name_button_pressed() -> void:
 	change_name_dialog.show()
 	toggle_buttons()
 	edit_name.text = Client.my_info.name
+	change_button.disabled = true
 	
 func _on_change_name_dialog_cancel_pressed() -> void:
 	change_name_dialog.hide()
