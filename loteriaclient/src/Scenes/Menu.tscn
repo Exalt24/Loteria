@@ -1,10 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwjronpbw28pm"]
+[gd_scene load_steps=12 format=3 uid="uid://cwjronpbw28pm"]
 
 [ext_resource type="Script" path="res://src/Scripts/Menu.gd" id="1_ipogb"]
 [ext_resource type="Script" path="res://src/Scripts/JoinDialog.gd" id="2_gq1kq"]
 [ext_resource type="Script" path="res://src/Scripts/PlayerList.gd" id="2_vm4vw"]
+[ext_resource type="Texture2D" uid="uid://baqyflx7du4ym" path="res://interface/Game Background 1920x1880.png" id="2_yn0se"]
+[ext_resource type="FontFile" uid="uid://b8wwo1p6o1i0k" path="res://interface/Funtasia.otf" id="3_mk2ew"]
 [ext_resource type="FontFile" uid="uid://ca7s7qqfpmkyh" path="res://addons/net.yarvis.pixel_pen/resources/fonts/inter/static/Inter-Thin.ttf" id="4_liysx"]
 [ext_resource type="Script" path="res://src/Scripts/ChangeNameDialog.gd" id="5_lobh0"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gf7g8"]
+texture = ExtResource("2_yn0se")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mludm"]
+bg_color = Color(0.630523, 0.568175, 0.0140592, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o58s8"]
+bg_color = Color(0.0705882, 0.431373, 0.654902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a2fle"]
+bg_color = Color(0.882353, 0.239216, 0.184314, 1)
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -14,6 +28,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ipogb")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.00157, 1)
+theme_override_styles/panel = SubResource("StyleBoxTexture_gf7g8")
 
 [node name="ServerDialog" type="AcceptDialog" parent="."]
 initial_position = 1
@@ -32,25 +56,32 @@ alignment = 2
 
 [node name="NameContainer" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
 alignment = 1
 
 [node name="NameLabel" type="Label" parent="VBoxContainer/NameContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.350465, 0.548973, 0.992799, 1)
+theme_override_fonts/font = ExtResource("3_mk2ew")
+theme_override_font_sizes/font_size = 100
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
 [node name="CreateServerButton" type="Button" parent="VBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_mludm")
 text = "Create"
 
 [node name="JoinServerButton" type="Button" parent="VBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_o58s8")
 text = "Join"
 
 [node name="ChangeNameButton" type="Button" parent="VBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_a2fle")
 text = "Change Name
 "
 

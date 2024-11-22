@@ -1,0 +1,72 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4x6cvcv08osx"]
+
+[ext_resource type="Texture2D" uid="uid://clxgxvwrhqfih" path="res://interface/Card holder.png" id="1_74lau"]
+[ext_resource type="PackedScene" uid="uid://6qn4ps2kglnv" path="res://interface/slot.tscn" id="2_4n8i5"]
+
+[node name="NinePatchRect" type="NinePatchRect"]
+offset_left = 324.0
+offset_right = 736.0
+offset_bottom = 650.0
+texture = ExtResource("1_74lau")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 23.0
+offset_top = 25.0
+offset_right = 223.0
+offset_bottom = 387.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.6, 0.6)
+columns = 4
+
+[node name="slot" parent="GridContainer" instance=ExtResource("2_4n8i5")]
+layout_mode = 2
+
+[node name="slot2" parent="GridContainer" instance=ExtResource("2_4n8i5")]
+layout_mode = 2
+
+[node name="slot3" parent="GridContainer" instance=ExtResource("2_4n8i5")]
+layout_mode = 2
+
+[node name="slot4" parent="GridContainer" instance=ExtResource("2_4n8i5")]
+layout_mode = 2
+
+[node name="slot5" parent="GridContainer" instance=ExtResource("2_4n8i5")]
+layout_mode = 2
+
+[node name="slot6" parent="GridContainer" instance=ExtResource("2_4n8i5")]
+layout_mode = 2
+
+[node name="slot7" parent="GridContainer" instance=ExtResource("2_4n8i5")]
+layout_mode = 2
+
+[node name="slot8" parent="GridContainer" instance=ExtResource("2_4n8i5")]
+layout_mode = 2
+
+[node name="slot9" parent="GridContainer" instance=ExtResource("2_4n8i5")]
+layout_mode = 2
+
+[node name="slot10" parent="GridContainer" instance=ExtResource("2_4n8i5")]
+layout_mode = 2
+
+[node name="slot11" parent="GridContainer" instance=ExtResource("2_4n8i5")]
+layout_mode = 2
+
+[node name="slot12" parent="GridContainer" instance=ExtResource("2_4n8i5")]
+layout_mode = 2
+
+[node name="slot13" parent="GridContainer" instance=ExtResource("2_4n8i5")]
+layout_mode = 2
+
+[node name="slot14" parent="GridContainer" instance=ExtResource("2_4n8i5")]
+layout_mode = 2
+
+[node name="slot15" parent="GridContainer" instance=ExtResource("2_4n8i5")]
+layout_mode = 2
+
+[node name="slot16" parent="GridContainer" instance=ExtResource("2_4n8i5")]
+layout_mode = 2
