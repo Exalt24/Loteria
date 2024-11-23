@@ -184,5 +184,5 @@ func _set_buttons_state(are_buttons_disabled: bool) -> void:
 	change_name_button.disabled = are_buttons_disabled
 
 func _on_server_dialog_confirmed() -> void:
-	if server_dialog.dialog_text == "The server has disconnected.":
+	if server_dialog.dialog_text == "The server has disconnected." || server_dialog.dialog_text == "Name successfully changed!":
 		_set_buttons_state(false)
