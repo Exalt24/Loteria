@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://baqyflx7du4ym" path="res://interface/Game Background 1920x1880.png" id="1_qrovf"]
 [ext_resource type="FontFile" uid="uid://b8wwo1p6o1i0k" path="res://interface/Funtasia.otf" id="2_e2v4y"]
 [ext_resource type="PackedScene" uid="uid://b4x6cvcv08osx" path="res://interface/holder.tscn" id="3_7wvqw"]
-[ext_resource type="PackedScene" uid="uid://dxiqj1ymdbxbj" path="res://call.tscn" id="4_aeg70"]
+[ext_resource type="PackedScene" uid="uid://dxiqj1ymdbxbj" path="res://src/Scenes/call.tscn" id="4_aeg70"]
 [ext_resource type="PackedScene" uid="uid://us1hq0khpgyl" path="res://interface/pattern.tscn" id="5_lrs5l"]
-[ext_resource type="PackedScene" uid="uid://drdumibcf840p" path="res://coin.tscn" id="6_h7idw"]
+[ext_resource type="PackedScene" uid="uid://drdumibcf840p" path="res://src/Scenes/coin.tscn" id="6_h7idw"]
 [ext_resource type="PackedScene" uid="uid://c51vbt7q6upq6" path="res://interface/opponents.tscn" id="7_g2vdj"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_itx0o"]
