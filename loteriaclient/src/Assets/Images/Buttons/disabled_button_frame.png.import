@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd17e23pyvc24"
-path="res://.godot/imported/coin.png-44bf1998494a1026c5f901651224292b.ctex"
+uid="uid://btdmsd6fo05hm"
+path="res://.godot/imported/disabled_button_frame.png-9ea564b9409b2ff40ef5f339007a4834.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://interface/coin.png"
-dest_files=["res://.godot/imported/coin.png-44bf1998494a1026c5f901651224292b.ctex"]
+source_file="res://src/Assets/Images/Buttons/disabled_button_frame.png"
+dest_files=["res://.godot/imported/disabled_button_frame.png-9ea564b9409b2ff40ef5f339007a4834.ctex"]
 
 [params]
 

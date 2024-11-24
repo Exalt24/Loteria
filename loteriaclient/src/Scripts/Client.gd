@@ -15,7 +15,6 @@ var is_creator: bool = false
 var is_fetching: bool = false
 
 var room: int
-var timeout_timer: Timer = null
 	
 @rpc("any_peer")
 func create_room(info: Dictionary) -> void:
@@ -42,26 +41,28 @@ func connect_to_server(room_id: int = 0) -> void:
 	self.multiplayer.connect("connection_failed", Callable(self, "_connected_fail"), CONNECT_DEFERRED)
 	self.multiplayer.connect("server_disconnected", Callable(self, "_server_disconnected"), CONNECT_DEFERRED)
 	
-	get_tree().current_scene.start_timeout_timer()
-	
 func stop() -> void:
-	get_tree().current_scene.stop_timeout_timer()
 	
-	self.multiplayer.disconnect("connected_to_server", Callable(self, "_connected_ok"))
-	self.multiplayer.disconnect("connection_failed", Callable(self, "_connected_fail"))
-	self.multiplayer.disconnect("server_disconnected", Callable(self, "_server_disconnected"))
+	if self.multiplayer.is_connected("connected_to_server", Callable(self, "_connected_ok")):
+		self.multiplayer.disconnect("connected_to_server", Callable(self, "_connected_ok"))
+	if self.multiplayer.is_connected("connection_failed", Callable(self, "_connected_fail")):
+		self.multiplayer.disconnect("connection_failed", Callable(self, "_connected_fail"))
+	if self.multiplayer.is_connected("server_disconnected", Callable(self, "_server_disconnected")):
+		self.multiplayer.disconnect("server_disconnected", Callable(self, "_server_disconnected"))
 	self.multiplayer.multiplayer_peer = null
 	_remove_all_players()
 	
 	if is_creator == false:
 		if get_tree().current_scene.name == "Menu":
 			var menu = get_tree().current_scene
-			if menu.keep_join_dialog_open != true && get_tree().current_scene.error_label.text == "": 
-				menu.toggle_buttons()
+			menu.toggle_buttons()
+			menu.waiting_host_label.text = ""
 		
 	is_creator = false
 	if get_tree().current_scene.name == "Menu":
-		get_tree().current_scene.create_dialog_label.text = "Loading..."
+		get_tree().current_scene.create_dialog_label.text = "Creating room..."
+	
+	
 
 @rpc("any_peer")
 func register_player(id: int, info: Dictionary) -> void:
@@ -90,7 +91,6 @@ func _remove_all_players() -> void:
 
 func _connected_ok() -> void:
 	print("Connected to server!")
-	get_tree().current_scene.stop_timeout_timer()
 	if is_creator:
 		rpc_id(1, "create_room", my_info)
 	elif is_fetching:
@@ -101,6 +101,7 @@ func _connected_ok() -> void:
 
 func _connected_fail() -> void:
 	print("Failed connecting to the server!")
+	stop()
 	get_tree().current_scene.show_server_dialog("Failed to connect to the server. Please try again.")
 	
 func _server_disconnected() -> void:
@@ -155,8 +156,7 @@ func done_preconfiguring() -> void:
 
 @rpc("any_peer")
 func show_error(msg: String) -> void:
-	get_tree().current_scene.keep_join_dialog_open = true
-	get_tree().current_scene.join_dialog.show_error(msg)
+	get_tree().current_scene.show_server_dialog(msg)
 
 @rpc("any_peer")
 func receive_lobby_list(lobby_list: Array) -> void:

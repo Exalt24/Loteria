@@ -1,24 +1,76 @@
-[gd_scene load_steps=12 format=3 uid="uid://cwjronpbw28pm"]
+[gd_scene load_steps=26 format=3 uid="uid://cwjronpbw28pm"]
 
 [ext_resource type="Script" path="res://src/Scripts/Menu.gd" id="1_ipogb"]
 [ext_resource type="Script" path="res://src/Scripts/JoinDialog.gd" id="2_gq1kq"]
-[ext_resource type="Script" path="res://src/Scripts/PlayerList.gd" id="2_vm4vw"]
-[ext_resource type="Texture2D" uid="uid://baqyflx7du4ym" path="res://interface/Game Background 1920x1880.png" id="2_yn0se"]
-[ext_resource type="FontFile" uid="uid://b8wwo1p6o1i0k" path="res://interface/Funtasia.otf" id="3_mk2ew"]
-[ext_resource type="FontFile" uid="uid://ca7s7qqfpmkyh" path="res://addons/net.yarvis.pixel_pen/resources/fonts/inter/static/Inter-Thin.ttf" id="4_liysx"]
+[ext_resource type="Texture2D" uid="uid://dsa77g201bdyx" path="res://src/Assets/Images/Homepage.png" id="2_xmvt3"]
+[ext_resource type="FontFile" uid="uid://b8wwo1p6o1i0k" path="res://src/Assets/Fonts/Funtasia.otf" id="3_mk2ew"]
 [ext_resource type="Script" path="res://src/Scripts/ChangeNameDialog.gd" id="5_lobh0"]
+[ext_resource type="Texture2D" uid="uid://chhslvnoem72f" path="res://src/Assets/Images/Buttons/start_game_hover.png" id="6_n53nj"]
+[ext_resource type="Texture2D" uid="uid://cis8i2wfkbpp8" path="res://src/Assets/Images/Lobby/picking_lobby.png" id="7_gt6a4"]
+[ext_resource type="Theme" uid="uid://d3u5ldgbwfp47" path="res://src/Assets/Theme.tres" id="8_54ai7"]
+[ext_resource type="Texture2D" uid="uid://rjb4w2iaav4e" path="res://src/Assets/Images/Lobby/creating_lobby.png" id="8_rqvor"]
+[ext_resource type="Texture2D" uid="uid://crbwc14cgptuy" path="res://src/Assets/Images/Buttons/create_game_hover.png" id="9_634b1"]
+[ext_resource type="Texture2D" uid="uid://r764n35ljbw0" path="res://src/Assets/Images/Buttons/join_game_hover.png" id="10_jjwp3"]
+[ext_resource type="Texture2D" uid="uid://cuc6f56h1t1ch" path="res://src/Assets/Images/Buttons/change_name_hover.png" id="11_k6p14"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gf7g8"]
-texture = ExtResource("2_yn0se")
+texture = ExtResource("2_xmvt3")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mludm"]
-bg_color = Color(0.630523, 0.568175, 0.0140592, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ofxqu"]
+texture = ExtResource("8_rqvor")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o58s8"]
-bg_color = Color(0.0705882, 0.431373, 0.654902, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iah1x"]
+content_margin_top = 15.0
+content_margin_bottom = 30.0
+texture = ExtResource("6_n53nj")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a2fle"]
-bg_color = Color(0.882353, 0.239216, 0.184314, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pxlb3"]
+content_margin_top = 15.0
+content_margin_bottom = 30.0
+texture = ExtResource("6_n53nj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_djccd"]
+content_margin_top = 15.0
+content_margin_bottom = 30.0
+texture = ExtResource("6_n53nj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2p5a8"]
+content_margin_top = 15.0
+content_margin_bottom = 30.0
+texture = ExtResource("6_n53nj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8q5iq"]
+texture = ExtResource("7_gt6a4")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j3o8e"]
+content_margin_top = 15.0
+content_margin_bottom = 30.0
+texture = ExtResource("9_634b1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1tqy8"]
+content_margin_top = 15.0
+content_margin_bottom = 30.0
+texture = ExtResource("9_634b1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iugrh"]
+content_margin_top = 15.0
+content_margin_bottom = 30.0
+texture = ExtResource("10_jjwp3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g4iui"]
+content_margin_top = 15.0
+content_margin_bottom = 30.0
+texture = ExtResource("10_jjwp3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sxx4u"]
+content_margin_top = 15.0
+content_margin_bottom = 30.0
+texture = ExtResource("11_k6p14")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kvqfk"]
+content_margin_top = 15.0
+content_margin_bottom = 30.0
+texture = ExtResource("11_k6p14")
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -29,7 +81,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ipogb")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Background" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,174 +91,246 @@ grow_vertical = 2
 scale = Vector2(1.00157, 1)
 theme_override_styles/panel = SubResource("StyleBoxTexture_gf7g8")
 
-[node name="ServerDialog" type="AcceptDialog" parent="."]
+[node name="TransparentContainer" type="ColorRect" parent="Background"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.415686)
+
+[node name="ServerDialog" type="AcceptDialog" parent="Background"]
 initial_position = 1
 size = Vector2i(219, 100)
 borderless = true
 dialog_text = "Server is not responsive..."
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MarginContainer" type="MarginContainer" parent="Background"]
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.074
+anchor_right = 0.5
+anchor_bottom = 0.074
+offset_left = -575.002
+offset_top = 5.048
+offset_right = 576.998
+offset_bottom = 130.048
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_right = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/MarginContainer"]
+layout_mode = 2
 alignment = 2
 
-[node name="NameContainer" type="VBoxContainer" parent="VBoxContainer"]
+[node name="NameContainer" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 6
+size_flags_vertical = 2
 alignment = 1
 
-[node name="NameLabel" type="Label" parent="VBoxContainer/NameContainer"]
+[node name="NameLabel" type="Label" parent="Background/MarginContainer/VBoxContainer/NameContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.350465, 0.548973, 0.992799, 1)
 theme_override_fonts/font = ExtResource("3_mk2ew")
 theme_override_font_sizes/font_size = 100
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="CreateServerButton" type="Button" parent="VBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_mludm")
-text = "Create"
-
-[node name="JoinServerButton" type="Button" parent="VBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_o58s8")
-text = "Join"
-
-[node name="ChangeNameButton" type="Button" parent="VBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_a2fle")
-text = "Change Name
-"
-
-[node name="CreateDialog" type="Panel" parent="."]
-visible = false
-layout_mode = 1
-offset_right = 343.0
-offset_bottom = 115.0
-
-[node name="ScrollContainer" type="ScrollContainer" parent="CreateDialog"]
+[node name="DialogContainer" type="MarginContainer" parent="Background"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 180
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 180
+theme_override_constants/margin_bottom = 165
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CreateDialog/ScrollContainer"]
+[node name="CreateDialog" type="Panel" parent="Background/DialogContainer"]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ofxqu")
+
+[node name="Back" type="Button" parent="Background/DialogContainer/CreateDialog"]
+layout_mode = 2
+anchor_left = -0.076
+anchor_top = -0.066
+anchor_right = -0.076
+anchor_bottom = -0.066
+offset_left = -88.808
+offset_top = 7.918
+offset_right = 88.192
+offset_bottom = 103.918
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("8_54ai7")
+theme_override_colors/font_color = Color(1, 0.764706, 0.0117647, 1)
+theme_override_styles/hover = SubResource("StyleBoxTexture_iah1x")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_pxlb3")
+text = "⮜  Back"
+
+[node name="Start" type="Button" parent="Background/DialogContainer/CreateDialog"]
+layout_mode = 2
+anchor_left = 0.504
+anchor_top = 1.05
+anchor_right = 0.504
+anchor_bottom = 1.05
+offset_left = -180.168
+offset_top = 7.84998
+offset_right = 179.832
+offset_bottom = 97.85
+theme = ExtResource("8_54ai7")
+theme_override_colors/font_color = Color(1, 0.764706, 0.0117647, 1)
+theme_override_styles/hover = SubResource("StyleBoxTexture_djccd")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2p5a8")
+text = "Start Game"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/DialogContainer/CreateDialog"]
+layout_mode = 2
+anchor_left = 0.499
+anchor_right = 0.499
+offset_left = -395.208
+offset_right = 396.792
+offset_bottom = 423.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/DialogContainer/CreateDialog/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 20
 
-[node name="LabelContainer" type="VBoxContainer" parent="CreateDialog/ScrollContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Background/DialogContainer/CreateDialog/VBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
 
-[node name="Label" type="Label" parent="CreateDialog/ScrollContainer/VBoxContainer/LabelContainer"]
+[node name="LabelContainer" type="VBoxContainer" parent="Background/DialogContainer/CreateDialog/VBoxContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
-text = "Loading..."
+theme_override_constants/separation = 15
+
+[node name="WaitLabel" type="Label" parent="Background/DialogContainer/CreateDialog/VBoxContainer/VBoxContainer/MarginContainer/LabelContainer"]
+layout_mode = 2
+theme = ExtResource("8_54ai7")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 66
+text = "Tayo'y Maghintay!"
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="PlayerList" type="VBoxContainer" parent="CreateDialog/ScrollContainer/VBoxContainer/LabelContainer"]
+[node name="Label" type="Label" parent="Background/DialogContainer/CreateDialog/VBoxContainer/VBoxContainer/MarginContainer/LabelContainer"]
 layout_mode = 2
-script = ExtResource("2_vm4vw")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CreateDialog/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-
-[node name="Start" type="Button" parent="CreateDialog/ScrollContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Start"
-
-[node name="Cancel" type="Button" parent="CreateDialog/ScrollContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-text = "Cancel
+theme = ExtResource("8_54ai7")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Creating room...
 "
 
-[node name="JoinDialog" type="Panel" parent="."]
+[node name="JoinDialog" type="Panel" parent="Background/DialogContainer"]
 visible = false
-layout_mode = 1
-offset_right = 334.0
-offset_bottom = 142.0
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_8q5iq")
 script = ExtResource("2_gq1kq")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="JoinDialog"]
+[node name="Back" type="Button" parent="Background/DialogContainer/JoinDialog"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = -1
+anchor_left = -0.076
+anchor_top = -0.066
+anchor_right = -0.076
+anchor_bottom = -0.066
+offset_left = -88.808
+offset_top = 7.918
+offset_right = 88.192
+offset_bottom = 103.918
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("8_54ai7")
+theme_override_colors/font_color = Color(1, 0.764706, 0.0117647, 1)
+theme_override_styles/hover = SubResource("StyleBoxTexture_iah1x")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_pxlb3")
+text = "⮜  Back"
 
-[node name="MainContainer" type="VBoxContainer" parent="JoinDialog/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/DialogContainer/JoinDialog"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.499
+anchor_right = 0.499
+offset_left = -395.208
+offset_right = 396.792
+offset_bottom = 423.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/DialogContainer/JoinDialog/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/DialogContainer/JoinDialog/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
+
+[node name="LabelContainer" type="VBoxContainer" parent="Background/DialogContainer/JoinDialog/VBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="WaitLabel" type="Label" parent="Background/DialogContainer/JoinDialog/VBoxContainer/VBoxContainer/MarginContainer/LabelContainer"]
+layout_mode = 2
+theme = ExtResource("8_54ai7")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 66
+text = "Join A Server"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Background/DialogContainer/JoinDialog/VBoxContainer/VBoxContainer/MarginContainer/LabelContainer"]
+layout_mode = 2
+theme = ExtResource("8_54ai7")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Please join a server!"
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/DialogContainer/JoinDialog/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 130
+theme_override_constants/margin_right = 130
+theme_override_constants/margin_bottom = 20
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Background/DialogContainer/JoinDialog/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ConnectVBoxContainer" type="VBoxContainer" parent="Background/DialogContainer/JoinDialog/VBoxContainer/MarginContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ConnectVBoxContainer" type="VBoxContainer" parent="JoinDialog/ScrollContainer/MainContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 2
-
-[node name="Label" type="Label" parent="JoinDialog/ScrollContainer/MainContainer/ConnectVBoxContainer"]
-layout_mode = 2
-text = "Loading..."
-
-[node name="LobbyList" type="VBoxContainer" parent="JoinDialog/ScrollContainer/MainContainer/ConnectVBoxContainer"]
-layout_mode = 2
-
-[node name="ErrorLabel" type="Label" parent="JoinDialog/ScrollContainer/MainContainer/ConnectVBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.988235, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_liysx")
-theme_override_font_sizes/font_size = 17
-
-[node name="VBoxContainer" type="VBoxContainer" parent="JoinDialog/ScrollContainer/MainContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="JoinDialog/ScrollContainer/MainContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-horizontal_alignment = 1
-
-[node name="PlayerList" type="VBoxContainer" parent="JoinDialog/ScrollContainer/MainContainer/VBoxContainer"]
-layout_mode = 2
-script = ExtResource("2_vm4vw")
-
-[node name="ButtonContainer" type="HBoxContainer" parent="JoinDialog/ScrollContainer/MainContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-
-[node name="Cancel" type="Button" parent="JoinDialog/ScrollContainer/MainContainer/ButtonContainer"]
+[node name="Label" type="Label" parent="Background/DialogContainer/JoinDialog/VBoxContainer/MarginContainer/ScrollContainer/ConnectVBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 6
-text = "Cancel
-"
+theme = ExtResource("8_54ai7")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Loading games..."
 
-[node name="ChangeNameDialog" type="Panel" parent="."]
+[node name="LobbyList" type="VBoxContainer" parent="Background/DialogContainer/JoinDialog/VBoxContainer/MarginContainer/ScrollContainer/ConnectVBoxContainer"]
+layout_mode = 2
+
+[node name="ChangeNameDialog" type="Panel" parent="Background/DialogContainer"]
 visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -828.0
-offset_bottom = -464.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 script = ExtResource("5_lobh0")
 
-[node name="MarginContainer" type="MarginContainer" parent="ChangeNameDialog"]
+[node name="MarginContainer" type="MarginContainer" parent="Background/DialogContainer/ChangeNameDialog"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -218,35 +342,86 @@ theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 6
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ChangeNameDialog/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/DialogContainer/ChangeNameDialog/MarginContainer"]
 layout_mode = 2
 
-[node name="EditName" type="LineEdit" parent="ChangeNameDialog/MarginContainer/VBoxContainer"]
+[node name="EditName" type="LineEdit" parent="Background/DialogContainer/ChangeNameDialog/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 max_length = 12
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ChangeNameDialog/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/DialogContainer/ChangeNameDialog/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 
-[node name="Change" type="Button" parent="ChangeNameDialog/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Change" type="Button" parent="Background/DialogContainer/ChangeNameDialog/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Change"
 
-[node name="Cancel" type="Button" parent="ChangeNameDialog/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Cancel" type="Button" parent="Background/DialogContainer/ChangeNameDialog/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Cancel
 "
 
-[connection signal="confirmed" from="ServerDialog" to="." method="_on_server_dialog_confirmed"]
-[connection signal="pressed" from="VBoxContainer/VBoxContainer/CreateServerButton" to="." method="_on_create_server_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/VBoxContainer/JoinServerButton" to="." method="_on_join_server_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/VBoxContainer/ChangeNameButton" to="." method="_on_change_name_button_pressed"]
-[connection signal="pressed" from="CreateDialog/ScrollContainer/VBoxContainer/HBoxContainer/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="CreateDialog/ScrollContainer/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_create_dialog_cancel_pressed"]
-[connection signal="pressed" from="JoinDialog/ScrollContainer/MainContainer/ButtonContainer/Cancel" to="." method="_on_join_dialog_cancel_pressed"]
-[connection signal="text_changed" from="ChangeNameDialog/MarginContainer/VBoxContainer/EditName" to="ChangeNameDialog" method="_on_edit_name_text_changed"]
-[connection signal="pressed" from="ChangeNameDialog/MarginContainer/VBoxContainer/HBoxContainer/Change" to="ChangeNameDialog" method="_on_change_pressed"]
-[connection signal="pressed" from="ChangeNameDialog/MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_change_name_dialog_cancel_pressed"]
+[node name="WaitingHostLabel" type="Label" parent="Background"]
+layout_mode = 2
+offset_left = 179.718
+offset_top = 520.0
+offset_right = 971.718
+offset_bottom = 560.0
+theme = ExtResource("8_54ai7")
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+
+[node name="ButtonContainer" type="VBoxContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.627
+offset_top = -36.0
+offset_right = 183.373
+offset_bottom = 264.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 15
+
+[node name="CreateServerButton" type="Button" parent="Background/ButtonContainer"]
+layout_mode = 2
+theme = ExtResource("8_54ai7")
+theme_override_colors/font_color = Color(0.74902, 0.0509804, 0.243137, 1)
+theme_override_styles/hover = SubResource("StyleBoxTexture_j3o8e")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_1tqy8")
+text = "Create Game"
+
+[node name="JoinServerButton" type="Button" parent="Background/ButtonContainer"]
+layout_mode = 2
+theme = ExtResource("8_54ai7")
+theme_override_colors/font_color = Color(0, 0.196078, 0.627451, 1)
+theme_override_styles/hover = SubResource("StyleBoxTexture_iugrh")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_g4iui")
+text = "Join Game"
+
+[node name="ChangeNameButton" type="Button" parent="Background/ButtonContainer"]
+layout_mode = 2
+theme = ExtResource("8_54ai7")
+theme_override_colors/font_color = Color(1, 0.764706, 0.0117647, 1)
+theme_override_styles/hover = SubResource("StyleBoxTexture_sxx4u")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_kvqfk")
+text = "Change Name
+"
+
+[connection signal="confirmed" from="Background/ServerDialog" to="." method="_on_server_dialog_confirmed"]
+[connection signal="pressed" from="Background/DialogContainer/CreateDialog/Back" to="." method="_on_create_dialog_back_pressed"]
+[connection signal="pressed" from="Background/DialogContainer/CreateDialog/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Background/DialogContainer/JoinDialog/Back" to="." method="_on_join_dialog_back_pressed"]
+[connection signal="text_changed" from="Background/DialogContainer/ChangeNameDialog/MarginContainer/VBoxContainer/EditName" to="Background/DialogContainer/ChangeNameDialog" method="_on_edit_name_text_changed"]
+[connection signal="pressed" from="Background/DialogContainer/ChangeNameDialog/MarginContainer/VBoxContainer/HBoxContainer/Change" to="Background/DialogContainer/ChangeNameDialog" method="_on_change_pressed"]
+[connection signal="pressed" from="Background/DialogContainer/ChangeNameDialog/MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_change_name_dialog_cancel_pressed"]
+[connection signal="pressed" from="Background/ButtonContainer/CreateServerButton" to="." method="_on_create_server_button_pressed"]
+[connection signal="pressed" from="Background/ButtonContainer/JoinServerButton" to="." method="_on_join_server_button_pressed"]
+[connection signal="pressed" from="Background/ButtonContainer/ChangeNameButton" to="." method="_on_change_name_button_pressed"]

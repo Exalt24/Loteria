@@ -1,9 +1,10 @@
 extends Node
 
 const SERVER_PORT: int = 33070
-
+const MAX_PLAYERS = 5
 const ERROR_NONEXISTENT_ROOM: String = "Room does not exist."
 const ERROR_GAME_ALREADY_STARTED: String = "Game has already started."
+const ERROR_ROOM_IS_FULL: String = "The room is full. Maximum number of players is reached."
 
 var rooms: Dictionary = {}
 var players_room: Dictionary = {}
@@ -53,6 +54,10 @@ func create_room(info: Dictionary) -> void:
 @rpc("any_peer")
 func join_room(room_id: int, info: Dictionary) -> void:
 	var sender_id: int = self.multiplayer.get_remote_sender_id()
+	
+	if info.size() >= MAX_PLAYERS:
+		rpc_id(sender_id, "show_error", ERROR_ROOM_IS_FULL)
+		return
 	
 	if not rooms.keys().has(room_id):
 		print("Error: Room does not exist for player:", sender_id)

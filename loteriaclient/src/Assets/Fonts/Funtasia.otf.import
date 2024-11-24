@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://b8wwo1p6o1i0k"
-path="res://.godot/imported/Funtasia.otf-469ab30beea2e204ac49dae2cf09cc6c.fontdata"
+path="res://.godot/imported/Funtasia.otf-ce0d8817b88cd11d977ed9c5a6667fde.fontdata"
 
 [deps]
 
-source_file="res://interface/Funtasia.otf"
-dest_files=["res://.godot/imported/Funtasia.otf-469ab30beea2e204ac49dae2cf09cc6c.fontdata"]
+source_file="res://src/Assets/Fonts/Funtasia.otf"
+dest_files=["res://.godot/imported/Funtasia.otf-ce0d8817b88cd11d977ed9c5a6667fde.fontdata"]
 
 [params]
 

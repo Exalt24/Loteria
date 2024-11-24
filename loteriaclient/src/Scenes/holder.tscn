@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b4x6cvcv08osx"]
 
-[ext_resource type="Texture2D" uid="uid://clxgxvwrhqfih" path="res://interface/Card holder.png" id="1_74lau"]
-[ext_resource type="PackedScene" uid="uid://6qn4ps2kglnv" path="res://interface/slot.tscn" id="2_4n8i5"]
+[ext_resource type="Texture2D" uid="uid://clxgxvwrhqfih" path="res://src/Assets/Images/Card holder.png" id="1_74lau"]
+[ext_resource type="PackedScene" uid="uid://6qn4ps2kglnv" path="res://src/Scenes/slot.tscn" id="2_4n8i5"]
 
 [node name="NinePatchRect" type="NinePatchRect"]
 offset_left = 324.0

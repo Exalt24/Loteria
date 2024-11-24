@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://us1hq0khpgyl"]
+[gd_scene load_steps=6 format=3 uid="uid://c51vbt7q6upq6"]
 
-[ext_resource type="Texture2D" uid="uid://1iyiuhnokpi" path="res://interface/pattern.png" id="1_bu0f7"]
-[ext_resource type="FontFile" uid="uid://b8wwo1p6o1i0k" path="res://interface/Funtasia.otf" id="2_u7mxr"]
+[ext_resource type="Texture2D" uid="uid://1iyiuhnokpi" path="res://src/Assets/Images/pattern.png" id="1_bu0f7"]
+[ext_resource type="FontFile" uid="uid://b8wwo1p6o1i0k" path="res://src/Assets/Fonts/Funtasia.otf" id="2_u7mxr"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q4irc"]
 texture = ExtResource("1_bu0f7")
@@ -52,5 +52,5 @@ grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_u7mxr")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_olbr5")
-text = "HOW TO WIN"
+text = "OPPONENTS"
 horizontal_alignment = 1

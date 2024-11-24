@@ -12,7 +12,7 @@ func _on_change_pressed() -> void:
 		Client.my_info.name = edit_name.text
 		if get_tree().current_scene.name == "Menu":
 			var menu = get_tree().current_scene
-			menu.name_label.text = "Hello, " + Client.my_info.name
+			menu.name_label.text = "Mabuhay, " + Client.my_info.name + "!"
 			menu.show_server_dialog("Name successfully changed!")
 			change_button.disabled = true
 			menu.change_name_dialog.hide()
