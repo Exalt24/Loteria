@@ -195,12 +195,13 @@ func _on_server_dialog_confirmed() -> void:
 	var should_toggle_visibility = server_dialog.dialog_text in [
 		"Name successfully changed!", 
 		"Failed to connect to the server. Please try again.",
-		"The room is full. Maximum number of players is reached."
+		"The room is full. Maximum number of players is reached.",
+		"The server has disconnected."
 	]
 	
 	if should_toggle_visibility:
-		transparent_container.visible = !transparent_container.visible
-		button_container.visible = !button_container.visible
+		transparent_container.visible = false
+		button_container.visible = true
 		if server_dialog.dialog_text == "The room is full. Maximum number of players is reached.":
 			join_dialog.hide()
 	
