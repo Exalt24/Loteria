@@ -5,24 +5,26 @@ var game_started: bool = false
 @onready var create_dialog: Panel = $Background/DialogContainer/CreateDialog
 @onready var create_dialog_label: Label = $Background/DialogContainer/CreateDialog/VBoxContainer/VBoxContainer/MarginContainer/LabelContainer/Label
 @onready var join_dialog: Panel = $Background/DialogContainer/JoinDialog
-@onready var join_dialog_label: Label = $Background/DialogContainer/JoinDialog/VBoxContainer/VBoxContainer/MarginContainer/LabelContainer/Label
+@onready var join_dialog_label: Label = $Background/DialogContainer/JoinDialog/VBoxContainer/MarginContainer/LabelContainer/Label
 @onready var create_server_button: Button = $Background/ButtonContainer/CreateServerButton
 @onready var join_server_button: Button = $Background/ButtonContainer/JoinServerButton
 @onready var change_name_button: Button = $Background/ButtonContainer/ChangeNameButton
-@onready var connect_v_box_container: VBoxContainer = $Background/DialogContainer/JoinDialog/VBoxContainer/MarginContainer/ScrollContainer/ConnectVBoxContainer
+@onready var connect_v_box_container: VBoxContainer = $Background/SelectRoomDialog/MarginContainer/VBoxContainer/ScrollContainer/ConnectVBoxContainer
 @onready var start_button: Button = $Background/DialogContainer/CreateDialog/Start
 @onready var server_dialog: AcceptDialog = $Background/ServerDialog
 @onready var change_name_dialog: Panel = $Background/DialogContainer/ChangeNameDialog
 @onready var edit_name: LineEdit = $Background/DialogContainer/ChangeNameDialog/MarginContainer/VBoxContainer/EditName
 @onready var name_label: Label = $Background/MarginContainer/VBoxContainer/NameContainer/NameLabel
 @onready var change_button: Button = $Background/DialogContainer/ChangeNameDialog/MarginContainer/VBoxContainer/HBoxContainer/Change
-@onready var lobby_list_container: VBoxContainer = $Background/DialogContainer/JoinDialog/VBoxContainer/MarginContainer/ScrollContainer/ConnectVBoxContainer/LobbyList
-@onready var loading_label: Label = $Background/DialogContainer/JoinDialog/VBoxContainer/MarginContainer/ScrollContainer/ConnectVBoxContainer/Label
+@onready var lobby_list_container: VBoxContainer = $Background/SelectRoomDialog/MarginContainer/VBoxContainer/ScrollContainer/ConnectVBoxContainer/LobbyList
+@onready var loading_label: Label = $Background/SelectRoomDialog/MarginContainer/VBoxContainer/ScrollContainer/ConnectVBoxContainer/Label
 @onready var transparent_container: ColorRect = $Background/TransparentContainer
 @onready var button_container: VBoxContainer = $Background/ButtonContainer
-@onready var wait_label: Label = $Background/DialogContainer/JoinDialog/VBoxContainer/VBoxContainer/MarginContainer/LabelContainer/WaitLabel
 @onready var waiting_host_label: Label = $Background/WaitingHostLabel
-@onready var custom_font = preload("res://src/Assets/Fonts/Fredoka-SemiBold.ttf")
+@onready var select_room_dialog: Panel = $Background/SelectRoomDialog
+@onready var name_margin_container: MarginContainer = $Background/MarginContainer
+const THEME = preload("res://src/Assets/Theme.tres")
+
 
 @onready var player_textures: Array = [
 	preload("res://src/Assets/Images/Lobby/creating_lobby.png"),
@@ -31,10 +33,10 @@ var game_started: bool = false
 	preload("res://src/Assets/Images/Lobby/three_player_lobby.png"),
 	preload("res://src/Assets/Images/Lobby/four_player_lobby.png"),
 	preload("res://src/Assets/Images/Lobby/five_player_lobby.png"),
-	preload("res://src/Assets/Images/Lobby/picking_lobby.png")
 ]
 
 func _ready() -> void:
+	THEME.set_type_variation("SelectServerButton", "Button")
 	start_button.disabled = true
 	name_label.text = "Mabuhay, " + Client.my_info.name + "!"
 
@@ -63,8 +65,7 @@ func _on_join_server_button_pressed() -> void:
 	server_dialog.hide()
 	Client.is_fetching = true
 	Client.connect_to_server()
-	Helper.center_panel(join_dialog)
-	join_dialog.show()
+	select_room_dialog.show()
 	loading_label.show()
 	toggle_buttons()
 
@@ -72,6 +73,15 @@ func _on_join_dialog_back_pressed() -> void:
 	server_dialog.hide()
 	waiting_host_label.text = ""
 	join_dialog.hide()
+	if self.multiplayer.multiplayer_peer != null:
+		Client.stop()
+	else:
+		toggle_buttons()
+	
+
+func _on_select_room_dialog_back_pressed() -> void:
+	server_dialog.hide()
+	select_room_dialog.hide()
 	if self.multiplayer.multiplayer_peer != null:
 		Client.stop()
 	else:
@@ -106,18 +116,16 @@ func remove_all_players() -> void:
 	
 	var stylebox = StyleBoxTexture.new()
 	stylebox.texture = player_textures[0]
-	var default_stylebox = StyleBoxTexture.new()
-	default_stylebox.texture = player_textures[6]
 	
 	if Client.is_creator:
 		create_dialog.add_theme_stylebox_override("panel", stylebox)
 		create_dialog.hide()
 	else:
-		wait_label.text = "Join A Server"
-		join_dialog.add_theme_stylebox_override("panel", default_stylebox)
+		join_dialog.add_theme_stylebox_override("panel", stylebox)
 		join_dialog.hide()
 		
 func toggle_buttons() -> void:
+	name_margin_container.visible = !name_margin_container.visible
 	button_container.visible = !button_container.visible
 	var are_buttons_disabled = create_server_button.disabled and join_server_button.disabled and change_name_button.disabled
 	create_server_button.disabled = not are_buttons_disabled
@@ -155,7 +163,11 @@ func _on_change_name_dialog_cancel_pressed() -> void:
 func update_lobby_list(lobby_list: Array) -> void:
 	for child in lobby_list_container.get_children():
 		child.queue_free()
-		
+	
+	if lobby_list.size() == 0:
+		loading_label.text = "No available rooms found!"
+		return
+	
 	for lobby in lobby_list:
 
 		var state_text: String
@@ -173,10 +185,11 @@ func update_lobby_list(lobby_list: Array) -> void:
 			is_disabled = true
 		
 		var button = Button.new()
-		button.text = "Room ID: %d, Players: %d, %s" % [lobby["room_id"], lobby["player_count"], state_text]
+		button.text = "Room %d                                                          %d/5" % [lobby["room_id"], lobby["player_count"]]
 		button.disabled = is_disabled
 		button.connect("pressed", Callable(self, "_join_lobby").bind(lobby["room_id"]))
-		button.add_theme_font_override("font", custom_font)
+		button.theme = THEME
+		button.theme_type_variation = "SelectServerButton"
 		lobby_list_container.add_child(button)
 		
 		if lobby_list_container.get_child_count() > 0:
@@ -204,5 +217,7 @@ func _on_server_dialog_confirmed() -> void:
 		button_container.visible = true
 		if server_dialog.dialog_text == "The room is full. Maximum number of players is reached.":
 			join_dialog.hide()
+		elif server_dialog.dialog_text == "Name successfully changed!":
+			name_margin_container.visible = true
 	
 	_set_buttons_state(false)

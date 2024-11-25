@@ -175,7 +175,7 @@ func update_lobby_list_for_all_clients() -> void:
 	var lobby_list: Array = []
 	for room_id in rooms.keys():
 		var room = rooms[room_id]
-		if room.state != "STARTED":  # Only include rooms not in "STARTED" state
+		if room.state != GameState.STARTED:  # Only include rooms not in "STARTED" state
 			lobby_list.append({
 				"room_id": room_id,
 				"creator": room.creator,

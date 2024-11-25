@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cis8i2wfkbpp8"
-path="res://.godot/imported/picking_lobby.png-914d429d3eb1db31982a6083514475a1.ctex"
+uid="uid://defd06usegqge"
+path="res://.godot/imported/select_room_normal.png-25346653ab06c9f8dfa0572aa9dd5157.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/Assets/Images/Lobby/picking_lobby.png"
-dest_files=["res://.godot/imported/picking_lobby.png-914d429d3eb1db31982a6083514475a1.ctex"]
+source_file="res://src/Assets/Images/Buttons/select_room_normal.png"
+dest_files=["res://.godot/imported/select_room_normal.png-25346653ab06c9f8dfa0572aa9dd5157.ctex"]
 
 [params]
 
