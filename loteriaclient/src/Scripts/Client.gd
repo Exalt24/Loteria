@@ -123,14 +123,14 @@ func pre_configure_game() -> void:
 	get_tree().paused = true
 	
 	get_tree().current_scene.queue_free()
-	#var game: Node2D = preload("res://Game.tscn").instance()
-	#get_tree().root.add_child(game)
-	#get_tree().current_scene = game
+	var game: Control = preload("res://src/Scenes/main_game_ui.tscn").instantiate()
+	get_tree().root.add_child(game)
+	get_tree().current_scene = game
 	
 	#var my_player: KinematicCollision2D = preload("res://characters/Player.tscn").instance()
 	#game.add_child(my_player)
 	#player_info[self.multiplayer.get_unique_id()].instance = my_player
-	
+	#
 	#for player_id in player_info:
 		#if player_id != self.multiplayer.get_unique_id():
 			#var player: KinematicCollision2D = preload("res://characters/BaseCharacter.tscn").instance()
@@ -161,7 +161,9 @@ func show_error(msg: String) -> void:
 @rpc("any_peer")
 func receive_lobby_list(lobby_list: Array) -> void:
 	print(lobby_list)
-	get_tree().current_scene.update_lobby_list(lobby_list)
+	
+	if get_tree().current_scene.name == "Menu":
+		get_tree().current_scene.update_lobby_list(lobby_list)
 
 @rpc("any_peer")
 func request_lobby_list() -> void:

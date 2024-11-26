@@ -11,7 +11,8 @@ var game_started: bool = false
 @onready var change_name_button: Button = $Background/ButtonContainer/ChangeNameButton
 @onready var connect_v_box_container: VBoxContainer = $Background/SelectRoomDialog/MarginContainer/VBoxContainer/ScrollContainer/ConnectVBoxContainer
 @onready var start_button: Button = $Background/DialogContainer/CreateDialog/Start
-@onready var server_dialog: AcceptDialog = $Background/ServerDialog
+@onready var server_dialog: PanelContainer = $Background/ServerDialog
+@onready var server_dialog_text: Label = $Background/ServerDialog/MarginContainer/VBoxContainer/Label
 @onready var change_name_dialog: Panel = $Background/DialogContainer/ChangeNameDialog
 @onready var edit_name: LineEdit = $Background/DialogContainer/ChangeNameDialog/MarginContainer/VBoxContainer/EditName
 @onready var name_label: Label = $Background/MarginContainer/VBoxContainer/NameContainer/NameLabel
@@ -146,8 +147,8 @@ func _on_start_pressed() -> void:
 	Client.start_game()
 
 func show_server_dialog(message: String) -> void:
-	server_dialog.dialog_text = message
-	server_dialog.popup_centered()
+	server_dialog_text.text = message
+	server_dialog.show()
 
 func _on_change_name_button_pressed() -> void:
 	Helper.center_panel(change_name_dialog)
@@ -205,7 +206,7 @@ func _set_buttons_state(are_buttons_disabled: bool) -> void:
 	change_name_button.disabled = are_buttons_disabled
 
 func _on_server_dialog_confirmed() -> void:
-	var should_toggle_visibility = server_dialog.dialog_text in [
+	var should_toggle_visibility = server_dialog_text.text in [
 		"Name successfully changed!", 
 		"Failed to connect to the server. Please try again.",
 		"The room is full. Maximum number of players is reached.",
@@ -215,9 +216,9 @@ func _on_server_dialog_confirmed() -> void:
 	if should_toggle_visibility:
 		transparent_container.visible = false
 		button_container.visible = true
-		if server_dialog.dialog_text == "The room is full. Maximum number of players is reached.":
+		if server_dialog_text.text == "The room is full. Maximum number of players is reached.":
 			join_dialog.hide()
-		elif server_dialog.dialog_text == "Name successfully changed!":
+		elif server_dialog_text.text == "Name successfully changed!":
 			name_margin_container.visible = true
-	
+	server_dialog.hide()
 	_set_buttons_state(false)

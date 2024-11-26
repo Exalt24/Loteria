@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cwjronpbw28pm"]
+[gd_scene load_steps=31 format=3 uid="uid://cwjronpbw28pm"]
 
 [ext_resource type="Script" path="res://src/Scripts/Menu.gd" id="1_ipogb"]
 [ext_resource type="Script" path="res://src/Scripts/JoinDialog.gd" id="2_gq1kq"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://crbwc14cgptuy" path="res://src/Assets/Images/Buttons/create_game_hover.png" id="9_634b1"]
 [ext_resource type="Texture2D" uid="uid://r764n35ljbw0" path="res://src/Assets/Images/Buttons/join_game_hover.png" id="10_jjwp3"]
 [ext_resource type="Texture2D" uid="uid://cuc6f56h1t1ch" path="res://src/Assets/Images/Buttons/change_name_hover.png" id="11_k6p14"]
+[ext_resource type="Texture2D" uid="uid://bsr1fqo5kn3o8" path="res://src/Assets/Images/server_dialog.png" id="12_rh53q"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gf7g8"]
 texture = ExtResource("2_xmvt3")
@@ -75,6 +76,23 @@ content_margin_top = 15.0
 content_margin_bottom = 30.0
 texture = ExtResource("11_k6p14")
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hs4le"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("12_rh53q")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rf8oq"]
+content_margin_top = 15.0
+content_margin_bottom = 30.0
+texture = ExtResource("6_n53nj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4ohep"]
+content_margin_top = 15.0
+content_margin_bottom = 30.0
+texture = ExtResource("6_n53nj")
+
 [node name="Menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -96,19 +114,12 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_gf7g8")
 
 [node name="TransparentContainer" type="ColorRect" parent="Background"]
 visible = false
-layout_mode = 1
-anchors_preset = 15
+layout_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.415686)
-
-[node name="ServerDialog" type="AcceptDialog" parent="Background"]
-initial_position = 1
-size = Vector2i(219, 100)
-borderless = true
-dialog_text = "Server is not responsive..."
 
 [node name="MarginContainer" type="MarginContainer" parent="Background"]
 layout_mode = 2
@@ -464,7 +475,51 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_kvqfk")
 text = "Change Name
 "
 
-[connection signal="confirmed" from="Background/ServerDialog" to="." method="_on_server_dialog_confirmed"]
+[node name="ServerDialog" type="PanelContainer" parent="Background"]
+visible = false
+layout_mode = 2
+anchor_left = 0.496
+anchor_top = 0.284
+anchor_right = 0.496
+anchor_bottom = 0.284
+offset_left = -203.969
+offset_top = 7.96799
+offset_right = 211.031
+offset_bottom = 295.968
+theme_override_styles/panel = SubResource("StyleBoxTexture_hs4le")
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/ServerDialog"]
+layout_mode = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 70
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/ServerDialog/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="Background/ServerDialog/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("8_54ai7")
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/ServerDialog/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+
+[node name="Button" type="Button" parent="Background/ServerDialog/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("8_54ai7")
+theme_override_colors/font_focus_color = Color(1, 0.764706, 0.0117647, 1)
+theme_override_colors/font_color = Color(1, 0.764706, 0.0117647, 1)
+theme_override_styles/hover = SubResource("StyleBoxTexture_rf8oq")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_4ohep")
+text = "Okay"
+
 [connection signal="pressed" from="Background/DialogContainer/CreateDialog/Back" to="." method="_on_create_dialog_back_pressed"]
 [connection signal="pressed" from="Background/DialogContainer/CreateDialog/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Background/DialogContainer/JoinDialog/Back" to="." method="_on_join_dialog_back_pressed"]
@@ -475,3 +530,4 @@ text = "Change Name
 [connection signal="pressed" from="Background/ButtonContainer/CreateServerButton" to="." method="_on_create_server_button_pressed"]
 [connection signal="pressed" from="Background/ButtonContainer/JoinServerButton" to="." method="_on_join_server_button_pressed"]
 [connection signal="pressed" from="Background/ButtonContainer/ChangeNameButton" to="." method="_on_change_name_button_pressed"]
+[connection signal="pressed" from="Background/ServerDialog/MarginContainer/VBoxContainer/MarginContainer/Button" to="." method="_on_server_dialog_confirmed"]
