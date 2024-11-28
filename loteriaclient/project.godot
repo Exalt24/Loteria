@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Signal_Debugger="*res://addons/SignalVisualizer/Debugger/SignalDebugger.gd"
 Client="*res://src/Scripts/Client.gd"
 Helper="*res://src/Scripts/Helper.gd"
+GameState="*res://src/Scripts/GameState.gd"
 
 [display]
 
