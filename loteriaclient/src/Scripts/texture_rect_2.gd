@@ -2,10 +2,10 @@ extends TextureRect
 
 # Array of texture paths for the patterns
 var patterns = [
-	preload("res://src/Assets/Images/PatternBG/Column.png"),
-	preload("res://src/Assets/Images/PatternBG/Row.png"),
-	preload("res://src/Assets/Images/PatternBG/Square.png"),
-	preload("res://src/Assets/Images/PatternBG/Cross.png")
+	preload("res://src/Assets/Images/Pattern/Column.png"),
+	preload("res://src/Assets/Images/Pattern/Row.png"),
+	preload("res://src/Assets/Images/Pattern/Square.png"),
+	preload("res://src/Assets/Images/Pattern/Cross.png")
 ]
 
 # Called when the node enters the scene tree for the first time.
