@@ -4,6 +4,9 @@ extends Line2D
 var start_x : float
 var end_x : float
 
+# Indicator to reset the timer when the server requests it
+var reset_requested : bool = false
+
 func _ready():
 	# Set the starting and ending x positions of the line
 	start_x = points[0].x
@@ -23,9 +26,15 @@ func _is_time_to_die():
 func _on_timer_timeout():
 	_decreased()
 
-	# When the line reaches the starting point, reset it and continue
-	if _is_time_to_die():
-		print("Timer: resetting")
-		# Reset points[1] to the original end position and restart the timer
+	# When the line reaches the starting point or a reset is requested, reset it
+	if _is_time_to_die() or reset_requested:
+		print("Timer: resetting (server request or reached end).")
+		# Reset points[1] to the original end position
 		points[1].x = end_x
-		$Timer.start()  # Restart the timer if you want it to loop
+		reset_requested = false  # Clear the reset indicator
+		$Timer.start()  # Restart the timer if needed
+
+# Called by Client.gd when the server requests a timer reset
+func reset_timer():
+	reset_requested = true
+	print("Timer reset requested by server.")

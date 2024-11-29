@@ -3,10 +3,58 @@ extends Node
 const SERVER_ADDRESS: String = "127.0.0.1"
 const SERVER_PORT: int = 33070
 
+@export var loterya_cards: Array = [
+	preload("res://src/Assets/Images/Loterya Cards/Agila.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Anahaw.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Arnis.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Bahay Kubo.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Bakya.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Balut.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Bangus.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Banig.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Baro.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Barong.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Bayanihan.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Bolo.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Buko.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Bulalo.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Duwende.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Halo-Halo.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Harana.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Isaw.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Jeepney.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Kalesa.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Kulintang.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Lechon.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Mangga.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Maskara.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Pagmamano.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Palay.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Pamaypay.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Pandesal.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Parol.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Piyesta.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Puso.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Puto.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Rice Terraces.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Salakot.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Sampaguita.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Sungka.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Taho.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Tamaraw.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Tarsier.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Tindahan.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Tinikling.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Tumbang Preso.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Vinta.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Walis Tambo.png"),
+	preload("res://src/Assets/Images/Loterya Cards/Watawat.png")
+]
+
 var my_info: Dictionary = {
 	name = "Carl",
-	index = 0,
-	instance = null
+	instance = null,
+	token_symbol = null,
 }
 
 var player_info: Dictionary = {}
@@ -61,9 +109,18 @@ func stop() -> void:
 	is_creator = false
 	if get_tree().current_scene.name == "Menu":
 		get_tree().current_scene.create_dialog_label.text = "Creating room..."
+		
+func fin_stop() -> void:
 	
+	if self.multiplayer.is_connected("connected_to_server", Callable(self, "_connected_ok")):
+		self.multiplayer.disconnect("connected_to_server", Callable(self, "_connected_ok"))
+	if self.multiplayer.is_connected("connection_failed", Callable(self, "_connected_fail")):
+		self.multiplayer.disconnect("connection_failed", Callable(self, "_connected_fail"))
+	if self.multiplayer.is_connected("server_disconnected", Callable(self, "_server_disconnected")):
+		self.multiplayer.disconnect("server_disconnected", Callable(self, "_server_disconnected"))
+	self.multiplayer.multiplayer_peer = null
+	_remove_all_players()
 	
-
 @rpc("any_peer")
 func register_player(id: int, info: Dictionary) -> void:
 	player_info[id] = info
@@ -71,22 +128,37 @@ func register_player(id: int, info: Dictionary) -> void:
 
 @rpc("any_peer")
 func remove_player(id: int) -> void:
+	# Check if we are in the menu or the game scene
 	if get_tree().current_scene.name == "Menu":
-		get_tree().current_scene.remove_player(player_info.keys().find(id))
+		# Call the scene-specific function to remove the player from the UI
+		if get_tree().current_scene.has_method("remove_player"):
+			get_tree().current_scene.remove_player(player_info.keys().find(id))
+		else:
+			print("Warning: remove_player method not found in Menu scene.")
 	else:
-		player_info[id].instance.queue_free()
+		# Remove the player's instance in the game scene
+		if id in player_info and player_info[id].instance:
+			player_info[id].instance.queue_free()
+			print("Player instance removed for player ID:", id)
+		else:
+			print("Warning: player_info[", id, "] instance is null or does not exist.")
 
-	if not player_info.erase(id):
-		printerr("Error removing player")
+	# Synchronize the removal in player_info
+	if player_info.erase(id):
+		print("Player ID: ", id, " successfully removed from player_info.")
+	else:
+		print("Error removing player ID:", id, "from player_info.")
 
 func _remove_all_players() -> void:
-	
 	if get_tree().current_scene.name == "Menu":
 		get_tree().current_scene.remove_all_players()
 	else:
 		for player_id in player_info:
-			player_info[player_id].instance.queue_free()
-	
+			if player_info[player_id].instance:
+				player_info[player_id].instance.queue_free()
+			else:
+				print("Warning: player_info[", player_id, "] instance is null.")
+
 	player_info = {}
 
 func _connected_ok() -> void:
@@ -106,12 +178,30 @@ func _connected_fail() -> void:
 	
 func _server_disconnected() -> void:
 	print("Server disconnected!")
+	
+	if get_tree().current_scene.name != "Menu":
+		_change_to_main_menu()
+	
 	stop()
+	
 	get_tree().current_scene._set_buttons_state(true)
 	var dialog = get_tree().current_scene.show_server_dialog("The server has disconnected.")
 	if dialog:
 		dialog.connect("confirmed", self, "_on_server_dialog_confirmed")
 	
+func _change_to_main_menu():
+	# Safely queue_free the current scene
+	if get_tree().current_scene:
+		get_tree().current_scene.queue_free()
+	
+	# Load and instantiate the main menu scene
+	var main_menu = preload("res://src/Scenes/Menu.tscn").instantiate()
+	get_tree().root.add_child(main_menu)
+	get_tree().current_scene = main_menu
+
+	print("Changed to main menu.")
+
+
 @rpc("any_peer")
 func start_game() -> void:
 	rpc_id(1, "start_game")
@@ -126,17 +216,7 @@ func pre_configure_game() -> void:
 	var game: Control = preload("res://src/Scenes/main_game_ui.tscn").instantiate()
 	get_tree().root.add_child(game)
 	get_tree().current_scene = game
-	
-	#var my_player: KinematicCollision2D = preload("res://characters/Player.tscn").instance()
-	#game.add_child(my_player)
-	#player_info[self.multiplayer.get_unique_id()].instance = my_player
-	#
-	#for player_id in player_info:
-		#if player_id != self.multiplayer.get_unique_id():
-			#var player: KinematicCollision2D = preload("res://characters/BaseCharacter.tscn").instance()
-			#game.add_child(player)
-			#player_info[player_id].instance = player
-			
+
 	rpc_id(1, "done_preconfiguring")
 		
 @rpc("any_peer")
@@ -164,6 +244,38 @@ func receive_lobby_list(lobby_list: Array) -> void:
 	
 	if get_tree().current_scene.name == "Menu":
 		get_tree().current_scene.update_lobby_list(lobby_list)
+
+@rpc("any_peer")
+func show_called_card(called_card_index: int) -> void:
+	var called_card_texture = loterya_cards[called_card_index]
+	print("Received card index: ", called_card_index, " -> Texture: ", called_card_texture.resource_path)
+
+	var current_scene = get_tree().current_scene
+	current_scene.caller_display.texture = called_card_texture
+
+@rpc("any_peer")
+func set_win_condition(win_condition: int) -> void:
+	print("Received win condition from server: ", win_condition)
+
+@rpc("any_peer")
+func game_ended() -> void:
+	print("Game has ended.")
+	
+	# Clean up the current scene and transition to the results or menu
+	if get_tree().current_scene:
+		get_tree().current_scene.queue_free()
+	
+	# Load the main menu or results screen
+	var menu = preload("res://src/Scenes/Menu.tscn").instantiate()
+	get_tree().root.add_child(menu)
+	get_tree().current_scene = menu
+	
+	fin_stop()
+
+@rpc("any_peer")
+func reset_timer_from_server() -> void:
+	var current_scene = get_tree().current_scene
+	current_scene.time_bar.reset_timer()
 
 @rpc("any_peer")
 func request_lobby_list() -> void:

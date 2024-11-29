@@ -39,7 +39,7 @@ const THEME = preload("res://src/Assets/Theme.tres")
 func _ready() -> void:
 	THEME.set_type_variation("SelectServerButton", "Button")
 	start_button.disabled = true
-	name_label.text = "Mabuhay, " + Client.my_info.name + "!"
+	name_label.text = "Mabuhay!"
 
 func update_room(room_id: int) -> void:
 	if Client.is_creator:
@@ -218,7 +218,7 @@ func _on_server_dialog_confirmed() -> void:
 		button_container.visible = true
 		if server_dialog_text.text == "The room is full. Maximum number of players is reached.":
 			join_dialog.hide()
-		elif server_dialog_text.text == "Name successfully changed!":
+		elif server_dialog_text.text == "Name successfully changed!" || server_dialog_text.text == "The server has disconnected.":
 			name_margin_container.visible = true
 	server_dialog.hide()
 	_set_buttons_state(false)

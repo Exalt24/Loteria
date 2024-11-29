@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://imuy4js4x1o2"]
 
 [ext_resource type="Texture2D" uid="uid://clxgxvwrhqfih" path="res://src/Assets/Images/Card holder.png" id="1_74lau"]
-[ext_resource type="Script" path="res://src/Scenes/nine_patch_rect.gd" id="2_phx0j"]
+[ext_resource type="Script" path="res://src/Scripts/nine_patch_rect.gd" id="2_phx0j"]
 [ext_resource type="Texture2D" uid="uid://61ndapob7kyr" path="res://src/Assets/Images/Card.png" id="2_r5i17"]
 [ext_resource type="Texture2D" uid="uid://ckjim2wb8an7b" path="res://src/Assets/Images/Loterya Cards/Agila.png" id="4_4tifv"]
 

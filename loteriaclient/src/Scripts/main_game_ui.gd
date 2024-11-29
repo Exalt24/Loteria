@@ -1,7 +1,8 @@
-extends TextureRect
+extends Control
 
+@onready var caller_display: TextureRect = $Panel/CallerDisplay
+@onready var time_bar: Line2D = $Panel/TimeBar
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 
