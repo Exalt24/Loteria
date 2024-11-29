@@ -10,8 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://rjb4w2iaav4e" path="res://src/Assets/Images/Lobby/creating_lobby.png" id="8_rqvor"]
 [ext_resource type="Texture2D" uid="uid://crbwc14cgptuy" path="res://src/Assets/Images/Buttons/create_game_hover.png" id="9_634b1"]
 [ext_resource type="Texture2D" uid="uid://r764n35ljbw0" path="res://src/Assets/Images/Buttons/join_game_hover.png" id="10_jjwp3"]
-[ext_resource type="Texture2D" uid="uid://c2btvmj2hpca6" path="res://src/Assets/Images/Buttons/normal_button_frame.png" id="10_od58d"]
 [ext_resource type="Texture2D" uid="uid://cuc6f56h1t1ch" path="res://src/Assets/Images/Buttons/change_name_hover.png" id="11_k6p14"]
+[ext_resource type="Texture2D" uid="uid://c2btvmj2hpca6" path="res://src/Assets/Images/Buttons/normal_button_frame.png" id="11_m627b"]
 [ext_resource type="Texture2D" uid="uid://bsr1fqo5kn3o8" path="res://src/Assets/Images/server_dialog.png" id="12_rh53q"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gf7g8"]
@@ -45,17 +45,17 @@ texture = ExtResource("6_n53nj")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8q5iq"]
 texture = SubResource("CompressedTexture2D_bwae2")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qd5m8"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_be5mk"]
 texture = ExtResource("11_k6p14")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bp3u8"]
-texture = ExtResource("10_od58d")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_awlgh"]
+texture = ExtResource("11_m627b")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x7ex1"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sgubk"]
 texture = ExtResource("9_634b1")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4aqwi"]
-texture = ExtResource("10_od58d")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1mv2v"]
+texture = ExtResource("11_m627b")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sg25y"]
 
@@ -345,29 +345,43 @@ layout_mode = 2
 [node name="EditName" type="LineEdit" parent="Background/DialogContainer/ChangeNameDialog/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
+theme = ExtResource("8_54ai7")
+theme_override_font_sizes/font_size = 64
+alignment = 1
 max_length = 12
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Background/DialogContainer/ChangeNameDialog/MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 6
 theme = ExtResource("8_54ai7")
 
+[node name="Spacer" type="Control" parent="Background/DialogContainer/ChangeNameDialog/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="Change" type="Button" parent="Background/DialogContainer/ChangeNameDialog/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 theme = ExtResource("8_54ai7")
-theme_override_styles/hover = SubResource("StyleBoxTexture_qd5m8")
-theme_override_styles/normal = SubResource("StyleBoxTexture_bp3u8")
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/hover = SubResource("StyleBoxTexture_be5mk")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_awlgh")
 text = "Change"
 
 [node name="Cancel" type="Button" parent="Background/DialogContainer/ChangeNameDialog/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
-theme_override_styles/hover = SubResource("StyleBoxTexture_x7ex1")
-theme_override_styles/normal = SubResource("StyleBoxTexture_4aqwi")
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/hover = SubResource("StyleBoxTexture_sgubk")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_1mv2v")
 text = "Cancel
 "
+
+[node name="Spacer2" type="Control" parent="Background/DialogContainer/ChangeNameDialog/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="SelectRoomDialog" type="Panel" parent="Background"]
 visible = false
