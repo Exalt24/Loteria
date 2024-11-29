@@ -22,9 +22,9 @@ expand_mode = 1
 [node name="TextureRect2" type="TextureRect" parent="TextureRect"]
 layout_mode = 0
 offset_left = 370.0
-offset_top = 84.0
+offset_top = 104.0
 offset_right = 773.0
-offset_bottom = 532.0
+offset_bottom = 552.0
 texture = ExtResource("2_b6hb8")
 expand_mode = 1
 script = ExtResource("3_4tyrn")

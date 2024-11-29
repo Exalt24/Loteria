@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnsc81t8jvbot"
-path="res://.godot/imported/Opponent 1 (1).png-7eae355d6239f7b7be1ef480b1afe677.ctex"
+uid="uid://dthp5o2xlh2xa"
+path="res://.godot/imported/OpponentBG.png-24d1aecb95eb865fe2181e2d8320d9f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/Assets/Images/Opponent 1 (1).png"
-dest_files=["res://.godot/imported/Opponent 1 (1).png-7eae355d6239f7b7be1ef480b1afe677.ctex"]
+source_file="res://src/Assets/Images/Opponent/OpponentBG.png"
+dest_files=["res://.godot/imported/OpponentBG.png-24d1aecb95eb865fe2181e2d8320d9f4.ctex"]
 
 [params]
 

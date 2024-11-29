@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cvfp6h75vs1fp"]
+[gd_scene load_steps=22 format=3 uid="uid://cvfp6h75vs1fp"]
 
 [ext_resource type="Texture2D" uid="uid://c0oro6d8fpml5" path="res://src/Assets/Images/GAMEBG.png" id="1_rt3qv"]
 [ext_resource type="FontFile" uid="uid://b8wwo1p6o1i0k" path="res://src/Assets/Fonts/Funtasia.otf" id="2_t8d7e"]
@@ -10,7 +10,8 @@
 [ext_resource type="Script" path="res://src/Scripts/Caller.gd" id="7_8mw3u"]
 [ext_resource type="Texture2D" uid="uid://yg2upoc78uer" path="res://src/Assets/Images/Column.png" id="7_ksvts"]
 [ext_resource type="Script" path="res://src/Scripts/caller_display.gd" id="8_j4038"]
-[ext_resource type="Texture2D" uid="uid://dthp5o2xlh2xa" path="res://src/Assets/Images/OpponentBG.png" id="8_w0hli"]
+[ext_resource type="Texture2D" uid="uid://dthp5o2xlh2xa" path="res://src/Assets/Images/Opponent/OpponentBG.png" id="8_w0hli"]
+[ext_resource type="PackedScene" uid="uid://blyyw5jsu7nta" path="res://src/Scenes/Opp_1.tscn" id="10_c5mwl"]
 [ext_resource type="PackedScene" uid="uid://imuy4js4x1o2" path="res://src/Scenes/nine_patch_rect.tscn" id="11_8jiv7"]
 [ext_resource type="Script" path="res://src/Scripts/time_bar.gd" id="11_a54qm"]
 
@@ -111,6 +112,13 @@ offset_top = 336.0
 offset_right = 253.0
 offset_bottom = 587.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_28j5r")
+
+[node name="TextureRect" parent="Panel/opponent" instance=ExtResource("10_c5mwl")]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 49.0
+offset_right = 69.0
+offset_bottom = 126.0
 
 [node name="pattern" type="Panel" parent="Panel"]
 layout_mode = 0
