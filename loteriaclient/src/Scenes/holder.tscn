@@ -4,9 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://6qn4ps2kglnv" path="res://src/Scenes/slot.tscn" id="2_4n8i5"]
 
 [node name="NinePatchRect" type="NinePatchRect"]
-offset_left = 324.0
-offset_right = 455.0
-offset_bottom = 185.0
+offset_left = 483.0
+offset_top = 212.0
+offset_right = 614.0
+offset_bottom = 397.0
 texture = ExtResource("1_74lau")
 
 [node name="GridContainer" type="GridContainer" parent="."]
