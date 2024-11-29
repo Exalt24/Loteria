@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://capd0epx3ib71"]
+[gd_scene load_steps=13 format=3 uid="uid://capd0epx3ib71"]
 
+[ext_resource type="Script" path="res://src/Scripts/welcome_page.gd" id="1_ksyfh"]
 [ext_resource type="Texture2D" uid="uid://cu1i668vlvamk" path="res://src/Assets/Images/WelcomePage/T.png" id="2_x2ult"]
 [ext_resource type="Texture2D" uid="uid://drrp0r61ayupc" path="res://src/Assets/Images/WelcomePage/L.png" id="4_bnl4e"]
 [ext_resource type="Texture2D" uid="uid://yd8cpxycvlfq" path="res://src/Assets/Images/WelcomePage/O.png" id="5_a00gg"]
@@ -11,65 +12,146 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j82d8"]
 bg_color = Color(0, 0, 0, 1)
 
-[node name="Control" type="Node2D"]
+[sub_resource type="Animation" id="Animation_071gt"]
+resource_name = "LetterL"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.333333, 0.433333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_uas8m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8cm7j"]
+_data = {
+"LetterL": SubResource("Animation_071gt"),
+"RESET": SubResource("Animation_uas8m")
+}
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ksyfh")
 
 [node name="Panel" type="Panel" parent="."]
 offset_right = 1152.0
 offset_bottom = 647.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_j82d8")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_left = 128.0
-offset_top = 205.0
-offset_right = 261.0
-offset_bottom = 390.0
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+offset_left = 125.0
+offset_top = 202.0
+offset_right = 258.0
+offset_bottom = 387.0
+pivot_offset = Vector2(66, 92)
 texture = ExtResource("4_bnl4e")
 expand_mode = 1
 
-[node name="TextureRect2" type="TextureRect" parent="."]
-offset_left = 228.0
-offset_top = 256.0
-offset_right = 373.0
-offset_bottom = 458.0
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Panel/TextureRect"]
+libraries = {
+"": SubResource("AnimationLibrary_8cm7j")
+}
+
+[node name="TextureRect2" type="TextureRect" parent="Panel"]
+offset_left = 238.0
+offset_top = 246.0
+offset_right = 383.0
+offset_bottom = 448.0
+pivot_offset = Vector2(72, 101)
 texture = ExtResource("5_a00gg")
 expand_mode = 1
 
-[node name="TextureRect4" type="TextureRect" parent="."]
-offset_left = 483.0
-offset_top = 242.0
-offset_right = 636.0
-offset_bottom = 455.0
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Panel/TextureRect2"]
+libraries = {
+"": SubResource("AnimationLibrary_8cm7j")
+}
+
+[node name="TextureRect4" type="TextureRect" parent="Panel"]
+offset_left = 493.0
+offset_top = 232.0
+offset_right = 646.0
+offset_bottom = 445.0
+pivot_offset = Vector2(76, 106)
 texture = ExtResource("6_fx8ev")
 expand_mode = 1
 
-[node name="TextureRect5" type="TextureRect" parent="."]
-offset_left = 621.0
-offset_top = 198.0
-offset_right = 758.0
-offset_bottom = 388.0
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Panel/TextureRect4"]
+libraries = {
+"": SubResource("AnimationLibrary_8cm7j")
+}
+
+[node name="TextureRect5" type="TextureRect" parent="Panel"]
+offset_left = 631.0
+offset_top = 188.0
+offset_right = 768.0
+offset_bottom = 378.0
+pivot_offset = Vector2(68, 95)
 texture = ExtResource("7_yo7wx")
 expand_mode = 1
 
-[node name="TextureRect6" type="TextureRect" parent="."]
-offset_left = 751.0
-offset_top = 256.0
-offset_right = 887.0
-offset_bottom = 445.0
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Panel/TextureRect5"]
+libraries = {
+"": SubResource("AnimationLibrary_8cm7j")
+}
+
+[node name="TextureRect6" type="TextureRect" parent="Panel"]
+offset_left = 761.0
+offset_top = 246.0
+offset_right = 897.0
+offset_bottom = 435.0
+pivot_offset = Vector2(68, 94)
 texture = ExtResource("8_5qipf")
 expand_mode = 1
 
-[node name="TextureRect7" type="TextureRect" parent="."]
-offset_left = 868.0
-offset_top = 199.0
-offset_right = 1023.0
-offset_bottom = 414.0
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Panel/TextureRect6"]
+libraries = {
+"": SubResource("AnimationLibrary_8cm7j")
+}
+
+[node name="TextureRect7" type="TextureRect" parent="Panel"]
+offset_left = 878.0
+offset_top = 185.0
+offset_right = 1037.0
+offset_bottom = 406.0
+pivot_offset = Vector2(79, 110)
 texture = ExtResource("9_6apoj")
 expand_mode = 1
 
-[node name="TextureRect8" type="TextureRect" parent="."]
-offset_left = 359.0
-offset_top = 217.0
-offset_right = 495.0
-offset_bottom = 406.0
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Panel/TextureRect7"]
+libraries = {
+"": SubResource("AnimationLibrary_8cm7j")
+}
+
+[node name="TextureRect8" type="TextureRect" parent="Panel"]
+offset_left = 369.0
+offset_top = 207.0
+offset_right = 505.0
+offset_bottom = 396.0
+pivot_offset = Vector2(68, 94)
 texture = ExtResource("2_x2ult")
 expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Panel/TextureRect8"]
+libraries = {
+"": SubResource("AnimationLibrary_8cm7j")
+}
