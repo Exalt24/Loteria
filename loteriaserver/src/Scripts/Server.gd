@@ -205,7 +205,7 @@ func handle_in_game(room: Dictionary) -> void:
 	# Create and configure a timer for this room
 	var timer = Timer.new()
 	add_child(timer)  # Add it as a child to manage its lifecycle
-	timer.wait_time = 0.5
+	timer.wait_time = 3.0
 	timer.one_shot = false
 	timer.connect("timeout", Callable(self, "_call_next_card").bind(room))
 	timer.start()
