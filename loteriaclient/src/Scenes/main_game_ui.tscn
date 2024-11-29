@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cvfp6h75vs1fp"]
+[gd_scene load_steps=25 format=3 uid="uid://cvfp6h75vs1fp"]
 
 [ext_resource type="Texture2D" uid="uid://c0oro6d8fpml5" path="res://src/Assets/Images/GAMEBG.png" id="1_rt3qv"]
 [ext_resource type="FontFile" uid="uid://b8wwo1p6o1i0k" path="res://src/Assets/Fonts/Funtasia.otf" id="2_t8d7e"]
@@ -11,9 +11,12 @@
 [ext_resource type="Texture2D" uid="uid://yg2upoc78uer" path="res://src/Assets/Images/Column.png" id="7_ksvts"]
 [ext_resource type="Script" path="res://src/Scripts/caller_display.gd" id="8_j4038"]
 [ext_resource type="Texture2D" uid="uid://dthp5o2xlh2xa" path="res://src/Assets/Images/Opponent/OpponentBG.png" id="8_w0hli"]
-[ext_resource type="PackedScene" uid="uid://blyyw5jsu7nta" path="res://src/Scenes/Opp_1.tscn" id="10_c5mwl"]
+[ext_resource type="PackedScene" uid="uid://cvnr7olmejsg3" path="res://src/Scenes/Opp_2.tscn" id="10_7oebi"]
+[ext_resource type="PackedScene" uid="uid://w0eegxne4bi1" path="res://src/Scenes/Opp_1.tscn" id="10_c5mwl"]
 [ext_resource type="PackedScene" uid="uid://imuy4js4x1o2" path="res://src/Scenes/nine_patch_rect.tscn" id="11_8jiv7"]
 [ext_resource type="Script" path="res://src/Scripts/time_bar.gd" id="11_a54qm"]
+[ext_resource type="PackedScene" uid="uid://codutweshb7r7" path="res://src/Scenes/Opp_3.tscn" id="12_ek6g6"]
+[ext_resource type="PackedScene" uid="uid://dhlvfb75bicj2" path="res://src/Scenes/Opp_4.tscn" id="13_y7e6f"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_itx0o"]
 texture = ExtResource("1_rt3qv")
@@ -116,9 +119,31 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_28j5r")
 [node name="TextureRect" parent="Panel/opponent" instance=ExtResource("10_c5mwl")]
 layout_mode = 0
 offset_left = 20.0
-offset_top = 49.0
-offset_right = 69.0
-offset_bottom = 126.0
+offset_top = 40.0
+offset_right = 78.0
+offset_bottom = 130.0
+expand_mode = 4
+
+[node name="TextureRect2" parent="Panel/opponent" instance=ExtResource("10_7oebi")]
+layout_mode = 0
+offset_left = 89.0
+offset_top = 40.0
+offset_right = 147.0
+offset_bottom = 130.0
+
+[node name="TextureRect3" parent="Panel/opponent" instance=ExtResource("12_ek6g6")]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 141.0
+offset_right = 79.0
+offset_bottom = 231.0
+
+[node name="TextureRect4" parent="Panel/opponent" instance=ExtResource("13_y7e6f")]
+layout_mode = 0
+offset_left = 89.0
+offset_top = 140.0
+offset_right = 147.0
+offset_bottom = 230.0
 
 [node name="pattern" type="Panel" parent="Panel"]
 layout_mode = 0

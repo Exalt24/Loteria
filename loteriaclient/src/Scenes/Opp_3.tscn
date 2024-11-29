@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://codutweshb7r7"]
+
+[ext_resource type="Texture2D" uid="uid://cbi2h51wftn8" path="res://src/Assets/Images/Opponent/Player3.png" id="1_edm58"]
+
+[node name="TextureRect3" type="TextureRect"]
+offset_left = 16.0
+offset_top = 140.0
+offset_right = 75.0
+offset_bottom = 230.0
+texture = ExtResource("1_edm58")
+expand_mode = 1

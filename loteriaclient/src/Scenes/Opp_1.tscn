@@ -1,7 +1,11 @@
-[gd_scene format=3 uid="uid://blyyw5jsu7nta"]
+[gd_scene load_steps=2 format=3 uid="uid://w0eegxne4bi1"]
+
+[ext_resource type="Texture2D" uid="uid://2k6wkbck41aa" path="res://src/Assets/Images/Opponent/Player1.png" id="1_3exs4"]
 
 [node name="TextureRect" type="TextureRect"]
-offset_left = 15.0
-offset_top = 22.0
-offset_right = 64.0
-offset_bottom = 99.0
+offset_left = 28.0
+offset_top = 31.0
+offset_right = 139.0
+offset_bottom = 202.0
+texture = ExtResource("1_3exs4")
+expand_mode = 1

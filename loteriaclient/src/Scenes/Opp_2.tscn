@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvnr7olmejsg3"]
+
+[ext_resource type="Texture2D" uid="uid://d0avt7lh1na56" path="res://src/Assets/Images/Opponent/Player2.png" id="1_wlaiw"]
+
+[node name="TextureRect2" type="TextureRect"]
+offset_left = 92.0
+offset_top = 53.0
+offset_right = 150.0
+offset_bottom = 147.0
+texture = ExtResource("1_wlaiw")
+expand_mode = 1
