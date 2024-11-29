@@ -172,13 +172,19 @@ func start_game() -> void:
 	
 	room.state = GameState.STARTED
 	
+	var win_condition = randi_range(0, 3)
+	room["win_condition"] = win_condition
+	print("Room ID: ", room.creator, " - Win condition set to: ", win_condition)
+
+	for player_id in room.players:
+		rpc_id(player_id, "set_win_condition", win_condition)
+	
 	for player_id in room.players:
 		rpc_id(player_id, "pre_configure_game")
-
+		
 	update_lobby_list_for_all_clients()
-	
-	handle_in_game(room)
 
+	
 func handle_in_game(room: Dictionary) -> void:
 	# Validate room state
 	if room == null:
@@ -193,16 +199,6 @@ func handle_in_game(room: Dictionary) -> void:
 	room.remaining_cards = range(0, 44)
 	room.remaining_cards.shuffle()
 	
-	# Set the win condition for the room
-	var win_condition = randi_range(0, 3)
-	room["win_condition"] = win_condition
-	print("Room ID: ", room.creator, " - Win condition set to: ", win_condition)
-
-
-	for player_id in room.players:
-		rpc_id(player_id, "set_win_condition", win_condition)
-
-	# Create and configure a timer for this room
 	var timer = Timer.new()
 	add_child(timer)  # Add it as a child to manage its lifecycle
 	timer.wait_time = 3.0
@@ -251,13 +247,14 @@ func done_preconfiguring() -> void:
 	var sender_id: int = self.multiplayer.get_remote_sender_id()
 	
 	var room: Dictionary = _get_room(sender_id)
-	var win_condition = randi_range(0, 3)
 	
 	room.players_done += 1
 	
 	if room.players_done == room.players.size():
 		for player_id in room.players:
 			rpc_id(player_id, "done_preconfiguring")
+			
+		handle_in_game(room)
 
 func update_lobby_list_for_all_clients() -> void:
 	var lobby_list: Array = []

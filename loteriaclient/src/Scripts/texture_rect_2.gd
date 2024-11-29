@@ -1,6 +1,5 @@
 extends TextureRect
 
-# Array of texture paths for the patterns
 var patterns = [
 	preload("res://src/Assets/Images/Pattern/Column.png"),
 	preload("res://src/Assets/Images/Pattern/Row.png"),
@@ -8,14 +7,15 @@ var patterns = [
 	preload("res://src/Assets/Images/Pattern/Cross.png")
 ]
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# Ensure randomness
-	randomize()
+	if Client.win_condition != null:
+		_update_texture(Client.win_condition)
+	else:
+		print("Win condition not set yet.")
 
-	# If the pattern has not been selected globally, select one randomly
-	if GameState.selected_pattern == null:
-		GameState.selected_pattern = patterns[randi() % patterns.size()]
-
-	# Apply the shared pattern to this TextureRect instance
-	texture = GameState.selected_pattern
+func _update_texture(win_condition: int) -> void:
+	if win_condition >= 0 and win_condition < patterns.size():
+		texture = patterns[win_condition]
+		print("Texture updated based on win condition: ", win_condition)
+	else:
+		print("Invalid win condition index: ", win_condition)

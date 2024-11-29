@@ -63,6 +63,7 @@ var is_creator: bool = false
 var is_fetching: bool = false
 
 var room: int
+var win_condition: int
 	
 @rpc("any_peer")
 func create_room(info: Dictionary) -> void:
@@ -210,14 +211,27 @@ func start_game() -> void:
 func pre_configure_game() -> void:
 	get_tree().current_scene.set_deferred("game_started", true)
 	
-	get_tree().paused = true
-	
+	get_tree().paused = false
+
+	# Free the current scene
 	get_tree().current_scene.queue_free()
+
+	# Load and display GoalPattern.tscn first
+	var goal_pattern_scene: Control = preload("res://src/Scenes/GoalPattern.tscn").instantiate()
+	get_tree().root.add_child(goal_pattern_scene)
+	get_tree().current_scene = goal_pattern_scene
+	
+	# Await a timer to introduce a delay
+	await get_tree().create_timer(3.0).timeout  # Adjust the timer duration as needed
+
+	get_tree().paused = true
+	# Load and display main_game_ui.tscn
 	var game: Control = preload("res://src/Scenes/main_game_ui.tscn").instantiate()
 	get_tree().root.add_child(game)
 	get_tree().current_scene = game
 
 	rpc_id(1, "done_preconfiguring")
+
 		
 @rpc("any_peer")
 func update_player_count(player_count: int) -> void:
@@ -254,8 +268,9 @@ func show_called_card(called_card_index: int) -> void:
 	current_scene.caller_display.texture = called_card_texture
 
 @rpc("any_peer")
-func set_win_condition(win_condition: int) -> void:
-	print("Received win condition from server: ", win_condition)
+func set_win_condition(condition: int) -> void:
+	print("Received win condition from server: ", condition)
+	win_condition = condition
 
 @rpc("any_peer")
 func game_ended() -> void:

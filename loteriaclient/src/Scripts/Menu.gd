@@ -1,5 +1,6 @@
 extends Control
 
+static var is_first_boot: bool = true
 var game_started: bool = false
 
 @onready var create_dialog: Panel = $Background/DialogContainer/CreateDialog
@@ -37,6 +38,37 @@ const THEME = preload("res://src/Assets/Theme.tres")
 ]
 
 func _ready() -> void:
+	if is_first_boot:
+		is_first_boot = false
+		show_welcome_screen()
+	else:
+		setup_main_menu()
+
+func show_welcome_screen() -> void:
+	# Load and instantiate the WelcomePage.tscn
+	var welcome_page = preload("res://src/Scenes/WelcomePage.tscn").instantiate()
+	
+	# Add the welcome page deferred to avoid setup conflict
+	get_tree().root.call_deferred("add_child", welcome_page)
+	
+	# Hide the current scene elements temporarily
+	visible = false
+
+	# Wait asynchronously for a few seconds
+	await get_tree().create_timer(8.0).timeout  # Adjust duration as needed
+	
+	# Remove the welcome page
+	welcome_page.queue_free()
+
+	# Show the current scene elements
+	visible = true
+
+	# Continue with the rest of the setup
+	setup_main_menu()
+
+
+func setup_main_menu() -> void:
+	# Example of what happens after the welcome screen
 	THEME.set_type_variation("SelectServerButton", "Button")
 	start_button.disabled = true
 	name_label.text = "Mabuhay!"
@@ -218,7 +250,7 @@ func _on_server_dialog_confirmed() -> void:
 		button_container.visible = true
 		if server_dialog_text.text == "The room is full. Maximum number of players is reached.":
 			join_dialog.hide()
-		elif server_dialog_text.text == "Name successfully changed!" || server_dialog_text.text == "The server has disconnected.":
+		elif server_dialog_text.text == "Name successfully changed!" || server_dialog_text.text == "The server has disconnected." || server_dialog_text.text == "Failed to connect to the server. Please try again.":
 			name_margin_container.visible = true
 	server_dialog.hide()
 	_set_buttons_state(false)

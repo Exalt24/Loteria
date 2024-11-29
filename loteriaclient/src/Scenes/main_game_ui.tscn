@@ -1,6 +1,6 @@
 [gd_scene load_steps=31 format=3 uid="uid://cvfp6h75vs1fp"]
 
-[ext_resource type="Script" path="res://src/scripts/main_game_ui.gd" id="1_5fylm"]
+[ext_resource type="Script" path="res://src/Scripts/main_game_ui.gd" id="1_af3u1"]
 [ext_resource type="Texture2D" uid="uid://c0oro6d8fpml5" path="res://src/Assets/Images/GAMEBG.png" id="1_rt3qv"]
 [ext_resource type="FontFile" uid="uid://b8wwo1p6o1i0k" path="res://src/Assets/Fonts/Funtasia.otf" id="2_t8d7e"]
 [ext_resource type="PackedScene" uid="uid://dxiqj1ymdbxbj" path="res://src/Scenes/call.tscn" id="4_5if6f"]
@@ -101,7 +101,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_5fylm")
+script = ExtResource("1_af3u1")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -115,15 +115,15 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_itx0o")
 
 [node name="Button" type="Button" parent="Panel"]
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -124.0
-offset_top = -257.0
-offset_right = -50.0
-offset_bottom = 262.0
+anchors_preset = -1
+anchor_left = 0.923
+anchor_top = 0.103
+anchor_right = 0.923
+anchor_bottom = 0.103
+offset_left = -35.681
+offset_top = 0.255997
+offset_right = 38.319
+offset_bottom = 519.256
 grow_horizontal = 0
 grow_vertical = 2
 scale = Vector2(0.954194, 0.989368)
@@ -162,11 +162,16 @@ texture = ExtResource("5_te678")
 expand_mode = 1
 
 [node name="opponent" type="Panel" parent="Panel"]
-layout_mode = 0
-offset_left = 87.0
-offset_top = 336.0
-offset_right = 253.0
-offset_bottom = 587.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.148
+anchor_top = 0.519
+anchor_right = 0.148
+anchor_bottom = 0.519
+offset_left = -82.756
+offset_top = -0.312042
+offset_right = 83.244
+offset_bottom = 250.688
 theme_override_styles/panel = SubResource("StyleBoxTexture_28j5r")
 
 [node name="TextureRect" parent="Panel/opponent" instance=ExtResource("10_c5mwl")]
@@ -698,19 +703,29 @@ offset_bottom = 64.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_4mk18")
 
 [node name="pattern" type="Panel" parent="Panel"]
-layout_mode = 0
-offset_left = 87.0
-offset_top = 60.0
-offset_right = 252.0
-offset_bottom = 312.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.143
+anchor_top = 0.093
+anchor_right = 0.143
+anchor_bottom = 0.093
+offset_left = -77.021
+offset_top = -0.264
+offset_right = 87.979
+offset_bottom = 251.736
 theme_override_styles/panel = SubResource("StyleBoxTexture_awc2i")
 
 [node name="coin" parent="Panel" instance=ExtResource("6_gf2mf")]
-layout_mode = 0
-offset_left = 948.0
-offset_top = 20.0
-offset_right = 1025.0
-offset_bottom = 93.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.864
+anchor_top = 0.031
+anchor_right = 0.864
+anchor_bottom = 0.031
+offset_left = -43.008
+offset_top = -0.0880013
+offset_right = 33.992
+offset_bottom = 72.912
 
 [node name="coin1" parent="Panel/coin" instance=ExtResource("6_gf2mf")]
 layout_mode = 0
@@ -759,13 +774,13 @@ offset_bottom = 597.0
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.763
-anchor_top = 0.796
+anchor_top = 0.781
 anchor_right = 0.763
-anchor_bottom = 0.796
+anchor_bottom = 0.781
 offset_left = -95.161
-offset_top = -9.80804
+offset_top = -0.0880737
 offset_right = 95.839
-offset_bottom = 10.192
+offset_bottom = 19.912
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_bpp0m")
@@ -782,10 +797,15 @@ wait_time = 0.15
 autostart = true
 
 [node name="NinePatchRect" parent="Panel" instance=ExtResource("11_8jiv7")]
-layout_mode = 0
-offset_left = 544.0
-offset_top = 32.0
-offset_right = 544.0
-offset_bottom = 609.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.474
+anchor_top = 0.032
+anchor_right = 0.474
+anchor_bottom = 0.032
+offset_left = 0.32196
+offset_top = 11.264
+offset_right = 0.32196
+offset_bottom = 588.264
 
 [connection signal="timeout" from="Panel/TimeBar/Timer" to="Panel/TimeBar" method="_on_timer_timeout"]
