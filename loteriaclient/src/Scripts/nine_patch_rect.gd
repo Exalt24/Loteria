@@ -51,6 +51,7 @@ extends NinePatchRect
 var card_items = []  # Cards to display
 var slots  # Slots to display cards
 var caller_card_index = -1  # Store the current caller card index
+var marked_cards = []  # Array to store marked card indices
 @onready var coin_texture = preload("res://src/Assets/Images/coin.png")  # Coin texture to mark a card
 
 # Called when the node enters the scene tree for the first time
@@ -65,12 +66,13 @@ func _ready() -> void:
 	set_card_data(card_items)
 	
 	# Connect signals for each slot to detect clicks
+	# Connect signals for each slot to detect clicks
 	for i in range(slots.size()):
 		var slot = slots[i]
 		if slot is TextureRect:
 			slot.set_meta("index", i)  # Store the index in the slot's metadata
-			slot.connect("gui_input", Callable(self, "_on_card_clicked"))
-		
+			slot.connect("gui_input", Callable(self, "_on_card_clicked").bind(slot))  # Bind the slot to the signal
+
 # Function to randomly select cards
 func get_random_cards(count: int) -> Array:
 	var shuffled = loterya_cards.duplicate()
@@ -98,13 +100,28 @@ func update_caller_card(new_caller_index: int) -> void:
 func _on_card_clicked(event: InputEvent, slot: TextureRect) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		var clicked_card_index = slot.get_meta("index")  # Retrieve the index from metadata
-		if clicked_card_index != null and card_items[clicked_card_index] == loterya_cards[caller_card_index]:
+		#if clicked_card_index != null and card_items[clicked_card_index] == loterya_cards[caller_card_index]:
+		if clicked_card_index not in marked_cards:
+			# Mark the card if not already marked
 			mark_card_with_coin(slot)
+			marked_cards.append(clicked_card_index)  # Add to marked cards array
+			print("Marked cards:", marked_cards)  # Debugging output
 
 # Function to mark a card with a coin
 func mark_card_with_coin(slot: TextureRect) -> void:
 	var coin = Sprite2D.new()
 	coin.texture = coin_texture
-	#coin.modulate = Color(1, 1, 1, 0.8)  # Semi-transparent coin
-	coin.position = Vector2(slot.rect_size.x / 2, slot.rect_size.y / 2) - Vector2(coin.texture.get_width() / 2, coin.texture.get_height() / 2)
+
+	# Resize the coin to 50x50
+	var original_size = coin.texture.get_size()
+	var scale_factor = Vector2(50, 50) / original_size
+	coin.scale = scale_factor
+
+	# Get the size of the slot's rectangle
+	var slot_size = slot.get_rect().size
+
+	# Calculate the position to center the resized coin
+	coin.position = slot_size / 2 - Vector2(25, 25)  # Center using the 50x50 size
+
+	# Add the coin as a child of the slot
 	slot.add_child(coin)
