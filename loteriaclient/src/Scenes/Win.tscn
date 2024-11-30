@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b42vl0roaustf"]
+[gd_scene load_steps=17 format=3 uid="uid://b42vl0roaustf"]
 
 [ext_resource type="Texture2D" uid="uid://cqufvs1ce1gi" path="res://src/Assets/Images/ResultsBG.png" id="1_jfo8d"]
 [ext_resource type="Texture2D" uid="uid://crjaeayucreob" path="res://src/Assets/Images/Winner.png" id="2_lxxir"]
@@ -46,6 +46,16 @@ shadow_color = Color(0, 0, 0, 0.976471)
 shadow_size = 4
 shadow_offset = Vector2(5, 10)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ya4o"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cl4iy"]
+bg_color = Color(1, 1, 1, 1)
+
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -64,7 +74,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_a46uk")
 
 [node name="reference" type="Sprite2D" parent="WinResult"]
-position = Vector2(-585, 320)
+position = Vector2(-612, 326)
 scale = Vector2(0.6, 0.598148)
 texture = ExtResource("2_lxxir")
 
@@ -148,6 +158,8 @@ position = Vector2(204, 80)
 scale = Vector2(0.6, 0.598148)
 texture = ExtResource("6_eemg8")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WinResult/Lata 2"]
+
 [node name="Prutas 1" type="Sprite2D" parent="WinResult"]
 position = Vector2(101, 337)
 rotation = -0.549779
@@ -204,3 +216,119 @@ offset_right = 69.0
 offset_bottom = 108.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6ya4o")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="WinnerPattern"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="WinnerPattern/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 3
+theme_override_constants/v_separation = 3
+columns = 4
+
+[node name="Panel" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+
+[node name="Panel2" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+
+[node name="Panel3" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+
+[node name="Panel4" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+
+[node name="Panel5" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+
+[node name="Panel6" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+
+[node name="Panel7" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+
+[node name="Panel8" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+
+[node name="Panel9" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+
+[node name="Panel10" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+
+[node name="Panel11" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+
+[node name="Panel12" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+
+[node name="Panel13" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+
+[node name="Panel14" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+
+[node name="Panel15" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+
+[node name="Panel16" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
