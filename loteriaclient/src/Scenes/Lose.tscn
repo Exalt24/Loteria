@@ -1,0 +1,268 @@
+[gd_scene load_steps=11 format=3 uid="uid://l1k12yd1kair"]
+
+[ext_resource type="Texture2D" uid="uid://cqufvs1ce1gi" path="res://src/Assets/Images/ResultsBG.png" id="1_jfo8d"]
+[ext_resource type="Texture2D" uid="uid://cxxenrysmhgkg" path="res://src/Assets/Images/Banners.png" id="3_jta46"]
+[ext_resource type="FontFile" uid="uid://cek4o8uqi2788" path="res://src/Assets/Fonts/Fredoka-SemiBold.ttf" id="4_3yivn"]
+[ext_resource type="Texture2D" uid="uid://cqjrjyxqqdq1g" path="res://src/Assets/Images/LoseBanner.png" id="4_5b7fl"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a46uk"]
+texture = ExtResource("1_jfo8d")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4a2bw"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(1, 0.631373, 0.0117647, 1)
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o3ws5"]
+bg_color = Color(1, 0.835294, 0.313726, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_color = Color(0, 0, 0, 0.976471)
+shadow_size = 4
+shadow_offset = Vector2(5, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lkau4"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_color = Color(0, 0, 0, 0.976471)
+shadow_size = 4
+shadow_offset = Vector2(5, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ya4o"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cl4iy"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WinResult" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_a46uk")
+
+[node name="Banner 1" type="TextureRect" parent="WinResult"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.768
+anchor_top = 0.346
+anchor_right = 0.768
+anchor_bottom = 0.346
+offset_left = -265.736
+offset_top = -192.208
+offset_right = 265.264
+offset_bottom = 192.792
+texture = ExtResource("3_jta46")
+expand_mode = 1
+
+[node name="Banner 2" type="TextureRect" parent="WinResult"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.768
+anchor_top = 0.346
+anchor_right = 0.768
+anchor_bottom = 0.346
+offset_left = -883.736
+offset_top = -186.208
+offset_right = -352.736
+offset_bottom = 198.792
+texture = ExtResource("3_jta46")
+expand_mode = 1
+flip_h = true
+
+[node name="WinDialog" type="Panel" parent="WinResult"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -201.0
+offset_top = -270.0
+offset_right = 201.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4a2bw")
+
+[node name="Button" type="Button" parent="WinResult/WinDialog"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.491
+anchor_top = 0.831
+anchor_right = 0.491
+anchor_bottom = 0.831
+offset_left = -146.382
+offset_top = -42.74
+offset_right = 146.618
+offset_bottom = 43.26
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 0.835294, 0.313726, 1)
+theme_override_fonts/font = ExtResource("4_3yivn")
+theme_override_font_sizes/font_size = 41
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_o3ws5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lkau4")
+text = "Play Again"
+
+[node name="LoseBanner" type="Sprite2D" parent="WinResult"]
+position = Vector2(569, 142)
+scale = Vector2(0.697151, 0.810997)
+texture = ExtResource("4_5b7fl")
+
+[node name="LoserPattern" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -108.0
+offset_right = 69.0
+offset_bottom = 108.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6ya4o")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="LoserPattern"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="LoserPattern/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 3
+theme_override_constants/v_separation = 3
+columns = 4
+
+[node name="Panel" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+
+[node name="Panel2" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+
+[node name="Panel3" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+
+[node name="Panel4" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+
+[node name="Panel5" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+
+[node name="Panel6" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+
+[node name="Panel7" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+
+[node name="Panel8" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+
+[node name="Panel9" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+
+[node name="Panel10" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+
+[node name="Panel11" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+
+[node name="Panel12" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+
+[node name="Panel13" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+
+[node name="Panel14" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+
+[node name="Panel15" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+
+[node name="Panel16" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
