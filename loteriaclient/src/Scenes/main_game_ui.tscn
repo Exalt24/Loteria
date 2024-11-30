@@ -10,12 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://drdumibcf840p" path="res://src/Scenes/coin.tscn" id="6_gf2mf"]
 [ext_resource type="Texture2D" uid="uid://yg2upoc78uer" path="res://src/Assets/Images/Column.png" id="7_ksvts"]
 [ext_resource type="Texture2D" uid="uid://dthp5o2xlh2xa" path="res://src/Assets/Images/Opponent/OpponentBG.png" id="8_w0hli"]
-[ext_resource type="PackedScene" uid="uid://cvnr7olmejsg3" path="res://src/Scenes/Opp_2.tscn" id="10_7oebi"]
-[ext_resource type="PackedScene" uid="uid://w0eegxne4bi1" path="res://src/Scenes/Opp_1.tscn" id="10_c5mwl"]
+[ext_resource type="PackedScene" uid="uid://n132ubvcbkw6" path="res://src/Scenes/Opp_2.tscn" id="10_7oebi"]
+[ext_resource type="PackedScene" uid="uid://cwa13y8c0rvvs" path="res://src/Scenes/Opp_1.tscn" id="10_c5mwl"]
 [ext_resource type="PackedScene" uid="uid://imuy4js4x1o2" path="res://src/Scenes/nine_patch_rect.tscn" id="11_8jiv7"]
 [ext_resource type="Script" path="res://src/Scripts/time_bar.gd" id="11_a54qm"]
-[ext_resource type="PackedScene" uid="uid://codutweshb7r7" path="res://src/Scenes/Opp_3.tscn" id="12_ek6g6"]
-[ext_resource type="PackedScene" uid="uid://dhlvfb75bicj2" path="res://src/Scenes/Opp_4.tscn" id="13_y7e6f"]
+[ext_resource type="PackedScene" uid="uid://bpdkcmki3xkml" path="res://src/Scenes/Opp_3.tscn" id="12_ek6g6"]
+[ext_resource type="PackedScene" uid="uid://vpswwbvj78rj" path="res://src/Scenes/Opp_4.tscn" id="13_y7e6f"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_itx0o"]
 texture = ExtResource("1_rt3qv")
