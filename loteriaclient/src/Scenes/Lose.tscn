@@ -1,21 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://b42vl0roaustf"]
+[gd_scene load_steps=11 format=3 uid="uid://l1k12yd1kair"]
 
 [ext_resource type="Texture2D" uid="uid://cqufvs1ce1gi" path="res://src/Assets/Images/ResultsBG.png" id="1_jfo8d"]
-[ext_resource type="Texture2D" uid="uid://crjaeayucreob" path="res://src/Assets/Images/Winner.png" id="2_lxxir"]
 [ext_resource type="Texture2D" uid="uid://cxxenrysmhgkg" path="res://src/Assets/Images/Banners.png" id="3_jta46"]
 [ext_resource type="FontFile" uid="uid://cek4o8uqi2788" path="res://src/Assets/Fonts/Fredoka-SemiBold.ttf" id="4_3yivn"]
-[ext_resource type="Texture2D" uid="uid://cxudi2j0yxcv1" path="res://src/Assets/Images/WinnerBanner.png" id="5_2fv8k"]
-[ext_resource type="Texture2D" uid="uid://rhnh0aknkwyc" path="res://src/Assets/Images/Articles/lata.png" id="6_eemg8"]
-[ext_resource type="Texture2D" uid="uid://uyge4s68bq83" path="res://src/Assets/Images/Articles/prutas.png" id="7_genf2"]
-[ext_resource type="Texture2D" uid="uid://pb4m5vs78505" path="res://src/Assets/Images/Articles/tsinelas.png" id="8_31pfk"]
-[ext_resource type="Texture2D" uid="uid://cm5y2vpx28pvg" path="res://src/Assets/Images/Articles/takyan.png" id="9_o4ips"]
-[ext_resource type="Texture2D" uid="uid://c0cc82ksv2cbm" path="res://src/Assets/Images/Articles/bola.png" id="10_k1gw3"]
+[ext_resource type="Texture2D" uid="uid://cqjrjyxqqdq1g" path="res://src/Assets/Images/LoseBanner.png" id="4_5b7fl"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a46uk"]
 texture = ExtResource("1_jfo8d")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4a2bw"]
-bg_color = Color(0.552941, 0, 0.152941, 1)
+bg_color = Color(0, 0, 0, 1)
 border_width_left = 15
 border_width_top = 15
 border_width_right = 15
@@ -73,27 +67,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_a46uk")
 
-[node name="reference" type="Sprite2D" parent="WinResult"]
-position = Vector2(-612, 326)
-scale = Vector2(0.6, 0.598148)
-texture = ExtResource("2_lxxir")
-
 [node name="Banner 1" type="TextureRect" parent="WinResult"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.23
-anchor_top = 0.348
-anchor_right = 0.23
-anchor_bottom = 0.348
-offset_left = -265.96
-offset_top = -192.504
-offset_right = 265.04
-offset_bottom = 192.496
-texture = ExtResource("3_jta46")
-expand_mode = 1
-flip_h = true
-
-[node name="Banner 2" type="TextureRect" parent="WinResult"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.768
@@ -106,6 +80,21 @@ offset_right = 265.264
 offset_bottom = 192.792
 texture = ExtResource("3_jta46")
 expand_mode = 1
+
+[node name="Banner 2" type="TextureRect" parent="WinResult"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.768
+anchor_top = 0.346
+anchor_right = 0.768
+anchor_bottom = 0.346
+offset_left = -883.736
+offset_top = -186.208
+offset_right = -352.736
+offset_bottom = 198.792
+texture = ExtResource("3_jta46")
+expand_mode = 1
+flip_h = true
 
 [node name="WinDialog" type="Panel" parent="WinResult"]
 layout_mode = 1
@@ -143,67 +132,12 @@ theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_o3ws5")
 theme_override_styles/normal = SubResource("StyleBoxFlat_lkau4")
 text = "Play Again"
 
-[node name="WinBanner" type="Sprite2D" parent="WinResult"]
-position = Vector2(579, 148)
-scale = Vector2(0.602251, 0.57732)
-texture = ExtResource("5_2fv8k")
+[node name="LoseBanner" type="Sprite2D" parent="WinResult"]
+position = Vector2(569, 142)
+scale = Vector2(0.697151, 0.810997)
+texture = ExtResource("4_5b7fl")
 
-[node name="Lata 1" type="Sprite2D" parent="WinResult"]
-position = Vector2(1099, 295)
-scale = Vector2(0.6, 0.598148)
-texture = ExtResource("6_eemg8")
-
-[node name="Lata 2" type="Sprite2D" parent="WinResult"]
-position = Vector2(204, 80)
-scale = Vector2(0.6, 0.598148)
-texture = ExtResource("6_eemg8")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="WinResult/Lata 2"]
-
-[node name="Prutas 1" type="Sprite2D" parent="WinResult"]
-position = Vector2(101, 337)
-rotation = -0.549779
-scale = Vector2(0.611111, 0.55036)
-texture = ExtResource("7_genf2")
-
-[node name="Prutas 2" type="Sprite2D" parent="WinResult"]
-position = Vector2(943, 591)
-rotation = -0.314159
-scale = Vector2(0.611111, 0.55036)
-texture = ExtResource("7_genf2")
-
-[node name="Tsinelas 1" type="Sprite2D" parent="WinResult"]
-position = Vector2(314, 441)
-scale = Vector2(0.603503, 0.59058)
-texture = ExtResource("8_31pfk")
-
-[node name="Tsinelas 2" type="Sprite2D" parent="WinResult"]
-position = Vector2(983, 438)
-rotation = 0.863938
-scale = Vector2(0.603503, 0.59058)
-texture = ExtResource("8_31pfk")
-
-[node name="Takyan 1" type="Sprite2D" parent="WinResult"]
-position = Vector2(153, 525)
-scale = Vector2(0.621951, 0.592486)
-texture = ExtResource("9_o4ips")
-
-[node name="Takyan 2" type="Sprite2D" parent="WinResult"]
-position = Vector2(1003, 90)
-scale = Vector2(0.621951, 0.592486)
-texture = ExtResource("9_o4ips")
-
-[node name="Bola 1" type="Sprite2D" parent="WinResult"]
-position = Vector2(328, 632)
-scale = Vector2(0.619403, 0.618)
-texture = ExtResource("10_k1gw3")
-
-[node name="Bola 2" type="Sprite2D" parent="WinResult"]
-position = Vector2(858, 333)
-scale = Vector2(0.619403, 0.618)
-texture = ExtResource("10_k1gw3")
-
-[node name="WinnerPattern" type="Panel" parent="."]
+[node name="LoserPattern" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -218,7 +152,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_6ya4o")
 
-[node name="NinePatchRect" type="NinePatchRect" parent="WinnerPattern"]
+[node name="NinePatchRect" type="NinePatchRect" parent="LoserPattern"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -226,7 +160,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GridContainer" type="GridContainer" parent="WinnerPattern/NinePatchRect"]
+[node name="GridContainer" type="GridContainer" parent="LoserPattern/NinePatchRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -237,97 +171,97 @@ theme_override_constants/h_separation = 3
 theme_override_constants/v_separation = 3
 columns = 4
 
-[node name="Panel" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+[node name="Panel" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
 
-[node name="Panel2" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+[node name="Panel2" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
 
-[node name="Panel3" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+[node name="Panel3" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
 
-[node name="Panel4" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+[node name="Panel4" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
 
-[node name="Panel5" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+[node name="Panel5" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
 
-[node name="Panel6" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+[node name="Panel6" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
 
-[node name="Panel7" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+[node name="Panel7" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
 
-[node name="Panel8" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+[node name="Panel8" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
 
-[node name="Panel9" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+[node name="Panel9" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
 
-[node name="Panel10" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+[node name="Panel10" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
 
-[node name="Panel11" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+[node name="Panel11" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
 
-[node name="Panel12" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+[node name="Panel12" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
 
-[node name="Panel13" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+[node name="Panel13" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
 
-[node name="Panel14" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+[node name="Panel14" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
 
-[node name="Panel15" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+[node name="Panel15" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
 
-[node name="Panel16" type="Panel" parent="WinnerPattern/NinePatchRect/GridContainer"]
+[node name="Panel16" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
