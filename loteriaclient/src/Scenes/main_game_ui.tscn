@@ -107,13 +107,6 @@ texture = ExtResource("7_ksvts")
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpp0m"]
 bg_color = Color(0.548025, 0.543903, 3.85046e-07, 0.380392)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hwjql"]
-bg_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-
 [node name="GameUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -850,14 +843,6 @@ script = ExtResource("11_a54qm")
 wait_time = 0.15
 autostart = true
 
-[node name="Panel2" type="Panel" parent="Panel"]
-layout_mode = 0
-offset_left = 321.0
-offset_top = 19.0
-offset_right = 695.0
-offset_bottom = 631.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_hwjql")
-
 [node name="NinePatchRect" parent="Panel" instance=ExtResource("11_8jiv7")]
 layout_mode = 1
 anchors_preset = -1
@@ -865,10 +850,10 @@ anchor_left = 0.474
 anchor_top = 0.502
 anchor_right = 0.474
 anchor_bottom = 0.502
-offset_left = 0.321899
-offset_top = -293.296
-offset_right = 0.321899
-offset_bottom = 283.704
+offset_left = 2.32202
+offset_top = -322.296
+offset_right = 2.32202
+offset_bottom = 251.704
 
 [connection signal="pressed" from="Panel/Button" to="." method="_on_loterya_button_pressed"]
 [connection signal="timeout" from="Panel/Panel/TimeBar/Timer" to="Panel/Panel/TimeBar" method="_on_timer_timeout"]
