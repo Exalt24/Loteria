@@ -128,11 +128,11 @@ func mark_card_with_coin(slot: TextureRect) -> void:
 	coin.texture = coin_texture
 
 	var original_size = coin.texture.get_size()
-	var scale_factor = Vector2(50, 50) / original_size
+	var scale_factor = Vector2(100, 100) / original_size
 	coin.scale = scale_factor
 
 	var slot_size = slot.get_rect().size
 
-	coin.position = slot_size / 2 - Vector2(25, 25)
+	coin.position = slot_size / 2 - Vector2(0, 0)
 
 	slot.add_child(coin)
