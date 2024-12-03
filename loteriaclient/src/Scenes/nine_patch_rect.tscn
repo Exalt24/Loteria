@@ -121,3 +121,8 @@ custom_minimum_size = Vector2(150, 250)
 layout_mode = 2
 texture = ExtResource("4_4tifv")
 expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

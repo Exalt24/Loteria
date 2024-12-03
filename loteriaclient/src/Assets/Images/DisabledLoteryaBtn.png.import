@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7aar5qljib08"
-path="res://.godot/imported/LoseBanner.png-e1e2cf26e537267b657e073d41f6d20e.ctex"
+uid="uid://dcee7wtmjdfwg"
+path="res://.godot/imported/DisabledLoteryaBtn.png-291e3241ef0cac3869f414fb31d087ba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/Assets/Images/LoseBanner.png"
-dest_files=["res://.godot/imported/LoseBanner.png-e1e2cf26e537267b657e073d41f6d20e.ctex"]
+source_file="res://src/Assets/Images/DisabledLoteryaBtn.png"
+dest_files=["res://.godot/imported/DisabledLoteryaBtn.png-291e3241ef0cac3869f414fb31d087ba.ctex"]
 
 [params]
 

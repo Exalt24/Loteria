@@ -75,9 +75,9 @@ func setup_main_menu() -> void:
 
 func update_room(room_id: int) -> void:
 	if Client.is_creator:
-		create_dialog_label.text = "Room id: " + str(room_id)
+		create_dialog_label.text = "Room ID: " + str(room_id)
 	else:
-		join_dialog_label.text = "Room id: " + str(room_id)
+		join_dialog_label.text = "Room ID: " + str(room_id)
 		join_dialog.connected_ok()
 
 func _on_create_server_button_pressed() -> void:

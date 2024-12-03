@@ -195,12 +195,11 @@ func handle_in_game(room: Dictionary) -> void:
 		printerr("Game is not in progress for room.")
 		return
 
-	# Initialize the card set for the room as integer indices
 	room.remaining_cards = range(0, 44)
 	room.remaining_cards.shuffle()
 	
 	var timer = Timer.new()
-	add_child(timer)  # Add it as a child to manage its lifecycle
+	add_child(timer) 
 	timer.wait_time = 3.0
 	timer.one_shot = false
 	timer.connect("timeout", Callable(self, "_call_next_card").bind(room))
@@ -301,6 +300,17 @@ func cleanup_room(room_id: int) -> void:
 	print("Room ID: ", room_id, " has been cleaned up.")
 
 @rpc("any_peer")
+func declare_winner(room_id: int) -> void:
+	var room = rooms[room_id]
+	
+	var winner_id: int = self.multiplayer.get_remote_sender_id()
+
+	for player_id in room.players:
+		rpc_id(player_id, "declare_winner", winner_id)
+	
+	end_game(room)
+
+@rpc("any_peer")
 func reset_timer_from_server() -> void:
 	pass #dummy
 
@@ -343,3 +353,7 @@ func set_win_condition(win_condition: int) -> void:
 @rpc("any_peer")
 func game_ended() -> void:
 	pass #dummy	
+	
+@rpc("any_peer")
+func winner_game() -> void:
+	pass #dummy

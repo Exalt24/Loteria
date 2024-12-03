@@ -64,6 +64,169 @@ var is_fetching: bool = false
 
 var room: int
 var win_condition: int
+var win_patterns: Array = [
+	# Column win patterns (Variations of columns)
+	[
+		# Column 1
+		[
+			[1, 0, 0, 0],
+			[1, 0, 0, 0],
+			[1, 0, 0, 0],
+			[1, 0, 0, 0]
+		],
+		# Column 2
+		[
+			[0, 1, 0, 0],
+			[0, 1, 0, 0],
+			[0, 1, 0, 0],
+			[0, 1, 0, 0]
+		],
+		# Column 3
+		[
+			[0, 0, 1, 0],
+			[0, 0, 1, 0],
+			[0, 0, 1, 0],
+			[0, 0, 1, 0]
+		],
+		# Column 4
+		[
+			[0, 0, 0, 1],
+			[0, 0, 0, 1],
+			[0, 0, 0, 1],
+			[0, 0, 0, 1]
+		]
+	],
+	# Row win patterns (Variations of rows)
+	[
+		# Row 1
+		[
+			[1, 1, 1, 1],
+			[0, 0, 0, 0],
+			[0, 0, 0, 0],
+			[0, 0, 0, 0]
+		],
+		# Row 2
+		[
+			[0, 0, 0, 0],
+			[1, 1, 1, 1],
+			[0, 0, 0, 0],
+			[0, 0, 0, 0]
+		],
+		# Row 3
+		[
+			[0, 0, 0, 0],
+			[0, 0, 0, 0],
+			[1, 1, 1, 1],
+			[0, 0, 0, 0]
+		],
+		# Row 4
+		[
+			[0, 0, 0, 0],
+			[0, 0, 0, 0],
+			[0, 0, 0, 0],
+			[1, 1, 1, 1]
+		]
+	],
+	# Cube win patterns (Variations of cubes)
+	[
+		# Cube 1
+		[
+			[1, 1, 0, 0],
+			[1, 1, 0, 0],
+			[0, 0, 0, 0],
+			[0, 0, 0, 0]
+		],
+		# Cube 2
+		[
+			[0, 1, 1, 0],
+			[0, 1, 1, 0],
+			[0, 0, 0, 0],
+			[0, 0, 0, 0]
+		],
+		# Cube 3
+		[
+			[0, 0, 1, 1],
+			[0, 0, 1, 1],
+			[0, 0, 0, 0],
+			[0, 0, 0, 0]
+		],
+		# Cube 4
+		[
+			[0, 0, 0, 0],
+			[1, 1, 0, 0],
+			[1, 1, 0, 0],
+			[0, 0, 0, 0]
+		],
+		# Cube 5
+		[
+			[0, 0, 0, 0],
+			[0, 1, 1, 0],
+			[0, 1, 1, 0],
+			[0, 0, 0, 0]
+		],
+		# Cube 6
+		[
+			[0, 0, 0, 0],
+			[0, 0, 1, 1],
+			[0, 0, 1, 1],
+			[0, 0, 0, 0]
+		],
+		# Cube 7
+		[
+			[0, 0, 0, 0],
+			[0, 0, 0, 0],
+			[1, 1, 0, 0],
+			[1, 1, 0, 0]
+		],
+		# Cube 8
+		[
+			[0, 0, 0, 0],
+			[0, 0, 0, 0],
+			[0, 1, 1, 0],
+			[0, 1, 1, 0]
+		],
+		# Cube 9
+		[
+			[0, 0, 0, 0],
+			[0, 0, 0, 0],
+			[0, 0, 1, 1],
+			[0, 0, 1, 1]
+		]	
+	],
+	# Cross win patterns (Variations of Cross)
+	[
+		# Cross 1
+		[
+			[0, 1, 0, 0],
+			[1, 1, 1, 0],
+			[0, 1, 0, 0],
+			[0, 0, 0, 0]
+		],
+		# Cross 2
+		[
+			[0, 0, 1, 0],
+			[0, 1, 1, 1],
+			[0, 0, 1, 0],
+			[0, 0, 0, 0]
+		],
+		# Cross 3
+		[
+			[0, 0, 0, 0],
+			[0, 1, 0, 0],
+			[1, 1, 1, 0],
+			[0, 1, 0, 0]
+		],
+		# Cross 4
+		[
+			[0, 0, 0, 0],
+			[0, 0, 1, 0],
+			[0, 1, 1, 1],
+			[0, 0, 1, 0]
+		]
+	]
+]
+
+var current_win_pattern: Array 
 	
 @rpc("any_peer")
 func create_room(info: Dictionary) -> void:
@@ -121,6 +284,15 @@ func fin_stop() -> void:
 		self.multiplayer.disconnect("server_disconnected", Callable(self, "_server_disconnected"))
 	self.multiplayer.multiplayer_peer = null
 	_remove_all_players()
+	
+	if is_creator == false:
+		if get_tree().current_scene.name == "Menu":
+			var menu = get_tree().current_scene
+			menu.waiting_host_label.text = ""
+	
+	is_creator = false
+	if get_tree().current_scene.name == "Menu":
+		get_tree().current_scene.create_dialog_label.text = "Creating room..."
 	
 @rpc("any_peer")
 func register_player(id: int, info: Dictionary) -> void:
@@ -262,15 +434,74 @@ func receive_lobby_list(lobby_list: Array) -> void:
 @rpc("any_peer")
 func show_called_card(called_card_index: int) -> void:
 	var called_card_texture = loterya_cards[called_card_index]
-	print("Received card index: ", called_card_index, " -> Texture: ", called_card_texture.resource_path)
-
 	var current_scene = get_tree().current_scene
 	current_scene.caller_display.texture = called_card_texture
+	current_scene.nine_patch_rect.update_caller_card(called_card_index)
 
 @rpc("any_peer")
 func set_win_condition(condition: int) -> void:
-	print("Received win condition from server: ", condition)
 	win_condition = condition
+	
+	match win_condition:
+		0:
+			print("Selected Column Win Pattern")
+			current_win_pattern = win_patterns[0]
+		1:
+			print("Selected Row Win Pattern")
+			current_win_pattern = win_patterns[1]
+		2:
+			print("Selected Cube Win Pattern")
+			current_win_pattern = win_patterns[2]
+		3:
+			print("Selected Cross Win Pattern")
+			current_win_pattern = win_patterns[3]
+		_:
+			print("Invalid win condition received!")
+
+func check_for_pattern_match(matrix: Array) -> void:
+	match win_condition:
+		0:
+			for column_pattern in current_win_pattern:
+				if check_partial_match(matrix, column_pattern):
+					print("Column win detected!")
+					get_tree().current_scene.loterya_button.disabled = false
+					return
+		1:
+			for row_pattern in current_win_pattern:
+				if check_partial_match(matrix, row_pattern):
+					print("Row win detected!")
+					get_tree().current_scene.loterya_button.disabled = false
+					return
+		2:
+			for cube_pattern in current_win_pattern:
+				if check_partial_match(matrix, cube_pattern):
+					print("Cube win detected!")
+					get_tree().current_scene.loterya_button.disabled = false
+					return
+		
+		3:
+			for cross_pattern in current_win_pattern:
+				if check_partial_match(matrix, cross_pattern):
+					print("Cross win detected!")
+					get_tree().current_scene.loterya_button.disabled = false
+					return
+		
+		_:
+			print("Invalid win condition selected!")
+	
+	# If no match was found
+	print("No match found for current pattern.")
+	
+func check_partial_match(matrix: Array, pattern: Array) -> bool:
+	for row in range(4):
+		for col in range(4):
+			if pattern[row][col] == 1 and matrix[row][col] != 1:
+				return false
+	return true
+
+@rpc("any_peer")
+func winner_game() -> void:
+	rpc_id(1, "declare_winner", room)
 
 @rpc("any_peer")
 func game_ended() -> void:
@@ -293,9 +524,19 @@ func reset_timer_from_server() -> void:
 	current_scene.time_bar.reset_timer()
 
 @rpc("any_peer")
+func declare_winner(winner_id: int) -> void:
+	var my_id: int = self.multiplayer.get_unique_id()
+	
+	if winner_id == my_id:
+		print("You are the winner!")
+	else:
+		print("You are the loser.")
+
+@rpc("any_peer")
 func request_lobby_list() -> void:
 	pass #dummy
 
 @rpc("any_peer")
 func join_room(room_id: int, info: Dictionary) -> void:
 	pass #dummy
+	

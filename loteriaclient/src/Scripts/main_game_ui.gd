@@ -1,12 +1,14 @@
 extends Control
 
 @onready var caller_display: TextureRect = $Panel/CallerDisplay
-@onready var time_bar: Line2D = $Panel/TimeBar
+@onready var time_bar: Line2D = $Panel/Panel/TimeBar
 @onready var goal_pattern: Panel = $Panel/pattern
+@onready var nine_patch_rect: NinePatchRect = $Panel/NinePatchRect
+@onready var loterya_button: Button = $Panel/Button
 
 func _ready() -> void:
+	loterya_button.disabled = true
 	if Client.win_condition != null:
-		print(Client.win_condition)
 		set_goal_pattern(Client.win_condition)
 	else:
 		print("No win condition set")
@@ -25,6 +27,7 @@ func set_goal_pattern(number_pattern: int) -> void:
 	
 	goal_pattern.add_theme_stylebox_override("panel", stylebox)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _on_loterya_button_pressed() -> void:
+	loterya_button.set_pressed_no_signal(false)
+	loterya_button.release_focus()
+	Client.winner_game()
