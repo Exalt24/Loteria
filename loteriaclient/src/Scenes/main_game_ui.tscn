@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cvfp6h75vs1fp"]
+[gd_scene load_steps=36 format=3 uid="uid://cvfp6h75vs1fp"]
 
 [ext_resource type="Script" path="res://src/Scripts/main_game_ui.gd" id="1_af3u1"]
 [ext_resource type="Texture2D" uid="uid://c0oro6d8fpml5" path="res://src/Assets/Images/GAMEBG.png" id="1_rt3qv"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dxiqj1ymdbxbj" path="res://src/Scenes/call.tscn" id="4_5if6f"]
 [ext_resource type="Texture2D" uid="uid://bg8sjl3ab7fea" path="res://src/Assets/Images/LoteryaBtn_Hovered.png" id="4_t7fhk"]
 [ext_resource type="Texture2D" uid="uid://cbtj1v8jdms1y" path="res://src/Assets/Images/LoteryaBtn.png" id="5_022yo"]
+[ext_resource type="Texture2D" uid="uid://dcee7wtmjdfwg" path="res://src/Assets/Images/DisabledLoteryaBtn.png" id="5_rp0s7"]
 [ext_resource type="Texture2D" uid="uid://cta088iivvyh0" path="res://src/Assets/Images/Card Back.png" id="5_te678"]
 [ext_resource type="PackedScene" uid="uid://drdumibcf840p" path="res://src/Scenes/coin.tscn" id="6_gf2mf"]
 [ext_resource type="Texture2D" uid="uid://yg2upoc78uer" path="res://src/Assets/Images/Column.png" id="7_ksvts"]
@@ -20,7 +21,19 @@
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_itx0o"]
 texture = ExtResource("1_rt3qv")
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y3f5v"]
+texture = ExtResource("5_022yo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e0l51"]
+texture = ExtResource("5_rp0s7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5r64d"]
+texture = ExtResource("4_t7fhk")
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xeh88"]
+texture = ExtResource("4_t7fhk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q6yt2"]
 texture = ExtResource("4_t7fhk")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_joswo"]
@@ -117,32 +130,36 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_itx0o")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.923
-anchor_top = 0.103
+anchor_top = 0.519
 anchor_right = 0.923
-anchor_bottom = 0.103
+anchor_bottom = 0.519
 offset_left = -35.681
-offset_top = 0.255997
+offset_top = -269.312
 offset_right = 38.319
-offset_bottom = 519.256
+offset_bottom = 249.688
 grow_horizontal = 0
 grow_vertical = 2
 scale = Vector2(0.954194, 0.989368)
 theme_override_colors/font_color = Color(0.956863, 0.894118, 0.113725, 1)
 theme_override_fonts/font = ExtResource("2_t8d7e")
 theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxTexture_y3f5v")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_e0l51")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_5r64d")
 theme_override_styles/hover = SubResource("StyleBoxTexture_xeh88")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_q6yt2")
 theme_override_styles/normal = SubResource("StyleBoxTexture_joswo")
 
 [node name="call" parent="Panel" instance=ExtResource("4_5if6f")]
 layout_mode = 1
 anchor_left = 0.766
-anchor_top = 0.512
+anchor_top = 0.519
 anchor_right = 0.766
-anchor_bottom = 0.512
+anchor_bottom = 0.519
 offset_left = -100.432
-offset_top = -155.776
+offset_top = -160.312
 offset_right = 101.568
-offset_bottom = 156.224
+offset_bottom = 151.688
 grow_horizontal = 1
 grow_vertical = 1
 theme_override_styles/panel = SubResource("StyleBoxTexture_pshw8")
@@ -150,13 +167,13 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_pshw8")
 [node name="CallerDisplay" type="TextureRect" parent="Panel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.763
+anchor_left = 0.766
 anchor_top = 0.514
-anchor_right = 0.763
+anchor_right = 0.766
 anchor_bottom = 0.514
-offset_left = -97.161
+offset_left = -100.602
 offset_top = -156.072
-offset_right = 104.839
+offset_right = 101.398
 offset_bottom = 155.928
 texture = ExtResource("5_te678")
 expand_mode = 1
@@ -165,13 +182,13 @@ expand_mode = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.148
-anchor_top = 0.519
+anchor_top = 0.712
 anchor_right = 0.148
-anchor_bottom = 0.519
+anchor_bottom = 0.712
 offset_left = -82.756
-offset_top = -0.312042
+offset_top = -125.376
 offset_right = 83.244
-offset_bottom = 250.688
+offset_bottom = 125.624
 theme_override_styles/panel = SubResource("StyleBoxTexture_28j5r")
 
 [node name="TextureRect" parent="Panel/opponent" instance=ExtResource("10_c5mwl")]
@@ -705,94 +722,124 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_4mk18")
 [node name="pattern" type="Panel" parent="Panel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.143
-anchor_top = 0.093
-anchor_right = 0.143
-anchor_bottom = 0.093
-offset_left = -77.021
-offset_top = -0.264
-offset_right = 87.979
-offset_bottom = 251.736
+anchor_left = 0.148
+anchor_top = 0.287
+anchor_right = 0.148
+anchor_bottom = 0.287
+offset_left = -82.756
+offset_top = -125.976
+offset_right = 82.244
+offset_bottom = 126.024
 theme_override_styles/panel = SubResource("StyleBoxTexture_awc2i")
 
 [node name="coin" parent="Panel" instance=ExtResource("6_gf2mf")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.864
-anchor_top = 0.031
-anchor_right = 0.864
-anchor_bottom = 0.031
-offset_left = -43.008
-offset_top = -0.0880013
-offset_right = 33.992
-offset_bottom = 72.912
+anchor_left = 0.476
+anchor_top = 0.519
+anchor_right = 0.476
+anchor_bottom = 0.519
+offset_left = 402.028
+offset_top = -316.312
+offset_right = 479.028
+offset_bottom = -243.312
 
 [node name="coin1" parent="Panel/coin" instance=ExtResource("6_gf2mf")]
-layout_mode = 0
-offset_left = -108.0
-offset_top = 6.0
-offset_right = -31.0
-offset_bottom = 79.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -5.255
+anchor_top = 4.182
+anchor_right = -5.255
+anchor_bottom = 4.182
+offset_left = 296.635
+offset_top = -299.286
+offset_right = 373.635
+offset_bottom = -226.286
 scale = Vector2(0.998285, 1)
 
 [node name="coin2" parent="Panel/coin" instance=ExtResource("6_gf2mf")]
-layout_mode = 0
-offset_left = -206.0
-offset_top = -8.0
-offset_right = -129.0
-offset_bottom = 65.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -5.223
+anchor_top = 4.182
+anchor_right = -5.223
+anchor_bottom = 4.182
+offset_left = 196.171
+offset_top = -313.286
+offset_right = 273.171
+offset_bottom = -240.286
 
 [node name="coin3" parent="Panel/coin" instance=ExtResource("6_gf2mf")]
-layout_mode = 0
-offset_left = -8.0
-offset_top = 552.0
-offset_right = 69.0
-offset_bottom = 625.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -5.223
+anchor_top = 4.182
+anchor_right = -5.223
+anchor_bottom = 4.182
+offset_left = 394.171
+offset_top = 246.714
+offset_right = 471.171
+offset_bottom = 319.714
 
 [node name="coin4" parent="Panel/coin" instance=ExtResource("6_gf2mf")]
-layout_mode = 0
-offset_left = -188.0
-offset_top = 62.0
-offset_right = -111.0
-offset_bottom = 135.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -5.223
+anchor_top = 4.149
+anchor_right = -5.223
+anchor_bottom = 4.149
+offset_left = 214.171
+offset_top = -240.877
+offset_right = 291.171
+offset_bottom = -167.877
 
 [node name="coin5" parent="Panel/coin" instance=ExtResource("6_gf2mf")]
-layout_mode = 0
-offset_left = -196.0
-offset_top = 538.0
-offset_right = -119.0
-offset_bottom = 611.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -5.223
+anchor_top = 4.182
+anchor_right = -5.223
+anchor_bottom = 4.182
+offset_left = 206.171
+offset_top = 232.714
+offset_right = 283.171
+offset_bottom = 305.714
 
 [node name="coin6" parent="Panel/coin" instance=ExtResource("6_gf2mf")]
-layout_mode = 0
-offset_left = -90.0
-offset_top = 524.0
-offset_right = -13.0
-offset_bottom = 597.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -5.255
+anchor_top = 4.182
+anchor_right = -5.255
+anchor_bottom = 4.182
+offset_left = 314.635
+offset_top = 218.714
+offset_right = 391.635
+offset_bottom = 291.714
 
 [node name="Panel" type="Panel" parent="Panel"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.763
-anchor_top = 0.781
+anchor_top = 0.519
 anchor_right = 0.763
-anchor_bottom = 0.781
+anchor_bottom = 0.519
 offset_left = -95.161
-offset_top = -0.0880737
+offset_top = 169.688
 offset_right = 95.839
-offset_bottom = 19.912
+offset_bottom = 189.688
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_bpp0m")
 
-[node name="TimeBar" type="Line2D" parent="Panel"]
-position = Vector2(-4, 7)
+[node name="TimeBar" type="Line2D" parent="Panel/Panel"]
+position = Vector2(-784, -499)
 points = PackedVector2Array(784, 509, 975, 509)
 width = 20.0
 default_color = Color(1, 1, 0.392157, 1)
 script = ExtResource("11_a54qm")
 
-[node name="Timer" type="Timer" parent="Panel/TimeBar"]
+[node name="Timer" type="Timer" parent="Panel/Panel/TimeBar"]
 wait_time = 0.15
 autostart = true
 
@@ -800,12 +847,13 @@ autostart = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.474
-anchor_top = 0.032
+anchor_top = 0.502
 anchor_right = 0.474
-anchor_bottom = 0.032
-offset_left = 0.32196
-offset_top = 11.264
-offset_right = 0.32196
-offset_bottom = 588.264
+anchor_bottom = 0.502
+offset_left = 0.321899
+offset_top = -293.296
+offset_right = 0.321899
+offset_bottom = 283.704
 
-[connection signal="timeout" from="Panel/TimeBar/Timer" to="Panel/TimeBar" method="_on_timer_timeout"]
+[connection signal="pressed" from="Panel/Button" to="." method="_on_loterya_button_pressed"]
+[connection signal="timeout" from="Panel/Panel/TimeBar/Timer" to="Panel/Panel/TimeBar" method="_on_timer_timeout"]

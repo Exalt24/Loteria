@@ -51,7 +51,14 @@ extends NinePatchRect
 var card_items = []  # Cards to display
 var slots  # Slots to display cards
 var caller_card_index = -1  # Store the current caller card index
+
 var marked_cards = []  # Array to store marked card indices
+var matrix_presentation = [
+	[0, 0, 0, 0],
+	[0, 0, 0, 0],
+	[0, 0, 0, 0],
+	[0, 0, 0, 0]
+]
 @onready var coin_texture = preload("res://src/Assets/Images/coin.png")  # Coin texture to mark a card
 
 # Called when the node enters the scene tree for the first time
@@ -66,7 +73,6 @@ func _ready() -> void:
 	set_card_data(card_items)
 	
 	# Connect signals for each slot to detect clicks
-	# Connect signals for each slot to detect clicks
 	for i in range(slots.size()):
 		var slot = slots[i]
 		if slot is TextureRect:
@@ -76,7 +82,7 @@ func _ready() -> void:
 # Function to randomly select cards
 func get_random_cards(count: int) -> Array:
 	var shuffled = loterya_cards.duplicate()
-	shuffled.shuffle()  # Randomize the order
+	shuffled.shuffle()
 	return shuffled.slice(0, count)  # Take the first `count` items
 
 # Function to set card data
@@ -92,7 +98,6 @@ func update_card_display() -> void:
 		if slot is TextureRect:
 			slot.texture = card_items[i]["texture"]  # Set the preloaded texture directly
 
-# Function to handle the caller card update from the server
 func update_caller_card(new_caller_index: int) -> void:
 	caller_card_index = new_caller_index
 
@@ -100,29 +105,34 @@ func _on_card_clicked(event: InputEvent, slot: TextureRect) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		var card_index = slot.get_meta("index")  # Get the card index stored in the metadata
 		var card_data = card_items[card_index]  # Retrieve the card data
-		print("Card clicked:", card_data["index"])  # Print the card's index for debugging
 		if card_data["index"] == caller_card_index:
-			if not marked_cards.has(card_index):  # Ensure the card isn't already 
+			if not marked_cards.has(card_index):
 				marked_cards.append(card_index)
+				update_matrix(card_index)
 				mark_card_with_coin(slot)
 		else:
 			print("Clicked card does not match the caller card index.")
 
-# Function to mark a card with a coin
+# Function to update the matrix_presentation
+func update_matrix(card_index: int) -> void:
+	var row = card_index / 4
+	var col = card_index % 4
+
+	matrix_presentation[row][col] = 1
+	
+	print("Updated Matrix Presentation: ", matrix_presentation)
+	Client.check_for_pattern_match(matrix_presentation)
+
 func mark_card_with_coin(slot: TextureRect) -> void:
 	var coin = Sprite2D.new()
 	coin.texture = coin_texture
 
-	# Resize the coin to 50x50
 	var original_size = coin.texture.get_size()
 	var scale_factor = Vector2(50, 50) / original_size
 	coin.scale = scale_factor
 
-	# Get the size of the slot's rectangle
 	var slot_size = slot.get_rect().size
 
-	# Calculate the position to center the resized coin
-	coin.position = slot_size / 2 - Vector2(25, 25)  # Center using the 50x50 size
+	coin.position = slot_size / 2 - Vector2(25, 25)
 
-	# Add the coin as a child of the slot
 	slot.add_child(coin)
