@@ -1,51 +1,52 @@
 extends NinePatchRect
 
+@onready var sound_player = $AudioStreamPlayer2D
 @onready var loterya_cards: Array = [
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Agila.png"), "index": 0},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Anahaw.png"), "index": 1},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Arnis.png"), "index": 2},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Bahay Kubo.png"), "index": 3},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Bakya.png"), "index": 4},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Balut.png"), "index": 5},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Bangus.png"), "index": 6},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Banig.png"), "index": 7},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Baro.png"), "index": 8},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Barong.png"), "index": 9},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Bayanihan.png"), "index": 10},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Bolo.png"), "index": 11},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Buko.png"), "index": 12},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Bulalo.png"), "index": 13},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Duwende.png"), "index": 14},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Halo-Halo.png"), "index": 15},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Harana.png"), "index": 16},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Isaw.png"), "index": 17},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Jeepney.png"), "index": 18},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Kalesa.png"), "index": 19},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Kulintang.png"), "index": 20},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Lechon.png"), "index": 21},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Mangga.png"), "index": 22},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Maskara.png"), "index": 23},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Pagmamano.png"), "index": 24},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Palay.png"), "index": 25},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Pamaypay.png"), "index": 26},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Pandesal.png"), "index": 27},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Parol.png"), "index": 28},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Piyesta.png"), "index": 29},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Puso.png"), "index": 30},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Puto.png"), "index": 31},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Rice Terraces.png"), "index": 32},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Salakot.png"), "index": 33},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Sampaguita.png"), "index": 34},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Sungka.png"), "index": 35},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Taho.png"), "index": 36},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Tamaraw.png"), "index": 37},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Tarsier.png"), "index": 38},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Tindahan.png"), "index": 39},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Tinikling.png"), "index": 40},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Tumbang Preso.png"), "index": 41},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Vinta.png"), "index": 42},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Walis Tambo.png"), "index": 43},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Watawat.png"), "index": 44}
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Agila.png"), "index": 0, "sound": preload("res://src/Assets/Sounds/Agila.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Anahaw.png"), "index": 1, "sound": preload("res://src/Assets/Sounds/Anahaw.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Arnis.png"), "index": 2, "sound": preload("res://src/Assets/Sounds/Arnis.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Bahay Kubo.png"), "index": 3, "sound": preload("res://src/Assets/Sounds/Bahay Kubo.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Bakya.png"), "index": 4, "sound": preload("res://src/Assets/Sounds/Bakya.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Balut.png"), "index": 5, "sound": preload("res://src/Assets/Sounds/Balut.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Bangus.png"), "index": 6, "sound": preload("res://src/Assets/Sounds/Bangus.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Banig.png"), "index": 7, "sound": preload("res://src/Assets/Sounds/Banig.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Baro.png"), "index": 8, "sound": preload("res://src/Assets/Sounds/Baro.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Barong.png"), "index": 9, "sound": preload("res://src/Assets/Sounds/Barong.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Bayanihan.png"), "index": 10, "sound": preload("res://src/Assets/Sounds/Bayanihan.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Bolo.png"), "index": 11, "sound": preload("res://src/Assets/Sounds/Bolo.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Buko.png"), "index": 12, "sound": preload("res://src/Assets/Sounds/Buko.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Bulalo.png"), "index": 13, "sound": preload("res://src/Assets/Sounds/Bulalo.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Duwende.png"), "index": 14, "sound": preload("res://src/Assets/Sounds/Duwende.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Halo-Halo.png"), "index": 15, "sound": preload("res://src/Assets/Sounds/Halo-Halo.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Harana.png"), "index": 16, "sound": preload("res://src/Assets/Sounds/Harana.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Isaw.png"), "index": 17, "sound": preload("res://src/Assets/Sounds/Isaw.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Jeepney.png"), "index": 18, "sound": preload("res://src/Assets/Sounds/Jeepney.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Kalesa.png"), "index": 19, "sound": preload("res://src/Assets/Sounds/Kalesa.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Kulintang.png"), "index": 20, "sound": preload("res://src/Assets/Sounds/Kulintang.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Lechon.png"), "index": 21, "sound": preload("res://src/Assets/Sounds/Lechon.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Mangga.png"), "index": 22, "sound": preload("res://src/Assets/Sounds/Mangga.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Maskara.png"), "index": 23, "sound": preload("res://src/Assets/Sounds/Maskara.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Pagmamano.png"), "index": 24, "sound": preload("res://src/Assets/Sounds/Pagmamano.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Palay.png"), "index": 25, "sound": preload("res://src/Assets/Sounds/Palay.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Pamaypay.png"), "index": 26, "sound": preload("res://src/Assets/Sounds/Pamaypay.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Pandesal.png"), "index": 27, "sound": preload("res://src/Assets/Sounds/Pandesal.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Parol.png"), "index": 28, "sound": preload("res://src/Assets/Sounds/Parol.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Piyesta.png"), "index": 29, "sound": preload("res://src/Assets/Sounds/Piyesta.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Puso.png"), "index": 30, "sound": preload("res://src/Assets/Sounds/Puso.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Puto.png"), "index": 31, "sound": preload("res://src/Assets/Sounds/Puto.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Rice Terraces.png"), "index": 32, "sound": preload("res://src/Assets/Sounds/Rice Terraces.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Salakot.png"), "index": 33, "sound": preload("res://src/Assets/Sounds/Salakot.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Sampaguita.png"), "index": 34, "sound": preload("res://src/Assets/Sounds/Sampaguita.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Sungka.png"), "index": 35, "sound": preload("res://src/Assets/Sounds/Sungka.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Taho.png"), "index": 36, "sound": preload("res://src/Assets/Sounds/Taho.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Tamaraw.png"), "index": 37, "sound": preload("res://src/Assets/Sounds/Tamaraw.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Tarsier.png"), "index": 38, "sound": preload("res://src/Assets/Sounds/Tarsier.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Tindahan.png"), "index": 39, "sound": preload("res://src/Assets/Sounds/Tindahan.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Tinikling.png"), "index": 40, "sound": preload("res://src/Assets/Sounds/Tinikling.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Tumbang Preso.png"), "index": 41, "sound": preload("res://src/Assets/Sounds/Tumbang-Preso.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Vinta.png"), "index": 42, "sound": preload("res://src/Assets/Sounds/Vinta.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Walis Tambo.png"), "index": 42, "sound": preload("res://src/Assets/Sounds/Walis Tambo.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Watawat.png"), "index": 42, "sound": preload("res://src/Assets/Sounds/Watawat.wav")}
 ]
 
 var card_items = []  # Cards to display
@@ -100,6 +101,16 @@ func update_card_display() -> void:
 
 func update_caller_card(new_caller_index: int) -> void:
 	caller_card_index = new_caller_index
+	
+	# Get the caller card data
+	var caller_card = loterya_cards[caller_card_index]
+	
+	# Play the associated sound
+	if caller_card.has("sound"):
+		sound_player.stream = caller_card["sound"]
+		sound_player.play()
+	else:
+		print("No sound available for the caller card:", caller_card_index)
 
 func _on_card_clicked(event: InputEvent, slot: TextureRect) -> void:
 	if event is InputEventMouseButton and event.pressed:
