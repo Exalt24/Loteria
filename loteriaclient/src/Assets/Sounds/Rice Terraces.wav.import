@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bmjwt67v1ao6a"
+path="res://.godot/imported/Rice Terraces.wav-519b7c3e428f660d115aea6e451f81fc.sample"
+
+[deps]
+
+source_file="res://src/Assets/Sounds/Rice Terraces.wav"
+dest_files=["res://.godot/imported/Rice Terraces.wav-519b7c3e428f660d115aea6e451f81fc.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
