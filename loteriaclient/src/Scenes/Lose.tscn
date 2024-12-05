@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://l1k12yd1kair"]
+[gd_scene load_steps=12 format=3 uid="uid://l1k12yd1kair"]
 
+[ext_resource type="Script" path="res://src/Scripts/lose.gd" id="1_hevto"]
 [ext_resource type="Texture2D" uid="uid://cqufvs1ce1gi" path="res://src/Assets/Images/ResultsBG.png" id="1_jfo8d"]
 [ext_resource type="Texture2D" uid="uid://cxxenrysmhgkg" path="res://src/Assets/Images/Banners.png" id="3_jta46"]
 [ext_resource type="FontFile" uid="uid://cek4o8uqi2788" path="res://src/Assets/Fonts/Fredoka-SemiBold.ttf" id="4_3yivn"]
-[ext_resource type="Texture2D" uid="uid://cqjrjyxqqdq1g" path="res://src/Assets/Images/LoseBanner.png" id="4_5b7fl"]
+[ext_resource type="Texture2D" uid="uid://b7aar5qljib08" path="res://src/Assets/Images/LoseBanner.png" id="4_5b7fl"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a46uk"]
 texture = ExtResource("1_jfo8d")
@@ -57,6 +58,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_hevto")
 
 [node name="WinResult" type="Panel" parent="."]
 layout_mode = 1
@@ -124,11 +126,14 @@ offset_right = 146.618
 offset_bottom = 43.26
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 0.835294, 0.313726, 1)
 theme_override_colors/font_color = Color(1, 0.835294, 0.313726, 1)
 theme_override_fonts/font = ExtResource("4_3yivn")
 theme_override_font_sizes/font_size = 41
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_o3ws5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_o3ws5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_o3ws5")
 theme_override_styles/normal = SubResource("StyleBoxFlat_lkau4")
 text = "Play Again"
 
@@ -266,3 +271,5 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+
+[connection signal="pressed" from="WinResult/WinDialog/Button" to="." method="_on_button_pressed"]

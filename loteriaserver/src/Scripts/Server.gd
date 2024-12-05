@@ -210,6 +210,7 @@ func handle_in_game(room: Dictionary) -> void:
 	print("Game started for room. Cards shuffled, win condition set, and timer initialized.")
 
 func _call_next_card(room: Dictionary) -> void:
+	
 	if room.remaining_cards.size() > 0:
 		var called_card = room.remaining_cards.pop_front()
 		print("Room ID: ", room.creator, " - Called card index: ", called_card)
@@ -304,11 +305,12 @@ func declare_winner(room_id: int) -> void:
 	var room = rooms[room_id]
 	
 	var winner_id: int = self.multiplayer.get_remote_sender_id()
-
+	var room_ids: int = room.creator
+	
 	for player_id in room.players:
 		rpc_id(player_id, "declare_winner", winner_id)
 	
-	end_game(room)
+	cleanup_room(room_ids)
 
 @rpc("any_peer")
 func reset_timer_from_server() -> void:

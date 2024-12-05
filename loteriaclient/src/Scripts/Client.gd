@@ -433,10 +433,12 @@ func receive_lobby_list(lobby_list: Array) -> void:
 
 @rpc("any_peer")
 func show_called_card(called_card_index: int) -> void:
-	var called_card_texture = loterya_cards[called_card_index]
-	var current_scene = get_tree().current_scene
-	current_scene.caller_display.texture = called_card_texture
-	current_scene.nine_patch_rect.update_caller_card(called_card_index)
+
+	if get_tree().current_scene.name == "GameUI":
+		var called_card_texture = loterya_cards[called_card_index]
+		var current_scene = get_tree().current_scene
+		current_scene.caller_display.texture = called_card_texture
+		current_scene.nine_patch_rect.update_caller_card(called_card_index)
 
 @rpc("any_peer")
 func set_win_condition(condition: int) -> void:
@@ -505,7 +507,7 @@ func winner_game() -> void:
 
 @rpc("any_peer")
 func game_ended() -> void:
-	print("Game has ended.")
+	print("Game has ended abruptly.")
 	
 	# Clean up the current scene and transition to the results or menu
 	if get_tree().current_scene:
@@ -520,17 +522,29 @@ func game_ended() -> void:
 
 @rpc("any_peer")
 func reset_timer_from_server() -> void:
-	var current_scene = get_tree().current_scene
-	current_scene.time_bar.reset_timer()
+
+	if get_tree().current_scene.name == "GameUI":
+		var current_scene = get_tree().current_scene
+		current_scene.time_bar.reset_timer()
 
 @rpc("any_peer")
 func declare_winner(winner_id: int) -> void:
+	print("Game has ended with winner.")
 	var my_id: int = self.multiplayer.get_unique_id()
 	
+	fin_stop()
+	
+	if get_tree().current_scene:
+		get_tree().current_scene.queue_free()
+	
 	if winner_id == my_id:
-		print("You are the winner!")
+		var results = preload("res://src/Scenes/Win.tscn").instantiate()
+		get_tree().root.add_child(results)
+		get_tree().current_scene = results
 	else:
-		print("You are the loser.")
+		var results = preload("res://src/Scenes/Lose.tscn").instantiate()
+		get_tree().root.add_child(results)
+		get_tree().current_scene = results
 
 @rpc("any_peer")
 func request_lobby_list() -> void:
