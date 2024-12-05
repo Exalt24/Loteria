@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/Scripts/main_game_ui.gd" id="1_af3u1"]
 [ext_resource type="Texture2D" uid="uid://c0oro6d8fpml5" path="res://src/Assets/Images/GAMEBG.png" id="1_rt3qv"]
 [ext_resource type="FontFile" uid="uid://b8wwo1p6o1i0k" path="res://src/Assets/Fonts/Funtasia.otf" id="2_t8d7e"]
-[ext_resource type="PackedScene" uid="uid://dxiqj1ymdbxbj" path="res://src/Assets/Images/call.tscn" id="4_5if6f"]
+[ext_resource type="PackedScene" path="res://src/Scenes/call.tscn" id="4_5if6f"]
 [ext_resource type="Texture2D" uid="uid://bg8sjl3ab7fea" path="res://src/Assets/Images/LoteryaBtn_Hovered.png" id="4_t7fhk"]
 [ext_resource type="Texture2D" uid="uid://cbtj1v8jdms1y" path="res://src/Assets/Images/LoteryaBtn.png" id="5_022yo"]
 [ext_resource type="Texture2D" uid="uid://dcee7wtmjdfwg" path="res://src/Assets/Images/DisabledLoteryaBtn.png" id="5_rp0s7"]
