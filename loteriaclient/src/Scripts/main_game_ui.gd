@@ -18,7 +18,7 @@ extends Control
 func _ready() -> void:
 	if audio_player:
 		audio_player.stream = background_music
-		audio_player.volume_db = -5.0
+		audio_player.volume_db = -3.0
 		audio_player.play()
 	loterya_button.disabled = true
 	if Client.win_condition != null:

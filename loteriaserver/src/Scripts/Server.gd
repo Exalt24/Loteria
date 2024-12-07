@@ -16,10 +16,12 @@ enum GameState { WAITING, STARTED }
 func _ready() -> void:
 	
 	var peer: ENetMultiplayerPeer = ENetMultiplayerPeer.new()
-	if peer.create_server(SERVER_PORT):
+	if peer.create_server(SERVER_PORT):  
 		printerr("Error creating the server")
 		get_tree().quit()
 		return
+	
+	peer.set_bind_ip("*")
 	self.multiplayer.multiplayer_peer = peer
 
 	if self.multiplayer.connect("peer_connected", Callable(self, "_player_connected"), CONNECT_DEFERRED):
@@ -29,6 +31,8 @@ func _ready() -> void:
 	if self.multiplayer.connect("peer_disconnected", Callable(self, "_player_disconnected"), CONNECT_DEFERRED):
 		printerr("Error connecting 'peer_disconnected' signal")
 		get_tree().quit()
+		
+	print("Server started and listening on port %d" % SERVER_PORT)
 
 @rpc("any_peer")
 func create_room(info: Dictionary) -> void:
@@ -207,7 +211,7 @@ func handle_in_game(room: Dictionary) -> void:
 	
 	var timer = Timer.new()
 	add_child(timer) 
-	timer.wait_time = 2.0
+	timer.wait_time = 3.0
 	timer.one_shot = false
 	timer.connect("timeout", Callable(self, "_call_next_card").bind(room))
 	timer.start()

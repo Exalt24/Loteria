@@ -1,6 +1,6 @@
 extends Node
 
-const SERVER_ADDRESS: String = "127.0.0.1"
+const SERVER_ADDRESS: String = "192.168.43.30"
 const SERVER_PORT: int = 33070
 
 @export var loterya_cards: Array = [
