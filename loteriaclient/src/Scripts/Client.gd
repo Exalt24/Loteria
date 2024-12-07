@@ -55,6 +55,12 @@ var my_info: Dictionary = {
 	name = "Carl",
 	instance = null,
 	token_symbol = null,
+	matrix = [
+				[0, 0, 0, 0],
+				[0, 0, 0, 0],
+				[0, 0, 0, 0],
+				[0, 0, 0, 0]
+			],
 }
 
 var player_info: Dictionary = {}
@@ -550,10 +556,18 @@ func declare_winner(winner_id: int) -> void:
 		get_tree().current_scene = results
 
 @rpc("any_peer")
+func send_matrix_to_server(matrix:Array) -> void:
+	print("in send matrix",room)
+	rpc_id(1, "update_matrix_in_server",room ,matrix)
+
+@rpc("any_peer")
 func request_lobby_list() -> void:
 	pass #dummy
 
 @rpc("any_peer")
 func join_room(room_id: int, info: Dictionary) -> void:
 	pass #dummy
-	
+
+@rpc("any_peer")
+func update_matrix_in_server(room_id: int, matrix: Array) -> void:
+	pass #dummy

@@ -11,6 +11,7 @@ var players_room: Dictionary = {}
 var next_room_id: int = 0
 var empty_rooms: Array = []
 
+
 enum GameState { WAITING, STARTED }
 
 func _ready() -> void:
@@ -183,6 +184,8 @@ func start_game() -> void:
 		rpc_id(player_id, "pre_configure_game")
 		
 	update_lobby_list_for_all_clients()
+	
+	
 
 	
 func handle_in_game(room: Dictionary) -> void:
@@ -208,6 +211,7 @@ func handle_in_game(room: Dictionary) -> void:
 	room.timer = timer
 
 	print("Game started for room. Cards shuffled, win condition set, and timer initialized.")
+	print(room)
 
 func _call_next_card(room: Dictionary) -> void:
 	
@@ -311,7 +315,23 @@ func declare_winner(room_id: int) -> void:
 		rpc_id(player_id, "declare_winner", winner_id)
 	
 	cleanup_room(room_ids)
+	
 
+@rpc("any_peer")
+func update_matrix_in_server(room_id: int, matrix: Array) -> void:
+	var sender_id: int = self.multiplayer.get_remote_sender_id()
+	
+	# Save the matrix for the sender
+	rooms[room_id].players[sender_id].matrix = matrix
+	
+	for player_id in rooms[room_id].players:
+		print("Matrix received from player #", sender_id, ": ", rooms[room_id].players[player_id].matrix)
+		print(rooms[room_id])
+	
+	
+@rpc("any_peer")
+func send_matrix_to_server(matrix:Array) -> void:
+	pass #dummy
 @rpc("any_peer")
 func reset_timer_from_server() -> void:
 	pass #dummy

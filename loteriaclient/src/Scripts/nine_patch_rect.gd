@@ -132,6 +132,7 @@ func update_matrix(card_index: int) -> void:
 	matrix_presentation[row][col] = 1
 	
 	print("Updated Matrix Presentation: ", matrix_presentation)
+	Client.send_matrix_to_server(matrix_presentation)
 	Client.check_for_pattern_match(matrix_presentation)
 
 func mark_card_with_coin(slot: TextureRect) -> void:
