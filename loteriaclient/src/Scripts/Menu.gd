@@ -207,7 +207,7 @@ func show_server_dialog(message: String) -> void:
 	server_dialog.show()
 
 func _on_exit_button_pressed() -> void:
-	pass # Replace with function body.
+	get_tree().quit()
 
 func update_lobby_list(lobby_list: Array) -> void:
 	for child in lobby_list_container.get_children():
