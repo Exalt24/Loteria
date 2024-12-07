@@ -1,16 +1,28 @@
 extends Control
 
+@export var background_music = preload("res://src/Assets/Sounds/BGM/[3]main.wav")
+
 @onready var caller_display: TextureRect = $Panel/CallerDisplay
 @onready var time_bar: Line2D = $Panel/Panel/TimeBar
 @onready var goal_pattern: Panel = $Panel/pattern
 @onready var nine_patch_rect: NinePatchRect = $Panel/NinePatchRect
 @onready var loterya_button: Button = $Panel/Button
+
 @onready var opp1: Control = $Panel/opponent/TextureRect
 @onready var opp2: Control = $Panel/opponent/TextureRect2
 @onready var opp3: Control = $Panel/opponent/TextureRect3
 @onready var opp4: Control = $Panel/opponent/TextureRect4
 
+@onready var audio_player: AudioStreamPlayer2D = $bgm
+
+
 func _ready() -> void:
+	#print("Current scene name: ", get_tree().current_scene.name)
+	if audio_player:
+		audio_player.stream = background_music
+		audio_player.volume_db = -5.0
+		audio_player.play()
+	
 	loterya_button.disabled = true
 	if Client.win_condition != null:
 		set_goal_pattern(Client.win_condition)

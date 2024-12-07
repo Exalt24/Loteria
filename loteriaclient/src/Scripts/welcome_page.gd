@@ -8,6 +8,9 @@ extends Control
 @onready var animation_player6: AnimationPlayer = $Panel/TextureRect6/AnimationPlayer
 @onready var animation_player7: AnimationPlayer = $Panel/TextureRect7/AnimationPlayer
 
+#@export var countdown_fx = preload("res://src/Assets/Sounds/BGM/[1]intro.wav")
+#@onready var audio_player: AudioStreamPlayer2D = $intro
+
 # Array of TextureRect nodes
 @onready var texture_rects: Array = [
 	$Panel/TextureRect,

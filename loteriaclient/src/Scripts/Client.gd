@@ -3,6 +3,9 @@ extends Node
 const SERVER_ADDRESS: String = "127.0.0.1"
 const SERVER_PORT: int = 33070
 
+@export var timer_sfx = preload("res://src/Assets/Sounds/BGM/[6]timer.wav")
+@onready var timer: AudioStreamPlayer2D = $countdown
+
 @export var loterya_cards: Array = [
 	preload("res://src/Assets/Images/Loterya Cards/Agila.png"),
 	preload("res://src/Assets/Images/Loterya Cards/Anahaw.png"),
@@ -405,8 +408,15 @@ func pre_configure_game() -> void:
 	get_tree().root.add_child(goal_pattern_scene)
 	get_tree().current_scene = goal_pattern_scene
 	
+	print("Current scene name: ", get_tree().current_scene.name)
+	
+	if timer:
+		timer.stream = timer_sfx
+		timer.play()
+	
 	# Await a timer to introduce a delay
 	await get_tree().create_timer(3.0).timeout  # Adjust the timer duration as needed
+	
 
 	get_tree().paused = true
 	# Load and display main_game_ui.tscn

@@ -1,5 +1,9 @@
 extends Label
 
+@export var countdown_fx = preload("res://src/Assets/Sounds/3_sec.wav")
+@onready var audio_player: AudioStreamPlayer2D = $countdown
+
+
 # Countdown start value
 var countdown = 3
 

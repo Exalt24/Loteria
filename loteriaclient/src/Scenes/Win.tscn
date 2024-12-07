@@ -65,6 +65,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qjbxx")
 
+[node name="button" type="AudioStreamPlayer2D" parent="."]
+
+[node name="win" type="AudioStreamPlayer2D" parent="."]
+
 [node name="WinResult" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15

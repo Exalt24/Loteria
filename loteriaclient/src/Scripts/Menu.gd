@@ -27,6 +27,14 @@ var game_started: bool = false
 @onready var name_margin_container: MarginContainer = $Background/MarginContainer
 const THEME = preload("res://src/Assets/Theme.tres")
 
+@export var intro_sfx = preload("res://src/Assets/Sounds/BGM/[1]intro.wav")
+@export var menu_sfx = preload("res://src/Assets/Sounds/BGM/[2]menu.wav")
+@export var button_sfx = preload("res://src/Assets/Sounds/BGM/[8]button.wav")
+
+@onready var intro: AudioStreamPlayer2D = $intro
+@onready var menu: AudioStreamPlayer2D = $menu_bgm
+@onready var button: AudioStreamPlayer2D = $button
+
 
 @onready var player_textures: Array = [
 	preload("res://src/Assets/Images/Lobby/creating_lobby.png"),
@@ -48,6 +56,10 @@ func show_welcome_screen() -> void:
 	# Load and instantiate the WelcomePage.tscn
 	var welcome_page = preload("res://src/Scenes/WelcomePage.tscn").instantiate()
 	
+	if intro:
+		intro.stream = intro_sfx
+		intro.play()
+	
 	# Add the welcome page deferred to avoid setup conflict
 	get_tree().root.call_deferred("add_child", welcome_page)
 	
@@ -68,6 +80,10 @@ func show_welcome_screen() -> void:
 
 
 func setup_main_menu() -> void:
+	if menu:
+		menu.stream = menu_sfx
+		menu.play()
+	
 	# Example of what happens after the welcome screen
 	THEME.set_type_variation("SelectServerButton", "Button")
 	start_button.disabled = true
@@ -81,6 +97,7 @@ func update_room(room_id: int) -> void:
 		join_dialog.connected_ok()
 
 func _on_create_server_button_pressed() -> void:
+	play_button_sfx()
 	server_dialog.hide()
 	Client.create_room({})
 	Helper.center_panel(create_dialog)
@@ -88,6 +105,7 @@ func _on_create_server_button_pressed() -> void:
 	toggle_buttons()
 
 func _on_create_dialog_back_pressed() -> void:
+	play_button_sfx()
 	server_dialog.hide()
 	create_dialog.hide()
 	if self.multiplayer.multiplayer_peer != null:
@@ -95,6 +113,7 @@ func _on_create_dialog_back_pressed() -> void:
 	toggle_buttons()
 
 func _on_join_server_button_pressed() -> void:
+	play_button_sfx()
 	server_dialog.hide()
 	Client.is_fetching = true
 	Client.connect_to_server()
@@ -103,6 +122,7 @@ func _on_join_server_button_pressed() -> void:
 	toggle_buttons()
 
 func _on_join_dialog_back_pressed() -> void:
+	play_button_sfx()
 	server_dialog.hide()
 	waiting_host_label.text = ""
 	join_dialog.hide()
@@ -113,6 +133,7 @@ func _on_join_dialog_back_pressed() -> void:
 	
 
 func _on_select_room_dialog_back_pressed() -> void:
+	play_button_sfx()
 	server_dialog.hide()
 	select_room_dialog.hide()
 	if self.multiplayer.multiplayer_peer != null:
@@ -121,6 +142,7 @@ func _on_select_room_dialog_back_pressed() -> void:
 		toggle_buttons()
 
 func add_player_to_ui(name: String) -> void:
+	play_button_sfx()
 	var current_player_count = Client.player_info.size()
 	
 	var texture_index = min(current_player_count, player_textures.size() - 1)
@@ -133,6 +155,7 @@ func add_player_to_ui(name: String) -> void:
 		join_dialog.add_theme_stylebox_override("panel", stylebox)
 			
 func remove_player(index: int) -> void:
+	play_button_sfx()
 	var current_player_count = max(0, Client.player_info.size() - 1)  # Adjust for removal, ensure no negatives
 	
 	var texture_index = min(current_player_count, player_textures.size() - 1)
@@ -145,6 +168,7 @@ func remove_player(index: int) -> void:
 		join_dialog.add_theme_stylebox_override("panel", stylebox)
 
 func remove_all_players() -> void:
+	play_button_sfx()
 	var current_player_count = 0
 	
 	var stylebox = StyleBoxTexture.new()
@@ -175,7 +199,13 @@ func update_player_count(player_count: int) -> void:
 		else:
 			start_button.disabled = true
 
+func play_button_sfx() -> void:
+	if button:
+		button.stream = button_sfx
+		button.play()
+
 func _on_start_pressed() -> void:
+	play_button_sfx()
 	Client.start_game()
 
 func show_server_dialog(message: String) -> void:
@@ -183,6 +213,7 @@ func show_server_dialog(message: String) -> void:
 	server_dialog.show()
 
 func _on_change_name_button_pressed() -> void:
+	play_button_sfx()
 	Helper.center_panel(change_name_dialog)
 	change_name_dialog.show()
 	toggle_buttons()
@@ -190,6 +221,7 @@ func _on_change_name_button_pressed() -> void:
 	change_button.disabled = true
 	
 func _on_change_name_dialog_cancel_pressed() -> void:
+	play_button_sfx()
 	change_name_dialog.hide()
 	toggle_buttons()
 
