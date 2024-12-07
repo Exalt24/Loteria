@@ -18,126 +18,246 @@
 texture = ExtResource("1_jfo8d")
 
 [sub_resource type="Animation" id="Animation_v3ppc"]
-length = 0.001
+length = 60.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Lata 1:rotation")
+tracks/0/path = NodePath("Lata 1:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(1099, 0), Vector2(1099, 295)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Lata 2:rotation")
+tracks/1/path = NodePath("Lata 1:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(1, 60),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0]
+"values": [31.4159, 0.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Prutas 1:rotation")
+tracks/2/path = NodePath("Lata 2:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-0.549779]
+"values": [Vector2(204, 0), Vector2(204, 80)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Prutas 2:rotation")
+tracks/3/path = NodePath("Lata 2:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(1, 60),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-0.314159]
+"values": [31.4159, 0.0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Tsinelas 1:rotation")
+tracks/4/path = NodePath("Prutas 1:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(101, 0), Vector2(101, 337)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Tsinelas 2:rotation")
+tracks/5/path = NodePath("Prutas 1:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(1, 60),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.863938]
+"values": [31.4159, 0.0]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Takyan 1:rotation")
+tracks/6/path = NodePath("Prutas 2:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(943, 0), Vector2(943, 591)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Takyan 2:rotation")
+tracks/7/path = NodePath("Prutas 2:rotation")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(1, 60),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0]
+"values": [31.4159, 0.0]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Bola 1:rotation")
+tracks/8/path = NodePath("Tsinelas 1:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(314, 0), Vector2(314, 441)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Bola 2:rotation")
+tracks/9/path = NodePath("Tsinelas 1:rotation")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(1, 60),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0]
+"values": [31.4159, 0.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Tsinelas 2:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(983, 0), Vector2(983, 438)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Tsinelas 2:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(1, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [31.4159, 0.0]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Takyan 1:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(153, 0), Vector2(153, 525)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Takyan 1:rotation")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(1, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [31.4159, 0.0]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Takyan 2:position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1003, 0), Vector2(1003, 90)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Takyan 2:rotation")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(1, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [31.4159, 0.0]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Bola 1:position")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(328, 0), Vector2(328, 632)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Bola 1:rotation")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(1, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [31.4159, 0.0]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Bola 2:position")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(858, 0), Vector2(858, 333)]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("Bola 2:rotation")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(1, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [31.4159, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_2tm2v"]
@@ -276,26 +396,50 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Banner 1:offset_left")
+tracks/0/path = NodePath("Banner 1:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [-575.848]
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Banner 2:offset_right")
+tracks/1/path = NodePath("Banner 2:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [571.696]
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Banner 1:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 33)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Banner 2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(619, 32)]
 }
 
 [sub_resource type="Animation" id="Animation_wsfg4"]
@@ -303,26 +447,50 @@ resource_name = "banner_animation"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Banner 1:offset_left")
+tracks/0/path = NodePath("Banner 1:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, -575.848]
+"update": 0,
+"values": [Vector2(0, 1), Vector2(1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Banner 2:offset_right")
+tracks/1/path = NodePath("Banner 2:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 575]
+"update": 0,
+"values": [Vector2(0, 1), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Banner 1:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(500, 33), Vector2(0, 33)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Banner 2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(619, 33), Vector2(619, 33)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xy5y0"]
@@ -396,14 +564,14 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_a46uk")
 libraries = {
 "": SubResource("AnimationLibrary_w8ws4")
 }
-speed_scale = 5.0
+speed_scale = 10.0
 script = ExtResource("3_fd1hb")
 
 [node name="Banner_Animation" type="AnimationPlayer" parent="WinResult"]
 libraries = {
 "": SubResource("AnimationLibrary_xy5y0")
 }
-speed_scale = 0.75
+speed_scale = 5.0
 script = ExtResource("4_j6o15")
 
 [node name="Banner 1" type="TextureRect" parent="WinResult"]
@@ -413,9 +581,9 @@ anchor_left = 0.499
 anchor_top = 0.503
 anchor_right = 0.499
 anchor_bottom = 0.503
-offset_left = -575.848
+offset_left = -74.848
 offset_top = -292.944
-offset_right = -44.848
+offset_right = 462.152
 offset_bottom = 92.056
 grow_horizontal = 0
 texture = ExtResource("3_jta46")
@@ -430,62 +598,69 @@ anchor_top = 0.503
 anchor_right = 0.502
 anchor_bottom = 0.503
 offset_left = 40.696
-offset_top = -293.944
-offset_right = 571.696
-offset_bottom = 91.056
+offset_top = -292.944
+offset_right = 570.696
+offset_bottom = 92.056
 texture = ExtResource("3_jta46")
 expand_mode = 1
 
 [node name="Lata 1" type="Sprite2D" parent="WinResult"]
-position = Vector2(1099, 295)
+position = Vector2(1099, 0)
+rotation = 31.4159
 scale = Vector2(0.6, 0.598148)
 texture = ExtResource("6_eemg8")
 
 [node name="Lata 2" type="Sprite2D" parent="WinResult"]
-position = Vector2(204, 80)
+position = Vector2(204, 0)
+rotation = 31.4159
 scale = Vector2(0.6, 0.598148)
 texture = ExtResource("6_eemg8")
 
 [node name="Prutas 1" type="Sprite2D" parent="WinResult"]
-position = Vector2(101, 337)
-rotation = -0.549779
+position = Vector2(101, 0)
+rotation = 31.4159
 scale = Vector2(0.611111, 0.55036)
 texture = ExtResource("7_genf2")
 
 [node name="Prutas 2" type="Sprite2D" parent="WinResult"]
-position = Vector2(943, 591)
-rotation = -0.314159
+position = Vector2(943, 0)
+rotation = 31.4159
 scale = Vector2(0.611111, 0.55036)
 texture = ExtResource("7_genf2")
 
 [node name="Tsinelas 1" type="Sprite2D" parent="WinResult"]
-position = Vector2(314, 441)
+position = Vector2(314, 0)
+rotation = 31.4159
 scale = Vector2(0.603503, 0.59058)
 texture = ExtResource("8_31pfk")
 
 [node name="Tsinelas 2" type="Sprite2D" parent="WinResult"]
-position = Vector2(983, 438)
-rotation = 0.863938
+position = Vector2(983, 0)
+rotation = 31.4159
 scale = Vector2(0.603503, 0.59058)
 texture = ExtResource("8_31pfk")
 
 [node name="Takyan 1" type="Sprite2D" parent="WinResult"]
-position = Vector2(153, 525)
+position = Vector2(153, 0)
+rotation = 31.4159
 scale = Vector2(0.621951, 0.592486)
 texture = ExtResource("9_o4ips")
 
 [node name="Takyan 2" type="Sprite2D" parent="WinResult"]
-position = Vector2(1003, 90)
+position = Vector2(1003, 0)
+rotation = 31.4159
 scale = Vector2(0.621951, 0.592486)
 texture = ExtResource("9_o4ips")
 
 [node name="Bola 1" type="Sprite2D" parent="WinResult"]
-position = Vector2(328, 632)
+position = Vector2(328, 0)
+rotation = 31.4159
 scale = Vector2(0.619403, 0.618)
 texture = ExtResource("10_k1gw3")
 
 [node name="Bola 2" type="Sprite2D" parent="WinResult"]
-position = Vector2(858, 333)
+position = Vector2(858, 0)
+rotation = 31.4159
 scale = Vector2(0.619403, 0.618)
 texture = ExtResource("10_k1gw3")
 
