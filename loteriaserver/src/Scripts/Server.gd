@@ -200,7 +200,7 @@ func handle_in_game(room: Dictionary) -> void:
 	
 	var timer = Timer.new()
 	add_child(timer) 
-	timer.wait_time = 3.0
+	timer.wait_time = 0.1
 	timer.one_shot = false
 	timer.connect("timeout", Callable(self, "_call_next_card").bind(room))
 	timer.start()
@@ -233,7 +233,7 @@ func _call_next_card(room: Dictionary) -> void:
 func end_game(room: Dictionary) -> void:
 	# Notify all players that the game has ended
 	for player_id in room.players:
-		rpc_id(player_id, "game_ended")
+		rpc_id(player_id, "declare_winner", -1)
 	
 	# Clear room-related data
 	var room_id: int = room.creator

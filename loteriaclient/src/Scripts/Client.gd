@@ -529,7 +529,6 @@ func reset_timer_from_server() -> void:
 
 @rpc("any_peer")
 func declare_winner(winner_id: int) -> void:
-	print("Game has ended with winner.")
 	var my_id: int = self.multiplayer.get_unique_id()
 	
 	fin_stop()
@@ -537,7 +536,11 @@ func declare_winner(winner_id: int) -> void:
 	if get_tree().current_scene:
 		get_tree().current_scene.queue_free()
 	
-	if winner_id == my_id:
+	if winner_id == -1:
+		var results = preload("res://src/Scenes/NoWinner.tscn").instantiate()
+		get_tree().root.add_child(results)
+		get_tree().current_scene = results
+	elif winner_id == my_id:
 		var results = preload("res://src/Scenes/Win.tscn").instantiate()
 		get_tree().root.add_child(results)
 		get_tree().current_scene = results

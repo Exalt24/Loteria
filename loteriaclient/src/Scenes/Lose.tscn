@@ -72,28 +72,28 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_a46uk")
 [node name="Banner 1" type="TextureRect" parent="WinResult"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.768
-anchor_top = 0.346
-anchor_right = 0.768
-anchor_bottom = 0.346
-offset_left = -265.736
-offset_top = -192.208
-offset_right = 265.264
-offset_bottom = 192.792
+anchor_left = 0.502
+anchor_top = 0.503
+anchor_right = 0.502
+anchor_bottom = 0.503
+offset_left = 40.696
+offset_top = -293.944
+offset_right = 571.696
+offset_bottom = 91.056
 texture = ExtResource("3_jta46")
 expand_mode = 1
 
 [node name="Banner 2" type="TextureRect" parent="WinResult"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.768
-anchor_top = 0.346
-anchor_right = 0.768
-anchor_bottom = 0.346
-offset_left = -883.736
-offset_top = -186.208
-offset_right = -352.736
-offset_bottom = 198.792
+anchor_left = 0.502
+anchor_top = 0.503
+anchor_right = 0.502
+anchor_bottom = 0.503
+offset_left = -577.304
+offset_top = -287.944
+offset_right = -46.304
+offset_bottom = 97.056
 texture = ExtResource("3_jta46")
 expand_mode = 1
 flip_h = true
@@ -137,35 +137,37 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_o3ws5")
 theme_override_styles/normal = SubResource("StyleBoxFlat_lkau4")
 text = "Play Again"
 
-[node name="LoseBanner" type="Sprite2D" parent="WinResult"]
-position = Vector2(569, 142)
+[node name="LoseBanner" type="Sprite2D" parent="WinResult/WinDialog"]
+position = Vector2(194, 88)
 scale = Vector2(0.697151, 0.810997)
 texture = ExtResource("4_5b7fl")
 
-[node name="LoserPattern" type="Panel" parent="."]
+[node name="LoserPattern" type="Panel" parent="WinResult/WinDialog"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -69.0
-offset_top = -108.0
-offset_right = 69.0
-offset_bottom = 108.0
+anchors_preset = -1
+anchor_left = 0.505
+anchor_top = 0.3
+anchor_right = 0.505
+anchor_bottom = 0.3
+offset_left = -71.01
+offset_right = 66.99
+offset_bottom = 216.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_6ya4o")
 
-[node name="NinePatchRect" type="NinePatchRect" parent="LoserPattern"]
+[node name="NinePatchRect" type="NinePatchRect" parent="WinResult/WinDialog/LoserPattern"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.493
+anchor_right = 0.493
+offset_left = -68.034
+offset_right = 69.966
+offset_bottom = 216.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GridContainer" type="GridContainer" parent="LoserPattern/NinePatchRect"]
+[node name="GridContainer" type="GridContainer" parent="WinResult/WinDialog/LoserPattern/NinePatchRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -176,97 +178,97 @@ theme_override_constants/h_separation = 3
 theme_override_constants/v_separation = 3
 columns = 4
 
-[node name="Panel" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+[node name="Panel" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
 
-[node name="Panel2" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+[node name="Panel2" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
 
-[node name="Panel3" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+[node name="Panel3" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
 
-[node name="Panel4" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+[node name="Panel4" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
 
-[node name="Panel5" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+[node name="Panel5" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
 
-[node name="Panel6" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+[node name="Panel6" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
 
-[node name="Panel7" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+[node name="Panel7" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
 
-[node name="Panel8" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+[node name="Panel8" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
 
-[node name="Panel9" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+[node name="Panel9" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
 
-[node name="Panel10" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+[node name="Panel10" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
 
-[node name="Panel11" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+[node name="Panel11" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
 
-[node name="Panel12" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+[node name="Panel12" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
 
-[node name="Panel13" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+[node name="Panel13" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
 
-[node name="Panel14" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+[node name="Panel14" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
 
-[node name="Panel15" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+[node name="Panel15" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
 
-[node name="Panel16" type="Panel" parent="LoserPattern/NinePatchRect/GridContainer"]
+[node name="Panel16" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
