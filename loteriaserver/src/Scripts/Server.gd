@@ -327,8 +327,9 @@ func update_matrix_in_server(room_id: int, matrix: Array) -> void:
 	
 	var matrices: Dictionary = {}
 	for player_id in rooms[room_id].players:
-		matrices[player_id] = rooms[room_id].players[sender_id].matrix
+		matrices[player_id] = rooms[room_id].players[player_id].matrix
 	
+	print("TEST",matrices)
 	for player_id in rooms[room_id].players:
 		rpc_id(player_id, "update_opponent_matrices", matrices)
 	

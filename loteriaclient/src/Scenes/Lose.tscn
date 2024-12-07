@@ -6,36 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://cxxenrysmhgkg" path="res://src/Assets/Images/Banners.png" id="3_jta46"]
 [ext_resource type="FontFile" uid="uid://cek4o8uqi2788" path="res://src/Assets/Fonts/Fredoka-SemiBold.ttf" id="4_3yivn"]
 [ext_resource type="Texture2D" uid="uid://b7aar5qljib08" path="res://src/Assets/Images/LoseBanner.png" id="4_5b7fl"]
+[ext_resource type="PackedScene" uid="uid://ddu6gleekcwhk" path="res://src/Scenes/WinnerPattern.tscn" id="7_1ijjy"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a46uk"]
 texture = ExtResource("1_jfo8d")
-
-[sub_resource type="Animation" id="Animation_jdv6y"]
-resource_name = "banner_animation"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Banner 1:offset_left")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, -575]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Banner 2:offset_right")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 575]
-}
 
 [sub_resource type="Animation" id="Animation_3mqcn"]
 length = 0.001
@@ -62,6 +36,33 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [-72.304]
+}
+
+[sub_resource type="Animation" id="Animation_jdv6y"]
+resource_name = "banner_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Banner 1:offset_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, -575]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Banner 2:offset_right")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 575]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v2rm8"]
@@ -108,9 +109,6 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cl4iy"]
-bg_color = Color(1, 1, 1, 1)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -224,122 +222,12 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_6ya4o")
 
-[node name="NinePatchRect" type="NinePatchRect" parent="WinResult/WinDialog/LoserPattern"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.493
-anchor_right = 0.493
-offset_left = -68.034
-offset_right = 69.966
-offset_bottom = 216.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="GridContainer" type="GridContainer" parent="WinResult/WinDialog/LoserPattern/NinePatchRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/h_separation = 3
-theme_override_constants/v_separation = 3
-columns = 4
-
-[node name="Panel" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
-
-[node name="Panel2" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
-
-[node name="Panel3" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
-
-[node name="Panel4" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
-
-[node name="Panel5" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
-
-[node name="Panel6" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
-
-[node name="Panel7" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
-
-[node name="Panel8" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
-
-[node name="Panel9" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
-
-[node name="Panel10" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
-
-[node name="Panel11" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
-
-[node name="Panel12" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
-
-[node name="Panel13" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
-
-[node name="Panel14" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
-
-[node name="Panel15" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
-
-[node name="Panel16" type="Panel" parent="WinResult/WinDialog/LoserPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+[node name="WinnerPattern" parent="WinResult/WinDialog/LoserPattern" instance=ExtResource("7_1ijjy")]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 6.0
+offset_right = 69.0
+offset_bottom = 583.0
+scale = Vector2(0.401566, 0.352721)
 
 [connection signal="pressed" from="WinResult/WinDialog/Button" to="." method="_on_button_pressed"]
