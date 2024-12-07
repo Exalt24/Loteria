@@ -175,9 +175,16 @@ func start_game() -> void:
 	var win_condition = randi_range(0, 3)
 	room["win_condition"] = win_condition
 	print("Room ID: ", room.creator, " - Win condition set to: ", win_condition)
-
+	
+	var token_symbols: Dictionary = {}
+	for player_id in room.players:
+		token_symbols[player_id] = room.players[player_id].token_symbol
+	
 	for player_id in room.players:
 		rpc_id(player_id, "set_win_condition", win_condition)
+	
+	for player_id in room.players:
+		rpc_id(player_id, "set_opponent_tokens", token_symbols)
 	
 	for player_id in room.players:
 		rpc_id(player_id, "pre_configure_game")
@@ -313,6 +320,23 @@ func declare_winner(room_id: int) -> void:
 	cleanup_room(room_ids)
 
 @rpc("any_peer")
+func update_matrix_in_server(room_id: int, matrix: Array) -> void:
+	var sender_id: int = self.multiplayer.get_remote_sender_id()
+	
+	rooms[room_id].players[sender_id].matrix = matrix
+	
+	var matrices: Dictionary = {}
+	for player_id in rooms[room_id].players:
+		matrices[player_id] = rooms[room_id].players[sender_id].matrix
+	
+	for player_id in rooms[room_id].players:
+		rpc_id(player_id, "update_opponent_matrices", matrices)
+	
+@rpc("any_peer")
+func send_matrix_to_server(matrix:Array) -> void:
+	pass #dummy
+
+@rpc("any_peer")
 func reset_timer_from_server() -> void:
 	pass #dummy
 
@@ -358,4 +382,12 @@ func game_ended() -> void:
 	
 @rpc("any_peer")
 func winner_game() -> void:
+	pass #dummy
+
+@rpc("any_peer")
+func set_opponent_tokens(tokens: Dictionary) -> void:
+	pass #dummy
+
+@rpc("any_peer")
+func update_opponent_matrices(matrices: Dictionary) -> void:
 	pass #dummy

@@ -45,38 +45,6 @@ texture = ExtResource("5_te678")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_28j5r"]
 texture = ExtResource("8_w0hli")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_scqm6"]
-bg_color = Color(1, 1, 1, 0.392157)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kkusr"]
-bg_color = Color(1, 1, 1, 0.392157)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vx4tv"]
-bg_color = Color(1, 1, 1, 0.392157)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qyxag"]
-bg_color = Color(1, 1, 1, 0.392157)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0, 0, 0, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7wfsu"]
 bg_color = Color(1, 1, 1, 0.392157)
 border_width_left = 1
@@ -94,6 +62,38 @@ border_width_bottom = 1
 border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4mk18"]
+bg_color = Color(1, 1, 1, 0.392157)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vx4tv"]
+bg_color = Color(1, 1, 1, 0.392157)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kkusr"]
+bg_color = Color(1, 1, 1, 0.392157)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qyxag"]
+bg_color = Color(1, 1, 1, 0.392157)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_scqm6"]
 bg_color = Color(1, 1, 1, 0.392157)
 border_width_left = 1
 border_width_top = 1
@@ -203,55 +203,11 @@ offset_top = 0.0709991
 offset_right = -0.0200043
 offset_bottom = -0.0180054
 
-[node name="slot8" type="Panel" parent="Panel/opponent/TextureRect"]
-layout_mode = 0
-offset_left = 39.0
-offset_top = 21.0
-offset_right = 53.0
-offset_bottom = 43.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_scqm6")
-
-[node name="slot6" type="Panel" parent="Panel/opponent/TextureRect"]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 21.0
-offset_right = 27.0
-offset_bottom = 43.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_kkusr")
-
-[node name="slot5" type="Panel" parent="Panel/opponent/TextureRect"]
-layout_mode = 0
-offset_top = 21.0
-offset_right = 14.0
-offset_bottom = 43.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_vx4tv")
-
-[node name="slot7" type="Panel" parent="Panel/opponent/TextureRect"]
-layout_mode = 0
-offset_left = 26.0
-offset_top = 21.0
-offset_right = 40.0
-offset_bottom = 43.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_qyxag")
-
-[node name="slot15" type="Panel" parent="Panel/opponent/TextureRect"]
-layout_mode = 0
-offset_right = 14.0
-offset_bottom = 22.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_7wfsu")
-
 [node name="slot1" type="Panel" parent="Panel/opponent/TextureRect"]
 layout_mode = 0
 offset_top = 42.0
 offset_right = 14.0
 offset_bottom = 64.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_7wfsu")
-
-[node name="slot4" type="Panel" parent="Panel/opponent/TextureRect"]
-layout_mode = 0
-offset_left = 39.0
-offset_right = 53.0
-offset_bottom = 22.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7wfsu")
 
 [node name="slot2" type="Panel" parent="Panel/opponent/TextureRect"]
@@ -267,6 +223,44 @@ offset_left = 26.0
 offset_right = 40.0
 offset_bottom = 22.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_4mk18")
+
+[node name="slot4" type="Panel" parent="Panel/opponent/TextureRect"]
+layout_mode = 0
+offset_left = 39.0
+offset_right = 53.0
+offset_bottom = 22.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7wfsu")
+
+[node name="slot5" type="Panel" parent="Panel/opponent/TextureRect"]
+layout_mode = 0
+offset_top = 21.0
+offset_right = 14.0
+offset_bottom = 43.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vx4tv")
+
+[node name="slot6" type="Panel" parent="Panel/opponent/TextureRect"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 21.0
+offset_right = 27.0
+offset_bottom = 43.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_kkusr")
+
+[node name="slot7" type="Panel" parent="Panel/opponent/TextureRect"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 21.0
+offset_right = 40.0
+offset_bottom = 43.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qyxag")
+
+[node name="slot8" type="Panel" parent="Panel/opponent/TextureRect"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 21.0
+offset_right = 53.0
+offset_bottom = 43.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_scqm6")
 
 [node name="slot9" type="Panel" parent="Panel/opponent/TextureRect"]
 layout_mode = 0
@@ -315,6 +309,12 @@ offset_right = 27.0
 offset_bottom = 64.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_hharu")
 
+[node name="slot15" type="Panel" parent="Panel/opponent/TextureRect"]
+layout_mode = 0
+offset_right = 14.0
+offset_bottom = 22.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7wfsu")
+
 [node name="slot16" type="Panel" parent="Panel/opponent/TextureRect"]
 layout_mode = 0
 offset_left = 26.0
@@ -335,13 +335,33 @@ offset_bottom = 130.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="slot8" type="Panel" parent="Panel/opponent/TextureRect2"]
+[node name="slot1" type="Panel" parent="Panel/opponent/TextureRect2"]
+layout_mode = 0
+offset_top = 42.0
+offset_right = 14.0
+offset_bottom = 64.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7wfsu")
+
+[node name="slot2" type="Panel" parent="Panel/opponent/TextureRect2"]
+layout_mode = 0
+offset_left = 13.0
+offset_right = 27.0
+offset_bottom = 22.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hharu")
+
+[node name="slot3" type="Panel" parent="Panel/opponent/TextureRect2"]
+layout_mode = 0
+offset_left = 26.0
+offset_right = 40.0
+offset_bottom = 22.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4mk18")
+
+[node name="slot4" type="Panel" parent="Panel/opponent/TextureRect2"]
 layout_mode = 0
 offset_left = 39.0
-offset_top = 21.0
 offset_right = 53.0
-offset_bottom = 43.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_scqm6")
+offset_bottom = 22.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7wfsu")
 
 [node name="slot6" type="Panel" parent="Panel/opponent/TextureRect2"]
 layout_mode = 0
@@ -366,39 +386,13 @@ offset_right = 40.0
 offset_bottom = 43.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_qyxag")
 
-[node name="slot15" type="Panel" parent="Panel/opponent/TextureRect2"]
-layout_mode = 0
-offset_right = 14.0
-offset_bottom = 22.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_7wfsu")
-
-[node name="slot1" type="Panel" parent="Panel/opponent/TextureRect2"]
-layout_mode = 0
-offset_top = 42.0
-offset_right = 14.0
-offset_bottom = 64.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_7wfsu")
-
-[node name="slot4" type="Panel" parent="Panel/opponent/TextureRect2"]
+[node name="slot8" type="Panel" parent="Panel/opponent/TextureRect2"]
 layout_mode = 0
 offset_left = 39.0
+offset_top = 21.0
 offset_right = 53.0
-offset_bottom = 22.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_7wfsu")
-
-[node name="slot2" type="Panel" parent="Panel/opponent/TextureRect2"]
-layout_mode = 0
-offset_left = 13.0
-offset_right = 27.0
-offset_bottom = 22.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_hharu")
-
-[node name="slot3" type="Panel" parent="Panel/opponent/TextureRect2"]
-layout_mode = 0
-offset_left = 26.0
-offset_right = 40.0
-offset_bottom = 22.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_4mk18")
+offset_bottom = 43.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_scqm6")
 
 [node name="slot9" type="Panel" parent="Panel/opponent/TextureRect2"]
 layout_mode = 0
@@ -447,6 +441,12 @@ offset_right = 27.0
 offset_bottom = 64.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_hharu")
 
+[node name="slot15" type="Panel" parent="Panel/opponent/TextureRect2"]
+layout_mode = 0
+offset_right = 14.0
+offset_bottom = 22.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7wfsu")
+
 [node name="slot16" type="Panel" parent="Panel/opponent/TextureRect2"]
 layout_mode = 0
 offset_left = 26.0
@@ -467,55 +467,11 @@ offset_bottom = 227.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="slot8" type="Panel" parent="Panel/opponent/TextureRect3"]
-layout_mode = 0
-offset_left = 39.0
-offset_top = 21.0
-offset_right = 53.0
-offset_bottom = 43.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_scqm6")
-
-[node name="slot6" type="Panel" parent="Panel/opponent/TextureRect3"]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 21.0
-offset_right = 27.0
-offset_bottom = 43.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_kkusr")
-
-[node name="slot5" type="Panel" parent="Panel/opponent/TextureRect3"]
-layout_mode = 0
-offset_top = 21.0
-offset_right = 14.0
-offset_bottom = 43.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_vx4tv")
-
-[node name="slot7" type="Panel" parent="Panel/opponent/TextureRect3"]
-layout_mode = 0
-offset_left = 26.0
-offset_top = 21.0
-offset_right = 40.0
-offset_bottom = 43.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_qyxag")
-
-[node name="slot15" type="Panel" parent="Panel/opponent/TextureRect3"]
-layout_mode = 0
-offset_right = 14.0
-offset_bottom = 22.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_7wfsu")
-
 [node name="slot1" type="Panel" parent="Panel/opponent/TextureRect3"]
 layout_mode = 0
 offset_top = 42.0
 offset_right = 14.0
 offset_bottom = 64.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_7wfsu")
-
-[node name="slot4" type="Panel" parent="Panel/opponent/TextureRect3"]
-layout_mode = 0
-offset_left = 39.0
-offset_right = 53.0
-offset_bottom = 22.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7wfsu")
 
 [node name="slot2" type="Panel" parent="Panel/opponent/TextureRect3"]
@@ -531,6 +487,44 @@ offset_left = 26.0
 offset_right = 40.0
 offset_bottom = 22.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_4mk18")
+
+[node name="slot4" type="Panel" parent="Panel/opponent/TextureRect3"]
+layout_mode = 0
+offset_left = 39.0
+offset_right = 53.0
+offset_bottom = 22.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7wfsu")
+
+[node name="slot5" type="Panel" parent="Panel/opponent/TextureRect3"]
+layout_mode = 0
+offset_top = 21.0
+offset_right = 14.0
+offset_bottom = 43.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vx4tv")
+
+[node name="slot6" type="Panel" parent="Panel/opponent/TextureRect3"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 21.0
+offset_right = 27.0
+offset_bottom = 43.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_kkusr")
+
+[node name="slot7" type="Panel" parent="Panel/opponent/TextureRect3"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 21.0
+offset_right = 40.0
+offset_bottom = 43.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qyxag")
+
+[node name="slot8" type="Panel" parent="Panel/opponent/TextureRect3"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 21.0
+offset_right = 53.0
+offset_bottom = 43.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_scqm6")
 
 [node name="slot9" type="Panel" parent="Panel/opponent/TextureRect3"]
 layout_mode = 0
@@ -579,6 +573,12 @@ offset_right = 27.0
 offset_bottom = 64.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_hharu")
 
+[node name="slot15" type="Panel" parent="Panel/opponent/TextureRect3"]
+layout_mode = 0
+offset_right = 14.0
+offset_bottom = 22.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7wfsu")
+
 [node name="slot16" type="Panel" parent="Panel/opponent/TextureRect3"]
 layout_mode = 0
 offset_left = 26.0
@@ -599,55 +599,11 @@ offset_bottom = 227.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="slot8" type="Panel" parent="Panel/opponent/TextureRect4"]
-layout_mode = 0
-offset_left = 39.0
-offset_top = 21.0
-offset_right = 53.0
-offset_bottom = 43.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_scqm6")
-
-[node name="slot6" type="Panel" parent="Panel/opponent/TextureRect4"]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 21.0
-offset_right = 27.0
-offset_bottom = 43.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_kkusr")
-
-[node name="slot5" type="Panel" parent="Panel/opponent/TextureRect4"]
-layout_mode = 0
-offset_top = 21.0
-offset_right = 14.0
-offset_bottom = 43.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_vx4tv")
-
-[node name="slot7" type="Panel" parent="Panel/opponent/TextureRect4"]
-layout_mode = 0
-offset_left = 26.0
-offset_top = 21.0
-offset_right = 40.0
-offset_bottom = 43.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_qyxag")
-
-[node name="slot15" type="Panel" parent="Panel/opponent/TextureRect4"]
-layout_mode = 0
-offset_right = 14.0
-offset_bottom = 22.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_7wfsu")
-
 [node name="slot1" type="Panel" parent="Panel/opponent/TextureRect4"]
 layout_mode = 0
 offset_top = 42.0
 offset_right = 14.0
 offset_bottom = 64.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_7wfsu")
-
-[node name="slot4" type="Panel" parent="Panel/opponent/TextureRect4"]
-layout_mode = 0
-offset_left = 39.0
-offset_right = 53.0
-offset_bottom = 22.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7wfsu")
 
 [node name="slot2" type="Panel" parent="Panel/opponent/TextureRect4"]
@@ -663,6 +619,44 @@ offset_left = 26.0
 offset_right = 40.0
 offset_bottom = 22.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_4mk18")
+
+[node name="slot4" type="Panel" parent="Panel/opponent/TextureRect4"]
+layout_mode = 0
+offset_left = 39.0
+offset_right = 53.0
+offset_bottom = 22.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7wfsu")
+
+[node name="slot5" type="Panel" parent="Panel/opponent/TextureRect4"]
+layout_mode = 0
+offset_top = 21.0
+offset_right = 14.0
+offset_bottom = 43.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vx4tv")
+
+[node name="slot6" type="Panel" parent="Panel/opponent/TextureRect4"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 21.0
+offset_right = 27.0
+offset_bottom = 43.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_kkusr")
+
+[node name="slot7" type="Panel" parent="Panel/opponent/TextureRect4"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 21.0
+offset_right = 40.0
+offset_bottom = 43.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qyxag")
+
+[node name="slot8" type="Panel" parent="Panel/opponent/TextureRect4"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 21.0
+offset_right = 53.0
+offset_bottom = 43.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_scqm6")
 
 [node name="slot9" type="Panel" parent="Panel/opponent/TextureRect4"]
 layout_mode = 0
@@ -710,6 +704,12 @@ offset_top = 42.0
 offset_right = 27.0
 offset_bottom = 64.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_hharu")
+
+[node name="slot15" type="Panel" parent="Panel/opponent/TextureRect4"]
+layout_mode = 0
+offset_right = 14.0
+offset_bottom = 22.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7wfsu")
 
 [node name="slot16" type="Panel" parent="Panel/opponent/TextureRect4"]
 layout_mode = 0

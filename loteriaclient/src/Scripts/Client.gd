@@ -55,6 +55,12 @@ var my_info: Dictionary = {
 	name = "Carl",
 	instance = null,
 	token_symbol = null,
+	matrix = [
+				[0, 0, 0, 0],
+				[0, 0, 0, 0],
+				[0, 0, 0, 0],
+				[0, 0, 0, 0]
+			]
 }
 
 var player_info: Dictionary = {}
@@ -64,6 +70,8 @@ var is_fetching: bool = false
 
 var room: int
 var win_condition: int
+var opponent_tokens: Dictionary = {}
+var opponent_matrices: Dictionary = {}
 var win_patterns: Array = [
 	# Column win patterns (Variations of columns)
 	[
@@ -227,7 +235,8 @@ var win_patterns: Array = [
 ]
 
 var current_win_pattern: Array 
-	
+var client_id: int
+
 @rpc("any_peer")
 func create_room(info: Dictionary) -> void:
 	is_creator = true
@@ -293,7 +302,7 @@ func fin_stop() -> void:
 	is_creator = false
 	if get_tree().current_scene.name == "Menu":
 		get_tree().current_scene.create_dialog_label.text = "Creating room..."
-	
+
 @rpc("any_peer")
 func register_player(id: int, info: Dictionary) -> void:
 	player_info[id] = info
@@ -335,9 +344,12 @@ func _remove_all_players() -> void:
 	player_info = {}
 
 func _connected_ok() -> void:
-	print("Connected to server!")
+	client_id = self.multiplayer.multiplayer_peer.get_unique_id()
+	print("My client ID is ", client_id)
+	
 	if is_creator:
 		rpc_id(1, "create_room", my_info)
+		
 	elif is_fetching:
 		rpc_id(1, "request_lobby_list")
 		is_fetching = false
@@ -401,7 +413,7 @@ func pre_configure_game() -> void:
 	var game: Control = preload("res://src/Scenes/main_game_ui.tscn").instantiate()
 	get_tree().root.add_child(game)
 	get_tree().current_scene = game
-
+	
 	rpc_id(1, "done_preconfiguring")
 
 		
@@ -459,6 +471,10 @@ func set_win_condition(condition: int) -> void:
 			current_win_pattern = win_patterns[3]
 		_:
 			print("Invalid win condition received!")
+			
+@rpc("any_peer")
+func set_opponent_tokens(tokens: Dictionary) -> void:
+	opponent_tokens = tokens
 
 func check_for_pattern_match(matrix: Array) -> void:
 	match win_condition:
@@ -493,7 +509,7 @@ func check_for_pattern_match(matrix: Array) -> void:
 	
 	# If no match was found
 	print("No match found for current pattern.")
-	
+
 func check_partial_match(matrix: Array, pattern: Array) -> bool:
 	for row in range(4):
 		for col in range(4):
@@ -550,10 +566,24 @@ func declare_winner(winner_id: int) -> void:
 		get_tree().current_scene = results
 
 @rpc("any_peer")
+func send_matrix_to_server(matrix: Array) -> void:
+	rpc_id(1, "update_matrix_in_server", room, matrix)
+
+@rpc("any_peer")
+func update_opponent_matrices(matrices: Dictionary) -> void:
+	opponent_matrices = matrices
+	print("TESTSAFSFASFSA")
+	print(opponent_matrices)
+
+@rpc("any_peer")
 func request_lobby_list() -> void:
 	pass #dummy
 
 @rpc("any_peer")
 func join_room(room_id: int, info: Dictionary) -> void:
+	pass #dummy
+	
+@rpc("any_peer")
+func update_matrix_in_server(room_id: int, matrix: Array) -> void:
 	pass #dummy
 	

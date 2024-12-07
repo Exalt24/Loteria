@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://n132ubvcbkw6"]
+[gd_scene load_steps=3 format=3 uid="uid://n132ubvcbkw6"]
 
+[ext_resource type="Script" path="res://src/Scripts/opp_2.gd" id="1_q0sa6"]
 [ext_resource type="Texture2D" uid="uid://d0avt7lh1na56" path="res://src/Assets/Images/Opponent/Player2.png" id="1_wlaiw"]
 
 [node name="Opp2" type="Control"]
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_q0sa6")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
