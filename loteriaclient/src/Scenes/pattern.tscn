@@ -24,6 +24,8 @@ offset_bottom = 310.0
 pivot_offset = Vector2(134, 126)
 theme_override_styles/panel = SubResource("StyleBoxTexture_q4irc")
 
+[node name="countdown" type="AudioStreamPlayer2D" parent="."]
+
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 8

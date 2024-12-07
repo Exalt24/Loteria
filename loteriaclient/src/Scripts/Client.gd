@@ -67,7 +67,7 @@ var player_info: Dictionary = {}
 
 var is_creator: bool = false
 var is_fetching: bool = false
-
+var the_winner_id: int = -1
 var room: int
 var win_condition: int
 var opponent_tokens: Dictionary = {}
@@ -282,6 +282,22 @@ func stop() -> void:
 	is_creator = false
 	if get_tree().current_scene.name == "Menu":
 		get_tree().current_scene.create_dialog_label.text = "Creating room..."
+
+func stops() -> void:
+	
+	if self.multiplayer.is_connected("connected_to_server", Callable(self, "_connected_ok")):
+		self.multiplayer.disconnect("connected_to_server", Callable(self, "_connected_ok"))
+	if self.multiplayer.is_connected("connection_failed", Callable(self, "_connected_fail")):
+		self.multiplayer.disconnect("connection_failed", Callable(self, "_connected_fail"))
+	if self.multiplayer.is_connected("server_disconnected", Callable(self, "_server_disconnected")):
+		self.multiplayer.disconnect("server_disconnected", Callable(self, "_server_disconnected"))
+	self.multiplayer.multiplayer_peer = null
+	_remove_all_players()
+	
+	if get_tree().current_scene.name == "Menu":
+		var menu = get_tree().current_scene
+		menu.waiting_host_label.text = ""
+		get_tree().current_scene.create_dialog_label.text = "Creating room..."
 		
 func fin_stop() -> void:
 	
@@ -358,7 +374,10 @@ func _connected_ok() -> void:
 
 func _connected_fail() -> void:
 	print("Failed connecting to the server!")
-	stop()
+	if is_creator == true:
+		stop()
+	else:
+		stops()
 	get_tree().current_scene.show_server_dialog("Failed to connect to the server. Please try again.")
 	
 func _server_disconnected() -> void:
@@ -546,7 +565,7 @@ func reset_timer_from_server() -> void:
 @rpc("any_peer")
 func declare_winner(winner_id: int) -> void:
 	var my_id: int = self.multiplayer.get_unique_id()
-	
+	the_winner_id = winner_id
 	fin_stop()
 	
 	if get_tree().current_scene:
@@ -572,8 +591,8 @@ func send_matrix_to_server(matrix: Array) -> void:
 @rpc("any_peer")
 func update_opponent_matrices(matrices: Dictionary) -> void:
 	opponent_matrices = matrices
-	print("TESTSAFSFASFSA")
-	print(opponent_matrices)
+	if get_tree().current_scene.name == "GameUI":
+		get_tree().current_scene.update_opponents_progress()
 
 @rpc("any_peer")
 func request_lobby_list() -> void:

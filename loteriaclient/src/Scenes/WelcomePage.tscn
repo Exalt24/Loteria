@@ -57,6 +57,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ksyfh")
 
+[node name="intro" type="AudioStreamPlayer2D" parent="."]
+
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15

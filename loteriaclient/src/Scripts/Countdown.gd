@@ -1,6 +1,7 @@
 extends Label
 
-# Countdown start value
+@export var countdown_fx = preload("res://src/Assets/Sounds/BGM/[6]timer.wav")
+@onready var audio_player: AudioStreamPlayer2D = $countdown
 var countdown = 3
 
 # Timer to control the countdown

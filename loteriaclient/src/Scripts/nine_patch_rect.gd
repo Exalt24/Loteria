@@ -1,5 +1,7 @@
 extends NinePatchRect
 
+@export var coin_sfx = preload("res://src/Assets/Sounds/BGM/[7]coin.wav")
+@onready var coin: AudioStreamPlayer2D = $coin
 @onready var sound_player = $AudioStreamPlayer2D
 @onready var loterya_cards: Array = [
 	{"texture": preload("res://src/Assets/Images/Loterya Cards/Agila.png"), "index": 0, "sound": preload("res://src/Assets/Sounds/Agila.wav")},
@@ -124,6 +126,10 @@ func _on_card_clicked(event: InputEvent, slot: TextureRect) -> void:
 		else:
 			print("Clicked card does not match the caller card index.")
 
+func play_coin_sfx() -> void:
+	if coin:
+		coin.stream = coin_sfx
+		coin.play()
 # Function to update the matrix_presentation
 func update_matrix(card_index: int) -> void:
 	var row = card_index / 4
@@ -137,8 +143,16 @@ func update_matrix(card_index: int) -> void:
 
 func mark_card_with_coin(slot: TextureRect) -> void:
 	
+	var token_textures: Dictionary = {
+		"marble": preload("res://src/Assets/Images/Articles/bola.png"),
+		"can": preload("res://src/Assets/Images/Articles/lata.png"),
+		"slippers": preload("res://src/Assets/Images/Articles/tsinelas.png"),
+		"takyan": preload("res://src/Assets/Images/Articles/takyan.png"),
+		"atis": preload("res://src/Assets/Images/Articles/prutas.png"),
+	}
+	
 	var coin = Sprite2D.new()
-	coin.texture = coin_texture
+	coin.texture = token_textures[Client.opponent_tokens[Client.client_id]]
 
 	var original_size = coin.texture.get_size()
 	var scale_factor = Vector2(100, 100) / original_size
@@ -149,3 +163,4 @@ func mark_card_with_coin(slot: TextureRect) -> void:
 	coin.position = slot_size / 2 - Vector2(0, 0)
 
 	slot.add_child(coin)
+	play_coin_sfx()

@@ -123,6 +123,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ipogb")
 
+[node name="intro" type="AudioStreamPlayer2D" parent="."]
+
+[node name="menu_bgm" type="AudioStreamPlayer2D" parent="."]
+
+[node name="button" type="AudioStreamPlayer2D" parent="."]
+
 [node name="Background" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15

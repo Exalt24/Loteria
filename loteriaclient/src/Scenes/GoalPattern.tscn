@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://brfv51gj0ts6r"]
+[gd_scene load_steps=7 format=3 uid="uid://brfv51gj0ts6r"]
 
 [ext_resource type="Texture2D" uid="uid://bpmdk7cju8drg" path="res://src/Assets/Images/Pattern/PatternBG.png" id="1_36it5"]
+[ext_resource type="Script" path="res://src/Scripts/goal_pattern.gd" id="1_mty6m"]
 [ext_resource type="Texture2D" uid="uid://demakgdxtyunm" path="res://src/Assets/Images/Pattern/Column.png" id="2_b6hb8"]
 [ext_resource type="Script" path="res://src/Scripts/texture_rect_2.gd" id="3_4tyrn"]
 [ext_resource type="FontFile" uid="uid://cek4o8uqi2788" path="res://src/Assets/Fonts/Fredoka-SemiBold.ttf" id="4_l6uet"]
@@ -13,6 +14,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_mty6m")
+
+[node name="countdown" type="AudioStreamPlayer2D" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1

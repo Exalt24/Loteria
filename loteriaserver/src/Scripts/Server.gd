@@ -207,7 +207,7 @@ func handle_in_game(room: Dictionary) -> void:
 	
 	var timer = Timer.new()
 	add_child(timer) 
-	timer.wait_time = 3.0
+	timer.wait_time = 2.0
 	timer.one_shot = false
 	timer.connect("timeout", Callable(self, "_call_next_card").bind(room))
 	timer.start()
@@ -327,7 +327,7 @@ func update_matrix_in_server(room_id: int, matrix: Array) -> void:
 	
 	var matrices: Dictionary = {}
 	for player_id in rooms[room_id].players:
-		matrices[player_id] = rooms[room_id].players[sender_id].matrix
+		matrices[player_id] = rooms[room_id].players[player_id].matrix
 	
 	for player_id in rooms[room_id].players:
 		rpc_id(player_id, "update_opponent_matrices", matrices)

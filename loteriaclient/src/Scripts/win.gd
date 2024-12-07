@@ -1,14 +1,22 @@
 extends Control
 
+@export var winner_sfx = preload("res://src/Assets/Sounds/BGM/[4]winner.wav")
+@export var button_sfx = preload("res://src/Assets/Sounds/BGM/[8]button.wav")
+@onready var winner: AudioStreamPlayer2D = $win
+@onready var button: AudioStreamPlayer2D = $button
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	if winner:
+		winner.stream = winner_sfx
+		winner.play()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func play_button_sfx() -> void:
+	if button:
+		button.stream = button_sfx
+		button.play()
 
 func _on_button_pressed() -> void:
+	play_button_sfx()
 	if get_tree().current_scene:
 		get_tree().current_scene.queue_free()
 	
