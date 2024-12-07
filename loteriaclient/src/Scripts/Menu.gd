@@ -9,15 +9,12 @@ var game_started: bool = false
 @onready var join_dialog_label: Label = $Background/DialogContainer/JoinDialog/VBoxContainer/MarginContainer/LabelContainer/Label
 @onready var create_server_button: Button = $Background/ButtonContainer/CreateServerButton
 @onready var join_server_button: Button = $Background/ButtonContainer/JoinServerButton
-@onready var change_name_button: Button = $Background/ButtonContainer/ChangeNameButton
+@onready var exit_button: Button = $Background/ButtonContainer/ExitButton
 @onready var connect_v_box_container: VBoxContainer = $Background/SelectRoomDialog/MarginContainer/VBoxContainer/ScrollContainer/ConnectVBoxContainer
 @onready var start_button: Button = $Background/DialogContainer/CreateDialog/Start
 @onready var server_dialog: PanelContainer = $Background/ServerDialog
 @onready var server_dialog_text: Label = $Background/ServerDialog/MarginContainer/VBoxContainer/Label
-@onready var change_name_dialog: Panel = $Background/DialogContainer/ChangeNameDialog
-@onready var edit_name: LineEdit = $Background/DialogContainer/ChangeNameDialog/MarginContainer/VBoxContainer/EditName
 @onready var name_label: Label = $Background/MarginContainer/VBoxContainer/NameContainer/NameLabel
-@onready var change_button: Button = $Background/DialogContainer/ChangeNameDialog/MarginContainer/VBoxContainer/HBoxContainer/Change
 @onready var lobby_list_container: VBoxContainer = $Background/SelectRoomDialog/MarginContainer/VBoxContainer/ScrollContainer/ConnectVBoxContainer/LobbyList
 @onready var loading_label: Label = $Background/SelectRoomDialog/MarginContainer/VBoxContainer/ScrollContainer/ConnectVBoxContainer/Label
 @onready var transparent_container: ColorRect = $Background/TransparentContainer
@@ -181,10 +178,10 @@ func remove_all_players() -> void:
 func toggle_buttons() -> void:
 	name_margin_container.visible = !name_margin_container.visible
 	button_container.visible = !button_container.visible
-	var are_buttons_disabled = create_server_button.disabled and join_server_button.disabled and change_name_button.disabled
+	var are_buttons_disabled = create_server_button.disabled and join_server_button.disabled and exit_button.disabled
 	create_server_button.disabled = not are_buttons_disabled
 	join_server_button.disabled = not are_buttons_disabled
-	change_name_button.disabled = not are_buttons_disabled
+	exit_button.disabled = not are_buttons_disabled
 	transparent_container.visible = !transparent_container.visible
 	connect_v_box_container.show()
 	join_dialog_label.text = ""
@@ -209,18 +206,8 @@ func show_server_dialog(message: String) -> void:
 	server_dialog_text.text = message
 	server_dialog.show()
 
-func _on_change_name_button_pressed() -> void:
-	play_button_sfx()
-	Helper.center_panel(change_name_dialog)
-	change_name_dialog.show()
-	toggle_buttons()
-	edit_name.text = Client.my_info.name
-	change_button.disabled = true
-	
-func _on_change_name_dialog_cancel_pressed() -> void:
-	play_button_sfx()
-	change_name_dialog.hide()
-	toggle_buttons()
+func _on_exit_button_pressed() -> void:
+	pass # Replace with function body.
 
 func update_lobby_list(lobby_list: Array) -> void:
 	for child in lobby_list_container.get_children():
@@ -264,7 +251,7 @@ func _join_lobby(room_id: int) -> void:
 func _set_buttons_state(are_buttons_disabled: bool) -> void:
 	create_server_button.disabled = are_buttons_disabled
 	join_server_button.disabled = are_buttons_disabled
-	change_name_button.disabled = are_buttons_disabled
+	exit_button.disabled = are_buttons_disabled
 
 func _on_server_dialog_confirmed() -> void:
 	var should_toggle_visibility = server_dialog_text.text in [

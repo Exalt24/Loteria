@@ -1,17 +1,15 @@
-[gd_scene load_steps=36 format=3 uid="uid://cwjronpbw28pm"]
+[gd_scene load_steps=30 format=3 uid="uid://cwjronpbw28pm"]
 
 [ext_resource type="Script" path="res://src/Scripts/Menu.gd" id="1_ipogb"]
 [ext_resource type="Script" path="res://src/Scripts/JoinDialog.gd" id="2_gq1kq"]
 [ext_resource type="Texture2D" uid="uid://dsa77g201bdyx" path="res://src/Assets/Images/Homepage.png" id="2_xmvt3"]
 [ext_resource type="FontFile" uid="uid://b8wwo1p6o1i0k" path="res://src/Assets/Fonts/Funtasia.otf" id="3_mk2ew"]
-[ext_resource type="Script" path="res://src/Scripts/ChangeNameDialog.gd" id="5_lobh0"]
 [ext_resource type="Texture2D" uid="uid://chhslvnoem72f" path="res://src/Assets/Images/Buttons/start_game_hover.png" id="6_n53nj"]
 [ext_resource type="Theme" uid="uid://d3u5ldgbwfp47" path="res://src/Assets/Theme.tres" id="8_54ai7"]
 [ext_resource type="Texture2D" uid="uid://rjb4w2iaav4e" path="res://src/Assets/Images/Lobby/creating_lobby.png" id="8_rqvor"]
 [ext_resource type="Texture2D" uid="uid://crbwc14cgptuy" path="res://src/Assets/Images/Buttons/create_game_hover.png" id="9_634b1"]
 [ext_resource type="Texture2D" uid="uid://r764n35ljbw0" path="res://src/Assets/Images/Buttons/join_game_hover.png" id="10_jjwp3"]
 [ext_resource type="Texture2D" uid="uid://cuc6f56h1t1ch" path="res://src/Assets/Images/Buttons/change_name_hover.png" id="11_k6p14"]
-[ext_resource type="Texture2D" uid="uid://c2btvmj2hpca6" path="res://src/Assets/Images/Buttons/normal_button_frame.png" id="11_m627b"]
 [ext_resource type="Texture2D" uid="uid://bsr1fqo5kn3o8" path="res://src/Assets/Images/server_dialog.png" id="12_rh53q"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gf7g8"]
@@ -44,26 +42,6 @@ texture = ExtResource("6_n53nj")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8q5iq"]
 texture = SubResource("CompressedTexture2D_bwae2")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_be5mk"]
-content_margin_top = 15.0
-content_margin_bottom = 30.0
-texture = ExtResource("11_k6p14")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_awlgh"]
-content_margin_top = 15.0
-content_margin_bottom = 30.0
-texture = ExtResource("11_m627b")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sgubk"]
-content_margin_top = 15.0
-content_margin_bottom = 30.0
-texture = ExtResource("9_634b1")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1mv2v"]
-content_margin_top = 15.0
-content_margin_bottom = 30.0
-texture = ExtResource("11_m627b")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sg25y"]
 
@@ -348,73 +326,6 @@ theme = ExtResource("8_54ai7")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Waiting for room details..."
 
-[node name="ChangeNameDialog" type="Panel" parent="Background/DialogContainer"]
-visible = false
-layout_mode = 2
-script = ExtResource("5_lobh0")
-
-[node name="MarginContainer" type="MarginContainer" parent="Background/DialogContainer/ChangeNameDialog"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.497
-anchor_top = 0.478
-anchor_right = 0.497
-anchor_bottom = 0.478
-offset_left = -393.624
-offset_top = -202.194
-offset_right = 398.376
-offset_bottom = 220.806
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 6
-theme_override_constants/margin_top = 6
-theme_override_constants/margin_right = 6
-theme_override_constants/margin_bottom = 6
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/DialogContainer/ChangeNameDialog/MarginContainer"]
-layout_mode = 2
-
-[node name="EditName" type="LineEdit" parent="Background/DialogContainer/ChangeNameDialog/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 6
-theme = ExtResource("8_54ai7")
-theme_override_font_sizes/font_size = 64
-alignment = 1
-max_length = 12
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Background/DialogContainer/ChangeNameDialog/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 6
-theme = ExtResource("8_54ai7")
-
-[node name="Spacer" type="Control" parent="Background/DialogContainer/ChangeNameDialog/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Change" type="Button" parent="Background/DialogContainer/ChangeNameDialog/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
-theme = ExtResource("8_54ai7")
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_styles/hover = SubResource("StyleBoxTexture_be5mk")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_awlgh")
-text = "Change"
-
-[node name="Cancel" type="Button" parent="Background/DialogContainer/ChangeNameDialog/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_styles/hover = SubResource("StyleBoxTexture_sgubk")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_1mv2v")
-text = "Cancel
-"
-
-[node name="Spacer2" type="Control" parent="Background/DialogContainer/ChangeNameDialog/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
 [node name="SelectRoomDialog" type="Panel" parent="Background"]
 visible = false
 layout_mode = 2
@@ -541,14 +452,14 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_iugrh")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_g4iui")
 text = "Join Game"
 
-[node name="ChangeNameButton" type="Button" parent="Background/ButtonContainer"]
+[node name="ExitButton" type="Button" parent="Background/ButtonContainer"]
 layout_mode = 2
 theme = ExtResource("8_54ai7")
 theme_override_colors/font_focus_color = Color(1, 0.764706, 0.0117647, 1)
 theme_override_colors/font_color = Color(1, 0.764706, 0.0117647, 1)
 theme_override_styles/hover = SubResource("StyleBoxTexture_sxx4u")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_kvqfk")
-text = "Change Name
+text = "Exit Game
 "
 
 [node name="ServerDialog" type="PanelContainer" parent="Background"]
@@ -599,11 +510,8 @@ text = "Okay"
 [connection signal="pressed" from="Background/DialogContainer/CreateDialog/Back" to="." method="_on_create_dialog_back_pressed"]
 [connection signal="pressed" from="Background/DialogContainer/CreateDialog/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Background/DialogContainer/JoinDialog/Back" to="." method="_on_join_dialog_back_pressed"]
-[connection signal="text_changed" from="Background/DialogContainer/ChangeNameDialog/MarginContainer/VBoxContainer/EditName" to="Background/DialogContainer/ChangeNameDialog" method="_on_edit_name_text_changed"]
-[connection signal="pressed" from="Background/DialogContainer/ChangeNameDialog/MarginContainer/VBoxContainer/HBoxContainer/Change" to="Background/DialogContainer/ChangeNameDialog" method="_on_change_pressed"]
-[connection signal="pressed" from="Background/DialogContainer/ChangeNameDialog/MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_change_name_dialog_cancel_pressed"]
 [connection signal="pressed" from="Background/SelectRoomDialog/Back" to="." method="_on_select_room_dialog_back_pressed"]
 [connection signal="pressed" from="Background/ButtonContainer/CreateServerButton" to="." method="_on_create_server_button_pressed"]
 [connection signal="pressed" from="Background/ButtonContainer/JoinServerButton" to="." method="_on_join_server_button_pressed"]
-[connection signal="pressed" from="Background/ButtonContainer/ChangeNameButton" to="." method="_on_change_name_button_pressed"]
+[connection signal="pressed" from="Background/ButtonContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="Background/ServerDialog/MarginContainer/VBoxContainer/MarginContainer/Button" to="." method="_on_server_dialog_confirmed"]
