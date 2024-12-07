@@ -136,8 +136,18 @@ func update_matrix(card_index: int) -> void:
 	Client.check_for_pattern_match(matrix_presentation)
 
 func mark_card_with_coin(slot: TextureRect) -> void:
+<<<<<<< Updated upstream
+=======
+	var token_textures: Dictionary = {
+		"marble": preload("res://src/Assets/Images/Articles/bola.png"),
+		"can": preload("res://src/Assets/Images/Articles/lata.png"),
+		"slippers": preload("res://src/Assets/Images/Articles/tsinelas.png"),
+		"takyan": preload("res://src/Assets/Images/Articles/takyan.png"),
+		"atis": preload("res://src/Assets/Images/Articles/prutas.png"),
+	}
+>>>>>>> Stashed changes
 	var coin = Sprite2D.new()
-	coin.texture = coin_texture
+	coin.texture = token_textures[Client.opponent_tokens[Client.client_id]]
 
 	var original_size = coin.texture.get_size()
 	var scale_factor = Vector2(100, 100) / original_size
