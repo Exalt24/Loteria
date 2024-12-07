@@ -1,78 +1,17 @@
-[gd_scene load_steps=16 format=3 uid="uid://l1k12yd1kair"]
+[gd_scene load_steps=12 format=3 uid="uid://bq33uahpl080y"]
 
-[ext_resource type="Script" path="res://src/Scripts/lose.gd" id="1_hevto"]
+[ext_resource type="Script" path="res://src/Scripts/no_winner.gd" id="1_aig31"]
 [ext_resource type="Texture2D" uid="uid://cqufvs1ce1gi" path="res://src/Assets/Images/ResultsBG.png" id="1_jfo8d"]
-[ext_resource type="Script" path="res://src/Scenes/banner_animation.gd" id="3_6by5s"]
 [ext_resource type="Texture2D" uid="uid://cxxenrysmhgkg" path="res://src/Assets/Images/Banners.png" id="3_jta46"]
 [ext_resource type="FontFile" uid="uid://cek4o8uqi2788" path="res://src/Assets/Fonts/Fredoka-SemiBold.ttf" id="4_3yivn"]
-[ext_resource type="Texture2D" uid="uid://b7aar5qljib08" path="res://src/Assets/Images/LoseBanner.png" id="4_5b7fl"]
-[ext_resource type="PackedScene" uid="uid://xp00qhiwp6m3" path="res://src/Scenes/WinnerPattern.tscn" id="6_2ek4v"]
+[ext_resource type="Texture2D" uid="uid://cvr27jf6f0wa3" path="res://src/Assets/Images/NoWinnerBanner.png" id="5_n83ca"]
+[ext_resource type="PackedScene" uid="uid://xp00qhiwp6m3" path="res://src/Scenes/WinnerPattern.tscn" id="6_dw4eg"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a46uk"]
 texture = ExtResource("1_jfo8d")
 
-[sub_resource type="Animation" id="Animation_jdv6y"]
-resource_name = "banner_animation"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Banner 1:offset_left")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, -575]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Banner 2:offset_right")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 575]
-}
-
-[sub_resource type="Animation" id="Animation_3mqcn"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Banner 1:offset_left")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [66.696]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Banner 2:offset_right")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [-72.304]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_v2rm8"]
-_data = {
-"RESET": SubResource("Animation_3mqcn"),
-"banner_animation": SubResource("Animation_jdv6y")
-}
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4a2bw"]
-bg_color = Color(0, 0, 0, 1)
+bg_color = Color(0, 0.133333, 0.423529, 1)
 border_width_left = 15
 border_width_top = 15
 border_width_right = 15
@@ -117,9 +56,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_hevto")
+script = ExtResource("1_aig31")
 
-[node name="WinResult" type="Panel" parent="."]
+[node name="NoWinResult" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -128,68 +67,61 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_a46uk")
 
-[node name="Banner_Animation" type="AnimationPlayer" parent="WinResult"]
-libraries = {
-"": SubResource("AnimationLibrary_v2rm8")
-}
-speed_scale = 0.75
-script = ExtResource("3_6by5s")
-
-[node name="Banner 1" type="TextureRect" parent="WinResult"]
+[node name="Banner 1" type="TextureRect" parent="NoWinResult"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.502
-anchor_top = 0.503
+anchor_top = 0.5
 anchor_right = 0.502
-anchor_bottom = 0.503
-offset_left = 66.696
-offset_top = -320.944
-offset_right = -40.6079
-offset_bottom = 64.056
+anchor_bottom = 0.5
+offset_left = 40.696
+offset_top = -292.0
+offset_right = 571.696
+offset_bottom = 93.0
 texture = ExtResource("3_jta46")
 expand_mode = 1
 
-[node name="Banner 2" type="TextureRect" parent="WinResult"]
+[node name="Banner 2" type="TextureRect" parent="NoWinResult"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.502
 anchor_top = 0.503
 anchor_right = 0.502
 anchor_bottom = 0.503
-offset_left = 31.696
-offset_top = -316.944
-offset_right = -72.304
-offset_bottom = 68.056
+offset_left = -578.304
+offset_top = -287.944
+offset_right = -46.304
+offset_bottom = 97.056
 texture = ExtResource("3_jta46")
 expand_mode = 1
 flip_h = true
 
-[node name="WinDialog" type="Panel" parent="WinResult"]
+[node name="NoWinnerDialog" type="Panel" parent="NoWinResult"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = -1
+anchor_left = 0.499
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 0.499
 anchor_bottom = 0.5
-offset_left = -201.0
+offset_left = -199.848
 offset_top = -270.0
-offset_right = 201.0
+offset_right = 202.152
 offset_bottom = 270.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4a2bw")
 
-[node name="Button" type="Button" parent="WinResult/WinDialog"]
+[node name="Button" type="Button" parent="NoWinResult/NoWinnerDialog"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.491
-anchor_top = 0.831
+anchor_top = 0.752
 anchor_right = 0.491
-anchor_bottom = 0.831
+anchor_bottom = 0.752
 offset_left = -146.382
-offset_top = -42.74
+offset_top = -0.0800171
 offset_right = 146.618
-offset_bottom = 43.26
+offset_bottom = 85.92
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
@@ -203,30 +135,30 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_o3ws5")
 theme_override_styles/normal = SubResource("StyleBoxFlat_lkau4")
 text = "Play Again"
 
-[node name="LoseBanner" type="Sprite2D" parent="WinResult/WinDialog"]
-position = Vector2(194, 88)
-scale = Vector2(0.697151, 0.810997)
-texture = ExtResource("4_5b7fl")
+[node name="Sprite2D" type="Sprite2D" parent="NoWinResult/NoWinnerDialog"]
+position = Vector2(193, 89)
+scale = Vector2(0.607642, 0.629915)
+texture = ExtResource("5_n83ca")
 
-[node name="LoserPattern" type="Panel" parent="WinResult/WinDialog"]
+[node name="PlayerPattern" type="Panel" parent="NoWinResult/NoWinnerDialog"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.505
+anchor_left = 0.498
 anchor_top = 0.3
-anchor_right = 0.505
+anchor_right = 0.498
 anchor_bottom = 0.3
-offset_left = -71.01
-offset_right = 66.99
+offset_left = -68.196
+offset_right = 69.804
 offset_bottom = 216.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_6ya4o")
 
-[node name="WinnerPattern" parent="WinResult/WinDialog/LoserPattern" instance=ExtResource("6_2ek4v")]
+[node name="WinnerPattern" parent="NoWinResult/NoWinnerDialog/PlayerPattern" instance=ExtResource("6_dw4eg")]
 offset_left = 67.0
 offset_top = 5.0
 offset_right = 67.0
 offset_bottom = 582.0
 scale = Vector2(0.403381, 0.354185)
 
-[connection signal="pressed" from="WinResult/WinDialog/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="NoWinResult/NoWinnerDialog/Button" to="." method="_on_button_pressed"]

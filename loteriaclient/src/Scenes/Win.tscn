@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://pb4m5vs78505" path="res://src/Assets/Images/Articles/tsinelas.png" id="8_31pfk"]
 [ext_resource type="Texture2D" uid="uid://cm5y2vpx28pvg" path="res://src/Assets/Images/Articles/takyan.png" id="9_o4ips"]
 [ext_resource type="Texture2D" uid="uid://c0cc82ksv2cbm" path="res://src/Assets/Images/Articles/bola.png" id="10_k1gw3"]
+[ext_resource type="PackedScene" uid="uid://xp00qhiwp6m3" path="res://src/Scenes/WinnerPattern.tscn" id="11_soofi"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a46uk"]
 texture = ExtResource("1_jfo8d")
@@ -369,9 +370,6 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cl4iy"]
-bg_color = Color(1, 1, 1, 1)
-
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -545,122 +543,12 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_6ya4o")
 
-[node name="NinePatchRect" type="NinePatchRect" parent="WinResult/WinDialog/WinnerPattern"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.507
-anchor_right = 0.507
-offset_left = -69.966
-offset_right = 68.034
-offset_bottom = 216.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="GridContainer" type="GridContainer" parent="WinResult/WinDialog/WinnerPattern/NinePatchRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/h_separation = 3
-theme_override_constants/v_separation = 3
-columns = 4
-
-[node name="Panel" type="Panel" parent="WinResult/WinDialog/WinnerPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
-
-[node name="Panel2" type="Panel" parent="WinResult/WinDialog/WinnerPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
-
-[node name="Panel3" type="Panel" parent="WinResult/WinDialog/WinnerPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
-
-[node name="Panel4" type="Panel" parent="WinResult/WinDialog/WinnerPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
-
-[node name="Panel5" type="Panel" parent="WinResult/WinDialog/WinnerPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
-
-[node name="Panel6" type="Panel" parent="WinResult/WinDialog/WinnerPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
-
-[node name="Panel7" type="Panel" parent="WinResult/WinDialog/WinnerPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
-
-[node name="Panel8" type="Panel" parent="WinResult/WinDialog/WinnerPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
-
-[node name="Panel9" type="Panel" parent="WinResult/WinDialog/WinnerPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
-
-[node name="Panel10" type="Panel" parent="WinResult/WinDialog/WinnerPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
-
-[node name="Panel11" type="Panel" parent="WinResult/WinDialog/WinnerPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
-
-[node name="Panel12" type="Panel" parent="WinResult/WinDialog/WinnerPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
-
-[node name="Panel13" type="Panel" parent="WinResult/WinDialog/WinnerPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
-
-[node name="Panel14" type="Panel" parent="WinResult/WinDialog/WinnerPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
-
-[node name="Panel15" type="Panel" parent="WinResult/WinDialog/WinnerPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
-
-[node name="Panel16" type="Panel" parent="WinResult/WinDialog/WinnerPattern/NinePatchRect/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cl4iy")
+[node name="WinnerPattern" parent="WinResult/WinDialog/WinnerPattern" instance=ExtResource("11_soofi")]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 5.0
+offset_right = 67.0
+offset_bottom = 582.0
+scale = Vector2(0.403381, 0.354185)
 
 [connection signal="pressed" from="WinResult/WinDialog/Button" to="." method="_on_button_pressed"]

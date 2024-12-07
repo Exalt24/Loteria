@@ -70,6 +70,7 @@ var is_fetching: bool = false
 
 var room: int
 var win_condition: int
+var the_winner_id: int = -1
 var opponent_tokens: Dictionary = {}
 var opponent_matrices: Dictionary = {}
 var win_patterns: Array = [
@@ -546,6 +547,7 @@ func reset_timer_from_server() -> void:
 @rpc("any_peer")
 func declare_winner(winner_id: int) -> void:
 	var my_id: int = self.multiplayer.get_unique_id()
+	the_winner_id = winner_id
 	
 	fin_stop()
 	
