@@ -642,7 +642,7 @@ func declare_winner(winner_id: int) -> void:
 	the_winner_id = winner_id
 	
 	if is_creator:
-		await get_tree().create_timer(1.0).timeout
+		await get_tree().create_timer(0.5).timeout
 		fin_stop()
 	else:
 		fin_stop()
