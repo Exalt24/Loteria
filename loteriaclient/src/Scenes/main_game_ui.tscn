@@ -155,14 +155,14 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_joswo")
 
 [node name="call" parent="Panel" instance=ExtResource("4_5if6f")]
 layout_mode = 1
-anchor_left = 0.766
-anchor_top = 0.519
-anchor_right = 0.766
-anchor_bottom = 0.519
-offset_left = -100.432
-offset_top = -160.312
-offset_right = 101.568
-offset_bottom = 151.688
+anchor_left = 0.751
+anchor_top = 0.497
+anchor_right = 0.751
+anchor_bottom = 0.497
+offset_left = -101.397
+offset_top = -156.056
+offset_right = 100.603
+offset_bottom = 155.944
 grow_horizontal = 1
 grow_vertical = 1
 theme_override_styles/panel = SubResource("StyleBoxTexture_pshw8")
@@ -170,28 +170,30 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_pshw8")
 [node name="CallerDisplay" type="TextureRect" parent="Panel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.766
-anchor_top = 0.514
-anchor_right = 0.766
-anchor_bottom = 0.514
-offset_left = -100.602
-offset_top = -156.072
-offset_right = 101.398
-offset_bottom = 155.928
+anchor_left = 0.751
+anchor_top = 0.5
+anchor_right = 0.751
+anchor_bottom = 0.5
+offset_left = -101.397
+offset_top = -157.0
+offset_right = 100.603
+offset_bottom = 155.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("5_te678")
 expand_mode = 1
 
 [node name="opponent" type="Panel" parent="Panel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.148
-anchor_top = 0.712
-anchor_right = 0.148
-anchor_bottom = 0.712
-offset_left = -82.756
-offset_top = -125.376
-offset_right = 83.244
-offset_bottom = 125.624
+anchor_left = 0.119
+anchor_top = 0.519
+anchor_right = 0.119
+anchor_bottom = 0.519
+offset_left = -82.493
+offset_top = -0.312042
+offset_right = 83.507
+offset_bottom = 250.688
 theme_override_styles/panel = SubResource("StyleBoxTexture_28j5r")
 
 [node name="TextureRect" parent="Panel/opponent" instance=ExtResource("10_c5mwl")]
@@ -725,27 +727,27 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_scqm6")
 [node name="pattern" type="Panel" parent="Panel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.148
-anchor_top = 0.287
-anchor_right = 0.148
-anchor_bottom = 0.287
-offset_left = -82.756
-offset_top = -125.976
-offset_right = 82.244
-offset_bottom = 126.024
+anchor_left = 0.119
+anchor_top = 0.469
+anchor_right = 0.119
+anchor_bottom = 0.469
+offset_left = -101.493
+offset_top = -243.912
+offset_right = 101.507
+offset_bottom = 8.08798
 theme_override_styles/panel = SubResource("StyleBoxTexture_awc2i")
 
 [node name="coin" parent="Panel" instance=ExtResource("6_gf2mf")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.476
-anchor_top = 0.519
-anchor_right = 0.476
-anchor_bottom = 0.519
-offset_left = 402.028
-offset_top = -316.312
-offset_right = 479.028
-offset_bottom = -243.312
+anchor_left = 0.751
+anchor_top = 0.5
+anchor_right = 0.751
+anchor_bottom = 0.5
+offset_left = 55.603
+offset_top = -293.0
+offset_right = 132.603
+offset_bottom = -220.0
 
 [node name="coin1" parent="Panel/coin" instance=ExtResource("6_gf2mf")]
 layout_mode = 1
@@ -754,10 +756,10 @@ anchor_left = -5.255
 anchor_top = 4.182
 anchor_right = -5.255
 anchor_bottom = 4.182
-offset_left = 296.635
-offset_top = -299.286
-offset_right = 373.635
-offset_bottom = -226.286
+offset_left = 348.635
+offset_top = -248.286
+offset_right = 416.635
+offset_bottom = -184.286
 scale = Vector2(0.998285, 1)
 
 [node name="coin2" parent="Panel/coin" instance=ExtResource("6_gf2mf")]
@@ -767,10 +769,10 @@ anchor_left = -5.223
 anchor_top = 4.182
 anchor_right = -5.223
 anchor_bottom = 4.182
-offset_left = 196.171
-offset_top = -313.286
-offset_right = 273.171
-offset_bottom = -240.286
+offset_left = 348.635
+offset_top = -248.286
+offset_right = 416.635
+offset_bottom = -184.286
 
 [node name="coin3" parent="Panel/coin" instance=ExtResource("6_gf2mf")]
 layout_mode = 1
@@ -779,10 +781,10 @@ anchor_left = -5.223
 anchor_top = 4.182
 anchor_right = -5.223
 anchor_bottom = 4.182
-offset_left = 394.171
-offset_top = 246.714
-offset_right = 471.171
-offset_bottom = 319.714
+offset_left = 399.171
+offset_top = 204.714
+offset_right = 467.171
+offset_bottom = 268.714
 
 [node name="coin4" parent="Panel/coin" instance=ExtResource("6_gf2mf")]
 layout_mode = 1
@@ -791,10 +793,10 @@ anchor_left = -5.223
 anchor_top = 4.149
 anchor_right = -5.223
 anchor_bottom = 4.149
-offset_left = 214.171
-offset_top = -240.877
-offset_right = 291.171
-offset_bottom = -167.877
+offset_left = 267.171
+offset_top = -308.877
+offset_right = 361.171
+offset_bottom = -219.877
 
 [node name="coin5" parent="Panel/coin" instance=ExtResource("6_gf2mf")]
 layout_mode = 1
@@ -803,10 +805,10 @@ anchor_left = -5.223
 anchor_top = 4.182
 anchor_right = -5.223
 anchor_bottom = 4.182
-offset_left = 206.171
-offset_top = 232.714
-offset_right = 283.171
-offset_bottom = 305.714
+offset_left = 207.171
+offset_top = 206.714
+offset_right = 284.171
+offset_bottom = 279.714
 
 [node name="coin6" parent="Panel/coin" instance=ExtResource("6_gf2mf")]
 layout_mode = 1
@@ -815,22 +817,22 @@ anchor_left = -5.255
 anchor_top = 4.182
 anchor_right = -5.255
 anchor_bottom = 4.182
-offset_left = 314.635
-offset_top = 218.714
-offset_right = 391.635
-offset_bottom = 291.714
+offset_left = 295.635
+offset_top = 205.714
+offset_right = 397.635
+offset_bottom = 302.714
 
 [node name="Panel" type="Panel" parent="Panel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.763
+anchor_left = 0.75
 anchor_top = 0.519
-anchor_right = 0.763
+anchor_right = 0.75
 anchor_bottom = 0.519
-offset_left = -95.161
-offset_top = 169.688
-offset_right = 95.839
-offset_bottom = 189.688
+offset_left = -95.2501
+offset_top = 162.688
+offset_right = 95.7499
+offset_bottom = 182.688
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_bpp0m")
@@ -849,14 +851,14 @@ autostart = true
 [node name="NinePatchRect" parent="Panel" instance=ExtResource("11_8jiv7")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.474
-anchor_top = 0.502
-anchor_right = 0.474
-anchor_bottom = 0.502
-offset_left = 0.321899
-offset_top = -293.296
-offset_right = 0.321899
-offset_bottom = 283.704
+anchor_left = 0.416
+anchor_top = 0.501
+anchor_right = 0.416
+anchor_bottom = 0.501
+offset_left = 0.847992
+offset_top = -0.648041
+offset_right = 0.847992
+offset_bottom = -0.648041
 
 [node name="ServerLabel" type="Label" parent="Panel"]
 layout_mode = 1

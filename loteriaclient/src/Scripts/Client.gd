@@ -640,7 +640,12 @@ func reset_timer_from_server() -> void:
 func declare_winner(winner_id: int) -> void:
 	var my_id: int = self.multiplayer.get_unique_id()
 	the_winner_id = winner_id
-	fin_stop()
+	
+	if is_creator:
+		await get_tree().create_timer(1.0).timeout
+		fin_stop()
+	else:
+		fin_stop()
 	
 	if get_tree().current_scene:
 		get_tree().current_scene.queue_free()
