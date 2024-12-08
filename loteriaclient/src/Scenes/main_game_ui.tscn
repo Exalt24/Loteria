@@ -855,10 +855,10 @@ anchor_left = 0.416
 anchor_top = 0.501
 anchor_right = 0.416
 anchor_bottom = 0.501
-offset_left = 0.847992
-offset_top = -0.648041
-offset_right = 0.847992
-offset_bottom = -0.648041
+offset_left = 32.848
+offset_top = -0.64798
+offset_right = 32.848
+offset_bottom = -0.64798
 
 [node name="ServerLabel" type="Label" parent="Panel"]
 layout_mode = 1
@@ -867,10 +867,10 @@ anchor_left = 0.23
 anchor_top = 0.04
 anchor_right = 0.23
 anchor_bottom = 0.04
-offset_left = -19.81
-offset_top = 0.079998
-offset_right = 20.19
-offset_bottom = 23.08
+offset_left = -4.81
+offset_top = 5.08
+offset_right = 35.19
+offset_bottom = 28.08
 grow_horizontal = 0
 theme = ExtResource("18_ghu2r")
 
