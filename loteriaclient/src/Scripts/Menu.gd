@@ -22,6 +22,8 @@ var game_started: bool = false
 @onready var waiting_host_label: Label = $Background/WaitingHostLabel
 @onready var select_room_dialog: Panel = $Background/SelectRoomDialog
 @onready var name_margin_container: MarginContainer = $Background/MarginContainer
+@onready var server_label: Label = $Background/ServerLabel
+
 const THEME = preload("res://src/Assets/Theme.tres")
 
 @export var intro_sfx = preload("res://src/Assets/Sounds/BGM/[1]intro.wav")
@@ -107,6 +109,7 @@ func _on_create_dialog_back_pressed() -> void:
 
 func _on_join_server_button_pressed() -> void:
 	play_button_sfx()
+	lobby_list_container.hide()
 	server_dialog.hide()
 	Client.is_fetching = true
 	Client.connect_to_server()
@@ -210,6 +213,7 @@ func _on_exit_button_pressed() -> void:
 	get_tree().quit()
 
 func update_lobby_list(lobby_list: Array) -> void:
+	loading_label.text = "Loading games..."
 	for child in lobby_list_container.get_children():
 		child.queue_free()
 	
@@ -243,6 +247,7 @@ func update_lobby_list(lobby_list: Array) -> void:
 		
 		if lobby_list_container.get_child_count() > 0:
 			loading_label.hide()
+			lobby_list_container.show()
 		
 func _join_lobby(room_id: int) -> void:
 	Client.is_fetching = false

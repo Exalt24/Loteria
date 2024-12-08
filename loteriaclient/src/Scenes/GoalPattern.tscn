@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://brfv51gj0ts6r"]
+[gd_scene load_steps=8 format=3 uid="uid://brfv51gj0ts6r"]
 
 [ext_resource type="Texture2D" uid="uid://bpmdk7cju8drg" path="res://src/Assets/Images/Pattern/PatternBG.png" id="1_36it5"]
 [ext_resource type="Script" path="res://src/Scripts/goal_pattern.gd" id="1_mty6m"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://src/Scripts/texture_rect_2.gd" id="3_4tyrn"]
 [ext_resource type="FontFile" uid="uid://cek4o8uqi2788" path="res://src/Assets/Fonts/Fredoka-SemiBold.ttf" id="4_l6uet"]
 [ext_resource type="Script" path="res://src/Scripts/Countdown.gd" id="5_c28rh"]
+[ext_resource type="Theme" uid="uid://d3u5ldgbwfp47" path="res://src/Assets/Theme.tres" id="7_npyqt"]
 
 [node name="GoalPattern" type="Control"]
 layout_mode = 3
@@ -61,3 +62,17 @@ text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("5_c28rh")
+
+[node name="ServerLabel" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.951
+anchor_top = 0.05
+anchor_right = 0.951
+anchor_bottom = 0.05
+offset_left = -19.454
+offset_top = -0.299999
+offset_right = 20.546
+offset_bottom = 22.7
+grow_horizontal = 0
+theme = ExtResource("7_npyqt")

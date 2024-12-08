@@ -1,6 +1,7 @@
 extends Node
 
 const SERVER_PORT: int = 33070
+const BROADCAST_PORT: int = 33071
 const MAX_PLAYERS = 5
 const ERROR_NONEXISTENT_ROOM: String = "Room does not exist."
 const ERROR_GAME_ALREADY_STARTED: String = "Game has already started."
@@ -16,13 +17,22 @@ enum GameState { WAITING, STARTED }
 func _ready() -> void:
 	
 	var peer: ENetMultiplayerPeer = ENetMultiplayerPeer.new()
-	if peer.create_server(SERVER_PORT):  
+	if peer.create_server(SERVER_PORT):
 		printerr("Error creating the server")
 		get_tree().quit()
 		return
-	
-	peer.set_bind_ip("*")
+
 	self.multiplayer.multiplayer_peer = peer
+	var udp_network = PacketPeerUDP.new()
+	udp_network.set_broadcast_enabled(true)
+	udp_network.set_dest_address("255.255.255.255", BROADCAST_PORT)
+
+	var broadcast_timer = Timer.new()  # Create Timer node
+	add_child(broadcast_timer)  # Add to the current scene
+	broadcast_timer.wait_time = 2.0  # Broadcast every 2 seconds
+	broadcast_timer.one_shot = false  # Repeat indefinitely
+	broadcast_timer.connect("timeout", Callable(self, "_on_broadcast_timer_timeout").bind(udp_network))
+	broadcast_timer.start()  # Start the timer
 
 	if self.multiplayer.connect("peer_connected", Callable(self, "_player_connected"), CONNECT_DEFERRED):
 		printerr("Error connecting 'peer_connected' signal")
@@ -33,6 +43,21 @@ func _ready() -> void:
 		get_tree().quit()
 		
 	print("Server started and listening on port %d" % SERVER_PORT)
+
+# Step 5: Function to broadcast game information
+func _on_broadcast_timer_timeout(udp_network: PacketPeerUDP) -> void:
+	var server_ip = get_local_ip()
+	var byte_array = server_ip.to_ascii_buffer()  # Convert the info to PackedByteArray
+
+	udp_network.put_packet(byte_array)  # Send the broadcast message to the network
+	print("Broadcasting server IP: ", server_ip)
+
+func get_local_ip() -> String:
+	var addresses = []
+	for ip in IP.get_local_addresses():
+		if ip.begins_with("10.") or ip.begins_with("172.16.") or ip.begins_with("192.168."):
+			addresses.push_back(ip)
+	return addresses[0]  # Return the first valid local IP
 
 @rpc("any_peer")
 func create_room(info: Dictionary) -> void:

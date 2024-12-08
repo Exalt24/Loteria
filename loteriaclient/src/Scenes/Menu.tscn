@@ -507,6 +507,22 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_rf8oq")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_4ohep")
 text = "Okay"
 
+[node name="ServerLabel" type="Label" parent="Background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.994
+anchor_top = 0.008
+anchor_right = 0.994
+anchor_bottom = 0.008
+offset_left = -0.884399
+offset_top = -0.184
+offset_right = 0.115601
+offset_bottom = 19.816
+grow_horizontal = 0
+theme = ExtResource("8_54ai7")
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [connection signal="pressed" from="Background/DialogContainer/CreateDialog/Back" to="." method="_on_create_dialog_back_pressed"]
 [connection signal="pressed" from="Background/DialogContainer/CreateDialog/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Background/DialogContainer/JoinDialog/Back" to="." method="_on_join_dialog_back_pressed"]

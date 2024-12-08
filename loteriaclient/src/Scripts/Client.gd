@@ -1,7 +1,8 @@
 extends Node
 
-const SERVER_ADDRESS: String = "192.168.43.30"
+var SERVER_ADDRESS: String = ""
 const SERVER_PORT: int = 33070
+
 
 @export var loterya_cards: Array = [
 	preload("res://src/Assets/Images/Loterya Cards/Agila.png"),
@@ -245,25 +246,72 @@ func create_room(info: Dictionary) -> void:
 func connect_to_server(room_id: int = 0) -> void:
 	room = room_id
 	
-	var peer: ENetMultiplayerPeer = ENetMultiplayerPeer.new()
-	if peer.create_client(SERVER_ADDRESS, SERVER_PORT) != OK:
-		printerr("Error creating the client")
-		return
-	self.multiplayer.multiplayer_peer = peer
-	
-	if self.multiplayer.is_connected("connected_to_server", Callable(self, "_connected_ok")):
-		self.multiplayer.disconnect("connected_to_server", Callable(self, "_connected_ok"))
-	if self.multiplayer.is_connected("connection_failed", Callable(self, "_connected_fail")):
-		self.multiplayer.disconnect("connection_failed", Callable(self, "_connected_fail"))
-	if self.multiplayer.is_connected("server_disconnected", Callable(self, "_server_disconnected")):
-		self.multiplayer.disconnect("server_disconnected", Callable(self, "_server_disconnected"))
+	 # Start listening for the broadcast packet (we will block the code until we get the IP)
+	print("Waiting for server IP to be discovered...")
 
-	self.multiplayer.connect("connected_to_server", Callable(self, "_connected_ok"), CONNECT_DEFERRED)
-	self.multiplayer.connect("connection_failed", Callable(self, "_connected_fail"), CONNECT_DEFERRED)
-	self.multiplayer.connect("server_disconnected", Callable(self, "_server_disconnected"), CONNECT_DEFERRED)
+	# Initialize the UDP network for receiving the broadcast message
+	var peer: ENetMultiplayerPeer = ENetMultiplayerPeer.new()
+	var udp_network = PacketPeerUDP.new()
+
+	# Wait until the server IP is discovered
+	await wait_for_server_ip(udp_network)
 	
+	if SERVER_ADDRESS != "":
+		print("Connecting to server at: ", SERVER_ADDRESS)
+		if peer.create_client(SERVER_ADDRESS, SERVER_PORT) != OK:
+			printerr("Error creating the client")
+			return
+		self.multiplayer.multiplayer_peer = peer
+	
+		if self.multiplayer.is_connected("connected_to_server", Callable(self, "_connected_ok")):
+			self.multiplayer.disconnect("connected_to_server", Callable(self, "_connected_ok"))
+		if self.multiplayer.is_connected("connection_failed", Callable(self, "_connected_fail")):
+			self.multiplayer.disconnect("connection_failed", Callable(self, "_connected_fail"))
+		if self.multiplayer.is_connected("server_disconnected", Callable(self, "_server_disconnected")):
+			self.multiplayer.disconnect("server_disconnected", Callable(self, "_server_disconnected"))
+
+		self.multiplayer.connect("connected_to_server", Callable(self, "_connected_ok"), CONNECT_DEFERRED)
+		self.multiplayer.connect("connection_failed", Callable(self, "_connected_fail"), CONNECT_DEFERRED)
+		self.multiplayer.connect("server_disconnected", Callable(self, "_server_disconnected"), CONNECT_DEFERRED)
+
+func wait_for_server_ip(udp_network: PacketPeerUDP) -> void:
+	var base_port = 33071  # Starting port number for binding
+	var max_retries = 20  # Limit the number of retries (e.g., 20 ports)
+	var bind_result = ERR_BUSY  # Initialize with a value that ensures we try binding
+
+	print("Listening for server broadcasts...")
+
+	# Try binding to ports sequentially until one succeeds
+	for port_offset in range(max_retries):
+		var current_port = base_port + port_offset  # Increment the port number by 1 each time
+		
+		bind_result = udp_network.bind(current_port)
+		
+		if bind_result == OK:
+			print("Bound to port %d successfully." % current_port)
+			break  # Exit the loop when a successful bind occurs
+		else:
+			print("Failed to bind UDP socket to port %d" % current_port)
+		
+		# If we tried all ports and failed, print an error and exit
+		if port_offset == max_retries - 1:
+			printerr("Error: Unable to bind to any UDP port after %d retries." % max_retries)
+			return  # Exit the function if all retries failed
+
+	udp_network.set_broadcast_enabled(true)  # Enable broadcasting
+
+	# Wait until the IP address is discovered
+	while SERVER_ADDRESS == "":
+		if udp_network.get_available_packet_count() > 0:
+			var packet = udp_network.get_packet()  # Get the incoming packet
+			SERVER_ADDRESS = udp_network.get_packet_ip()  # Extract the IP from the packet
+			print("Found server at: %s" % SERVER_ADDRESS)
+			break  # Exit the loop once the IP is found
+		
+		await get_tree().create_timer(0.0).timeout  # Wait for the next frame
+
 func stop() -> void:
-	
+	SERVER_ADDRESS = ""
 	if self.multiplayer.is_connected("connected_to_server", Callable(self, "_connected_ok")):
 		self.multiplayer.disconnect("connected_to_server", Callable(self, "_connected_ok"))
 	if self.multiplayer.is_connected("connection_failed", Callable(self, "_connected_fail")):
@@ -284,7 +332,7 @@ func stop() -> void:
 		get_tree().current_scene.create_dialog_label.text = "Creating room..."
 
 func stops() -> void:
-	
+	SERVER_ADDRESS = ""
 	if self.multiplayer.is_connected("connected_to_server", Callable(self, "_connected_ok")):
 		self.multiplayer.disconnect("connected_to_server", Callable(self, "_connected_ok"))
 	if self.multiplayer.is_connected("connection_failed", Callable(self, "_connected_fail")):
@@ -300,7 +348,7 @@ func stops() -> void:
 		get_tree().current_scene.create_dialog_label.text = "Creating room..."
 		
 func fin_stop() -> void:
-	
+	SERVER_ADDRESS = ""
 	if self.multiplayer.is_connected("connected_to_server", Callable(self, "_connected_ok")):
 		self.multiplayer.disconnect("connected_to_server", Callable(self, "_connected_ok"))
 	if self.multiplayer.is_connected("connection_failed", Callable(self, "_connected_fail")):
@@ -328,13 +376,21 @@ func register_player(id: int, info: Dictionary) -> void:
 func remove_player(id: int) -> void:
 	# Check if we are in the menu or the game scene
 	if get_tree().current_scene.name == "Menu":
-		# Call the scene-specific function to remove the player from the UI
+		show_server_label("Player # %d has disconnected" % id)  # Show disconnection message with player ID
 		if get_tree().current_scene.has_method("remove_player"):
 			get_tree().current_scene.remove_player(player_info.keys().find(id))
 		else:
 			print("Warning: remove_player method not found in Menu scene.")
+	elif get_tree().current_scene.name == "GameUI":
+		show_server_label("Player # %d has disconnected" % id)
+		get_tree().current_scene.disconnect_opponent(id)
+		if id in player_info and player_info[id].instance:
+			player_info[id].instance.queue_free()
+			print("Player instance removed for player ID:", id)
+		else:
+			print("Warning: player_info[", id, "] instance is null or does not exist.")
 	else:
-		# Remove the player's instance in the game scene
+		show_server_label("Player # %d has disconnected" % id)  # Show disconnection message with player ID
 		if id in player_info and player_info[id].instance:
 			player_info[id].instance.queue_free()
 			print("Player instance removed for player ID:", id)
@@ -346,6 +402,24 @@ func remove_player(id: int) -> void:
 		print("Player ID: ", id, " successfully removed from player_info.")
 	else:
 		print("Error removing player ID:", id, "from player_info.")
+
+# Function to show the server label with the message and hide it after 3 seconds
+func show_server_label(message: String) -> void:
+	var scene = get_tree().current_scene
+	var label = scene.server_label  # Access the server label
+	label.text = message  # Set the text of the label
+	label.visible = true  # Make the label visible
+
+	# Start a timer to hide the label after 3 seconds
+	var timer = Timer.new()
+	scene.add_child(timer)  # Add the timer to the scene
+	timer.wait_time = 3.0  # Wait for 3 seconds
+	timer.one_shot = true  # Only trigger once
+	timer.connect("timeout", Callable(self, "_hide_server_label").bind(label))  # Hide label when timer finishes
+	timer.start()  # Start the timer
+
+func _hide_server_label(label: Label) -> void:
+	label.visible = false  # Hide the label after the timer completes
 
 func _remove_all_players() -> void:
 	if get_tree().current_scene.name == "Menu":
@@ -361,7 +435,6 @@ func _remove_all_players() -> void:
 
 func _connected_ok() -> void:
 	client_id = self.multiplayer.multiplayer_peer.get_unique_id()
-	print("My client ID is ", client_id)
 	
 	if is_creator:
 		rpc_id(1, "create_room", my_info)
@@ -373,6 +446,7 @@ func _connected_ok() -> void:
 		rpc_id(1, "join_room", room, my_info)
 
 func _connected_fail() -> void:
+	SERVER_ADDRESS = ""
 	print("Failed connecting to the server!")
 	if is_creator == true:
 		stop()
@@ -382,7 +456,7 @@ func _connected_fail() -> void:
 	
 func _server_disconnected() -> void:
 	print("Server disconnected!")
-	
+	SERVER_ADDRESS = ""
 	if get_tree().current_scene.name != "Menu":
 		_change_to_main_menu()
 	
@@ -605,4 +679,3 @@ func join_room(room_id: int, info: Dictionary) -> void:
 @rpc("any_peer")
 func update_matrix_in_server(room_id: int, matrix: Array) -> void:
 	pass #dummy
-	

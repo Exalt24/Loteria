@@ -1,17 +1,15 @@
 extends Label
 
 @export var countdown_fx = preload("res://src/Assets/Sounds/BGM/[6]timer.wav")
-@onready var audio_player: AudioStreamPlayer2D = $countdown
+@onready var audio_player: AudioStreamPlayer2D = $"../../countdown"
 var countdown = 3
 
 # Timer to control the countdown
 var timer = 0.0
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	text = str(countdown)  # Initialize the label text with the countdown start value
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	timer += delta
 	if timer >= 1.0:  # One second has passed

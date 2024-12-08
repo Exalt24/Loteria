@@ -12,8 +12,21 @@ extends Control
 @onready var opp3: Control = $Panel/opponent/TextureRect3
 @onready var opp4: Control = $Panel/opponent/TextureRect4
 @onready var coin_texture = preload("res://src/Assets/Images/coin.png")
-
+@onready var server_label: Label = $Panel/ServerLabel
 @onready var audio_player: AudioStreamPlayer2D = $bgm
+
+var token_textures: Dictionary = {
+		"marble": preload("res://src/Assets/Images/Opponent/Player1.png"),
+		"can": preload("res://src/Assets/Images/Opponent/Player2.png"),
+		"slippers": preload("res://src/Assets/Images/Opponent/Player3.png"),
+		"takyan": preload("res://src/Assets/Images/Opponent/Player4.png"),
+		"atis": preload("res://src/Assets/Images/Opponent/Player5.png"),
+		"nomarble": preload("res://src/Assets/Images/Opponent/NoPlayer1.png"),
+		"nocan": preload("res://src/Assets/Images/Opponent/NoPlayer2.png"),
+		"noslippers": preload("res://src/Assets/Images/Opponent/NoPlayer3.png"),
+		"notakyan": preload("res://src/Assets/Images/Opponent/NoPlayer4.png"),
+		"noatis": preload("res://src/Assets/Images/Opponent/NoPlayer5.png")
+	}
 
 func _ready() -> void:
 	if audio_player:
@@ -46,18 +59,6 @@ func _on_loterya_button_pressed() -> void:
 	Client.winner_game()
 	
 func set_opponents_texture() -> void:
-	var token_textures: Dictionary = {
-		"marble": preload("res://src/Assets/Images/Opponent/Player1.png"),
-		"can": preload("res://src/Assets/Images/Opponent/Player2.png"),
-		"slippers": preload("res://src/Assets/Images/Opponent/Player3.png"),
-		"takyan": preload("res://src/Assets/Images/Opponent/Player4.png"),
-		"atis": preload("res://src/Assets/Images/Opponent/Player5.png"),
-		"nomarble": preload("res://src/Assets/Images/Opponent/NoPlayer1.png"),
-		"nocan": preload("res://src/Assets/Images/Opponent/NoPlayer2.png"),
-		"noslippers": preload("res://src/Assets/Images/Opponent/NoPlayer3.png"),
-		"notakyan": preload("res://src/Assets/Images/Opponent/NoPlayer4.png"),
-		"noatis": preload("res://src/Assets/Images/Opponent/NoPlayer5.png")
-	}
 
 	var client_id: int = Client.client_id
 	var client_token: String = Client.opponent_tokens[client_id] 
@@ -90,7 +91,6 @@ func set_opponents_texture() -> void:
 		"atis": "noatis"
 	}
 
-	
 	while index < opponent_controls.size():
 		for token in no_player_textures.keys():
 			if token in assigned_tokens:
@@ -158,3 +158,34 @@ func update_opponents_progress() -> void:
 								texture_display.position = panel_size / 2 - (original_size * scale_factor) / 2
 
 								slot.add_child(texture_display)
+
+func disconnect_opponent(id: int) -> void:
+	# Define the grayed-out versions of the tokens (no-player textures)
+	var no_player_textures: Dictionary = {
+		"marble": "nomarble",
+		"can": "nocan",
+		"slippers": "noslippers",
+		"takyan": "notakyan",
+		"atis": "noatis"
+	}
+
+	# List of opponent controls (slots where the token is shown)
+	var opponent_controls = [opp1, opp2, opp3, opp4]
+	
+	# Loop through the opponent controls to find the matching ID
+	for opponent_control in opponent_controls:
+		if opponent_control.current_player == id:  # Match the opponent's ID with the player slot
+			var token_symbol = opponent_control.current_token  # Get the token of the opponent
+
+			# If the token symbol exists in the no_player_textures dictionary, update the texture
+			if no_player_textures.has(token_symbol):
+				var no_token = no_player_textures[token_symbol]  # Get the no-player version of the texture
+
+				# Update the texture of the opponent control to the no-player version
+				if token_textures.has(no_token):
+					opponent_control.texture.texture = token_textures[no_token]  # Set the new texture
+					opponent_control.current_token = no_token  # Update the current token to the "no-player" version
+					print("Player #", id, "'s token texture replaced with no-player version:", no_token)
+				else:
+					print("No token texture found for: ", no_token)
+				break  # Exit once the opponent is found and texture is updated
