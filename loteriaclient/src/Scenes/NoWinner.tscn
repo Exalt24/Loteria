@@ -1,123 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://bq33uahpl080y"]
+[gd_scene load_steps=11 format=3 uid="uid://bq33uahpl080y"]
 
 [ext_resource type="Script" path="res://src/Scripts/no_winner.gd" id="1_aig31"]
 [ext_resource type="Texture2D" uid="uid://cqufvs1ce1gi" path="res://src/Assets/Images/ResultsBG.png" id="1_jfo8d"]
-[ext_resource type="Script" path="res://src/Scripts/banner_animation.gd" id="3_0bhdy"]
-[ext_resource type="Texture2D" uid="uid://cxxenrysmhgkg" path="res://src/Assets/Images/Banners.png" id="3_jta46"]
 [ext_resource type="FontFile" uid="uid://cek4o8uqi2788" path="res://src/Assets/Fonts/Fredoka-SemiBold.ttf" id="4_3yivn"]
 [ext_resource type="Texture2D" uid="uid://cvr27jf6f0wa3" path="res://src/Assets/Images/NoWinnerBanner.png" id="5_n83ca"]
 [ext_resource type="PackedScene" uid="uid://ddu6gleekcwhk" path="res://src/Scenes/WinnerPattern.tscn" id="7_c7r3p"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a46uk"]
 texture = ExtResource("1_jfo8d")
-
-[sub_resource type="Animation" id="Animation_s3v1i"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Banner 1:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(3.30396, 32)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Banner 1:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Banner 2:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Banner 2:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(648, 38)]
-}
-
-[sub_resource type="Animation" id="Animation_av1yi"]
-resource_name = "banner_animation"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Banner 1:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 1), Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Banner 1:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(500, 33), Vector2(0, 33)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Banner 2:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 1), Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Banner 2:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(648, 33), Vector2(648, 33)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_2pg8a"]
-_data = {
-"RESET": SubResource("Animation_s3v1i"),
-"banner_animation": SubResource("Animation_av1yi")
-}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4a2bw"]
 bg_color = Color(0, 0.133333, 0.423529, 1)
@@ -179,41 +69,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_a46uk")
-
-[node name="Banner_Animation" type="AnimationPlayer" parent="NoWinResult"]
-libraries = {
-"": SubResource("AnimationLibrary_2pg8a")
-}
-script = ExtResource("3_0bhdy")
-
-[node name="Banner 1" type="TextureRect" parent="NoWinResult"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.502
-anchor_top = 0.5
-anchor_right = 0.502
-anchor_bottom = 0.5
-offset_left = -575.0
-offset_top = -292.0
-offset_right = -72.0
-offset_bottom = 93.0
-texture = ExtResource("3_jta46")
-expand_mode = 1
-flip_h = true
-
-[node name="Banner 2" type="TextureRect" parent="NoWinResult"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.502
-anchor_top = 0.503
-anchor_right = 0.502
-anchor_bottom = 0.503
-offset_left = 69.696
-offset_top = -287.944
-offset_right = 575.0
-offset_bottom = 97.056
-texture = ExtResource("3_jta46")
-expand_mode = 1
 
 [node name="NoWinnerDialog" type="Panel" parent="NoWinResult"]
 layout_mode = 1
