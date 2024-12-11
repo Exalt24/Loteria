@@ -23,7 +23,6 @@ var game_started: bool = false
 @onready var select_room_dialog: Panel = $Background/SelectRoomDialog
 @onready var name_margin_container: MarginContainer = $Background/MarginContainer
 @onready var server_label: Label = $Background/ServerLabel
-@onready var icon_button: Button = $Background/IconButton
 
 
 const THEME = preload("res://src/Assets/Theme.tres")
@@ -50,7 +49,6 @@ func _ready() -> void:
 		show_welcome_screen()
 	else:
 		setup_main_menu()
-	icon_button.visible = false
 
 func show_welcome_screen() -> void:
 	# Load and instantiate the WelcomePage.tscn
@@ -99,7 +97,7 @@ func _on_create_server_button_pressed() -> void:
 	Client.create_room({})
 	Helper.center_panel(create_dialog)
 	create_dialog.show()
-	icon_button.visible = true
+
 	toggle_buttons()
 
 func _on_create_dialog_back_pressed() -> void:
@@ -108,7 +106,6 @@ func _on_create_dialog_back_pressed() -> void:
 	create_dialog.hide()
 	if self.multiplayer.multiplayer_peer != null:
 		Client.stop()
-	icon_button.visible = false
 	toggle_buttons()
 
 func _on_join_server_button_pressed() -> void:
@@ -119,7 +116,6 @@ func _on_join_server_button_pressed() -> void:
 	Client.connect_to_server()
 	select_room_dialog.show()
 	loading_label.show()
-	icon_button.visible = true
 	toggle_buttons()
 
 func _on_join_dialog_back_pressed() -> void:
@@ -131,7 +127,6 @@ func _on_join_dialog_back_pressed() -> void:
 		Client.stop()
 	else:
 		toggle_buttons()
-	icon_button.visible = false
 	
 
 func _on_select_room_dialog_back_pressed() -> void:
@@ -142,7 +137,6 @@ func _on_select_room_dialog_back_pressed() -> void:
 		Client.stop()
 	else:
 		toggle_buttons()
-	icon_button.visible = false
 
 func add_player_to_ui(name: String) -> void:
 	play_button_sfx()
