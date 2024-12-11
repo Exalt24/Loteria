@@ -47,8 +47,8 @@ extends NinePatchRect
 	{"texture": preload("res://src/Assets/Images/Loterya Cards/Tinikling.png"), "index": 40, "sound": preload("res://src/Assets/Sounds/Tinikling.wav")},
 	{"texture": preload("res://src/Assets/Images/Loterya Cards/Tumbang Preso.png"), "index": 41, "sound": preload("res://src/Assets/Sounds/Tumbang-Preso.wav")},
 	{"texture": preload("res://src/Assets/Images/Loterya Cards/Vinta.png"), "index": 42, "sound": preload("res://src/Assets/Sounds/Vinta.wav")},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Walis Tambo.png"), "index": 42, "sound": preload("res://src/Assets/Sounds/Walis Tambo.wav")},
-	{"texture": preload("res://src/Assets/Images/Loterya Cards/Watawat.png"), "index": 42, "sound": preload("res://src/Assets/Sounds/Watawat.wav")}
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Walis Tambo.png"), "index": 43, "sound": preload("res://src/Assets/Sounds/Walis Tambo.wav")},
+	{"texture": preload("res://src/Assets/Images/Loterya Cards/Watawat.png"), "index": 44, "sound": preload("res://src/Assets/Sounds/Watawat.wav")}
 ]
 
 var card_items = []  # Cards to display

@@ -3,7 +3,6 @@ extends Node
 var SERVER_ADDRESS: String = ""
 const SERVER_PORT: int = 33070
 
-
 @export var loterya_cards: Array = [
 	preload("res://src/Assets/Images/Loterya Cards/Agila.png"),
 	preload("res://src/Assets/Images/Loterya Cards/Anahaw.png"),
@@ -235,8 +234,46 @@ var win_patterns: Array = [
 	]
 ]
 
-var current_win_pattern: Array 
+var current_win_pattern: Array
 var client_id: int
+
+var lock_file_path = OS.get_executable_path().get_base_dir() + "/game_lock.lock"
+var is_exiting = false
+
+func _ready() -> void:
+	if is_application_running():
+		print("Application is already running. Exiting...")
+		get_tree().quit()
+		return
+	else:
+		create_lock_file()
+		print("Application started.")
+
+func is_application_running() -> bool:
+	var dir = DirAccess.open(lock_file_path.get_base_dir())
+	if dir and dir.file_exists(lock_file_path):
+		return true
+	return false
+
+func create_lock_file() -> void:
+	var dir = DirAccess.open(lock_file_path.get_base_dir())
+	if dir:
+		if !dir.file_exists(lock_file_path):
+			var file = FileAccess.open(lock_file_path, FileAccess.WRITE)
+			if file:
+				file.store_line("This file locks the application to one instance.")
+				file.close()
+				is_exiting = true
+
+func _exit_tree():
+	if !is_exiting:
+		is_exiting = true  # Mark that the app is about to exit
+		return  # Prevent deletion of the lock file here
+	
+	var dir = DirAccess.open(lock_file_path.get_base_dir())  # Open the executable's directory
+	if dir and dir.file_exists(lock_file_path):
+		dir.remove(lock_file_path)  # Delete the lock file upon actual exit
+		print("Lock file deleted.")
 
 @rpc("any_peer")
 func create_room(info: Dictionary) -> void:
